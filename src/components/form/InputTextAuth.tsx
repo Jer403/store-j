@@ -34,7 +34,7 @@ export function InputText({
       <label htmlFor={id} className="sr-only">
         {label}
       </label>
-      <label htmlFor={id} className="text-md text-gray-500 dark:text-gray-300">
+      <label htmlFor={id} className="text-md text-gray-300">
         {label}
       </label>
       <input
@@ -56,7 +56,7 @@ export function InputText({
         }}
         className={`${
           shake && "shake !border-[--wrong]"
-        } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border autofill:bg-gray-900 dark:bg-gray-900 dark:border-gray-500 dark:text-white border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
+        } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border autofill:bg-gray-900 bg-gray-900 border-gray-500 text-white placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
       />
       <div
         className={`absolute w-6 h-6 check group ${
@@ -98,7 +98,7 @@ export function InputText({
             <path d="m9 9 6 6"></path>
           </svg>
         )}
-        <span className="tooltiptext group-hover:visible after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-gray-300 dark:shadow-gray-600 text-gray-800 bg-gray-50 after:border-r-gray-50 dark:text-white dark:bg-gray-800 dark:after:border-r-gray-800">
+        <span className="tooltiptext group-hover:visible after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-smshadow-gray-600 text-white bg-gray-800 after:border-r-gray-800">
           {valValue ? <> {val_valid}</> : <>{val_not_valid}</>}
         </span>
       </div>

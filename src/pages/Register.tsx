@@ -127,11 +127,11 @@ export default function Register() {
     <div className="min-h-screen-minus-64 dottedBackground flex justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-lg w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             {LANGUAGE.REGISTER.TITLE[preferences.language]}
           </h2>
         </div>
-        <div className="bg-white rounded-lg shadow-md p-7 dark:bg-gray-900">
+        <div className="rounded-lg shadow-md p-7 bg-gray-900">
           <form className="space-y-7">
             <div className={`rounded-md shadow-sm -space-y-px `}>
               <InputText
@@ -221,7 +221,7 @@ export default function Register() {
                 />
                 <label
                   htmlFor="remember-me"
-                  className="ml-2 block text-md text-gray-900 dark:text-gray-100"
+                  className="ml-2 block text-md text-gray-100"
                 >
                   {LANGUAGE.REGISTER.REMEMBERME[preferences.language]}
                 </label>

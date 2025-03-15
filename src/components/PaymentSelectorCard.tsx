@@ -40,7 +40,7 @@ export function PaymentSelectorCard({
           >
             <div className="flex items-center justify-start gap-3">
               {icon}
-              <span className="dark:text-white text-sm sm:text-md md:text-lg">
+              <span className="text-white text-sm sm:text-md md:text-lg">
                 {title}
               </span>
             </div>
@@ -68,7 +68,7 @@ export function PaymentSelectorCard({
           >
             <div className="flex items-center justify-start gap-3">
               {icon}
-              <span className="dark:text-white text-sm sm:text-md md:text-lg">
+              <span className="text-white text-sm sm:text-md md:text-lg">
                 {title}
               </span>
             </div>
@@ -77,7 +77,7 @@ export function PaymentSelectorCard({
             </div>
           </div>
           <div className="p-3">
-            <h2 className="text-lg font-semibold mb-4 dark:text-gray-50">
+            <h2 className="text-lg font-semibold mb-4 text-gray-50">
               {formLabelTitle}
             </h2>
 

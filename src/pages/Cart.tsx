@@ -18,28 +18,28 @@ export function CartProductItem({
 }) {
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
   return (
-    <div className="w-full flex flex-row p-2 bg-gray-50 dark:bg-gray-800 border dark:border-gray-500 rounded-lg">
+    <div className="w-full flex flex-row p-2 bg-gray-800 border border-gray-500 rounded-lg">
       <div>
         <img
           src={`${IMG_API_URL}${product.image}.webp`}
           alt={product.title}
-          className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 text-[8px] aspect-square object-cover rounded-md border-2 border-gray-400 dark:text-gray-50"
+          className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 text-[8px] aspect-square object-cover rounded-md border-2 border-gray-400 text-gray-50"
         />
       </div>
       <div className="w-full ml-4 flex flex-row justify-between">
-        <p className="w-full text-lg md:text-2xl flex items-start dark:text-gray-50">
+        <p className="w-full text-lg md:text-2xl flex items-start text-gray-50">
           {product.title}
         </p>
         <div className="flex flex-col-reverse justify-between items-end">
           <button
-            className="w-20 h-7 px-1 flex flex-row items-center justify-center gap-1 text-sm font-medium rounded-md text-gray-500 dark:text-gray-300 border border-gray-300 dark:hover:bg-gray-700  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
+            className="w-20 h-7 px-1 flex flex-row items-center justify-center gap-1 text-sm font-medium rounded-md text-gray-300 border border-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
             onClick={() => {
               handleRemoveElement(product.id);
               setLoadingSubmit(true);
             }}
           >
             {loadingSubmit ? (
-              <CircleDashed className="h-4 w-4 loader dark:text-white" />
+              <CircleDashed className="h-4 w-4 loader text-white" />
             ) : (
               <>
                 <Trash2 className="h-4 w-4"></Trash2>
@@ -47,7 +47,7 @@ export function CartProductItem({
               </>
             )}
           </button>
-          <p className="text-lg font-medium flex items-center dark:text-gray-50">
+          <p className="text-lg font-medium flex items-center text-gray-50">
             ${product.price}.00
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function Cart() {
         <div className="w-full">
           <h1
             key={titleCId}
-            className="text-4xl font-bold text-center mb-8 dark:text-white"
+            className="text-4xl font-bold text-center mb-8 text-white"
           >
             {LANGUAGE.CART.TITLE[preferences.language]}
           </h1>
@@ -89,15 +89,15 @@ export default function Cart() {
           >
             <div
               key={itemsCId}
-              className={`w-full min-w-80 bg-white dark:bg-gray-900 rounded-lg shadow-md p-4 ${
+              className={`w-full min-w-80 bg-gray-900 rounded-lg shadow-md p-4 ${
                 loadingCart && "pt-9"
               } lg:p-8 flex flex-col gap-2 relative`}
             >
               {loadingCart && (
-                <CircleDashed className="loader h-6 w-6 absolute top-0 right-0 mr-2 mt-2 dark:text-white"></CircleDashed>
+                <CircleDashed className="loader h-6 w-6 absolute top-0 right-0 mr-2 mt-2 text-white"></CircleDashed>
               )}
               {loadingCart && cart.length == 0 ? (
-                <p className="text-2xl dark:text-white flex justify-center">
+                <p className="text-2xl text-white flex justify-center">
                   {LANGUAGE.CART.LOADING[preferences.language]}
                 </p>
               ) : cart.length > 0 ? (
@@ -117,7 +117,7 @@ export default function Cart() {
                     key={anyCId}
                     className="flex flex-col items-center justify-center"
                   >
-                    <p className="text-xl dark:text-gray-50">
+                    <p className="text-xl text-gray-50">
                       {LANGUAGE.CART.ANY_PRODUCT[preferences.language]}
                     </p>
                   </div>
@@ -126,16 +126,16 @@ export default function Cart() {
             </div>
             <div
               key={checkCId}
-              className="w-full min-w-80 md:max-w-72 lg:max-w-sm bg-white dark:bg-gray-900 rounded-lg shadow-md p-4 flex flex-col gap-1 max-h-[288px] md:sticky top-10"
+              className="w-full min-w-80 md:max-w-72 lg:max-w-sm bg-gray-900 rounded-lg shadow-md p-4 flex flex-col gap-1 max-h-[288px] md:sticky top-10"
             >
-              <p className="text-2xl font-bold dark:text-white">
+              <p className="text-2xl font-bold text-white">
                 {LANGUAGE.CART.SUMMARY[preferences.language]}
               </p>
-              <p className="text-xl mb-3 flex justify-between dark:text-gray-200">
+              <p className="text-xl mb-3 flex justify-between text-gray-200">
                 {LANGUAGE.CART.PRODUCT[preferences.language]}{" "}
                 <span>{cart.length}</span>
               </p>
-              <p className="text-xl border-t py-2 flex justify-between items-end dark:text-gray-200">
+              <p className="text-xl border-t py-2 flex justify-between items-end text-gray-200">
                 {LANGUAGE.CART.TOTAL[preferences.language]}{" "}
                 <span className="font-bold text-lg">
                   ${cart.reduce((sum = 0, item) => sum + item.price, 0)}.00

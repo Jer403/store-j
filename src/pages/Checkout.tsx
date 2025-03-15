@@ -108,24 +108,24 @@ export default function Checkout() {
     <div className="min-h-screen-minus-64 dottedBackground py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="max-w-full mx-auto mb-10 ">
-          <div className="bg-white dark:bg-gray-900 md:dark:bg-transparent md:bg-transparent rounded-lg">
+          <div className="bg-gray-900 md:dark:bg-transparent md:bg-transparent rounded-lg">
             <div className=" flex flex-col md:flex-row-reverse md:justify-center md:gap-3 shadow-md md:shadow-none p-6 md:p-0">
               <div className="w-full flex flex-col md:flex-row-reverse md:justify-center md:gap-3 ">
-                <div className="md:dark:bg-gray-900 md:bg-white md:p-6 md:rounded-lg md:shadow-md w-full md:max-w-80 lg:max-w-[360px] flex flex-col max-h-full h-fit mb-6 md:!mb-0">
-                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+                <div className="md:bg-gray-900  md:p-6 md:rounded-lg md:shadow-md w-full md:max-w-80 lg:max-w-[360px] flex flex-col max-h-full h-fit mb-6 md:!mb-0">
+                  <h1 className="text-2xl font-bold text-white mb-8">
                     {LANGUAGE.CHECKOUT.TITLE[preferences.language]}
                   </h1>
 
                   <div>
                     <h2
                       key={orderCId}
-                      className="text-xl font-bold dark:text-gray-100 mb-4"
+                      className="text-xl font-bold text-gray-100 mb-4"
                     >
                       {LANGUAGE.CHECKOUT.SUMMARY[preferences.language]}
                     </h2>
                     <div
                       key={itemsCId}
-                      className="border-t border-b dark:border-gray-600 py-4"
+                      className="border-t border-b border-gray-600 py-4"
                     >
                       <div className="max-h-full px-1 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb]:rounded-md">
                         {cart.length != 0 ? (
@@ -138,17 +138,17 @@ export default function Checkout() {
                             ))}
                           </>
                         ) : (
-                          <p className="text-xl dark:text-gray-100">
+                          <p className="text-xl text-gray-100">
                             {LANGUAGE.CHECKOUT.ANY[preferences.language]}
                           </p>
                         )}
                       </div>
                     </div>
                     <div className="flex flex-col mt-4">
-                      <span className="font-bold text-lg flex justify-between dark:text-gray-100">
+                      <span className="font-bold text-lg flex justify-between text-gray-100">
                         {LANGUAGE.CHECKOUT.TOTAL[preferences.language]}
                         <span>
-                          <span className="font-bold text-xl dark:text-gray-100">
+                          <span className="font-bold text-xl text-gray-100">
                             ${total}
                           </span>
                         </span>
@@ -185,8 +185,8 @@ export default function Checkout() {
                     text={LANGUAGE.CHECKOUT.PAY[preferences.language]}
                   />
                 </div>
-                <div className="md:dark:bg-gray-900 md:bg-white md:p-6 md:rounded-lg md:shadow-md w-full max-w-2xl flex flex-col gap-3 ">
-                  <span className="dark:text-white text-xl font-bold">
+                <div className="md:bg-gray-900 md:p-6 md:rounded-lg md:shadow-md w-full max-w-2xl flex flex-col gap-3 ">
+                  <span className="text-white text-xl font-bold">
                     {LANGUAGE.CHECKOUT.PAYMENT_METHODS[preferences.language]}
                   </span>
 

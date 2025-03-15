@@ -20,17 +20,17 @@ export default function Welcome() {
 
   return (
     <>
-      <div className="bg-gradient-to-br h-[calc(100vh-64px)] flex items-center justify-center from-indigo-100 via-white to-purple-100 dark:from-indigo-950 dark:via-gray-950 dark:to-purple-950">
+      <div className="bg-gradient-to-br h-[calc(100vh-64px)] flex items-center justify-center from-indigo-950 via-gray-950 to-purple-950">
         {/* Hero Section */}
         <div className="max-w-7xl flex items-center justify-center mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+            <h1 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
               <span className="block">
                 {LANGUAGE.WELCOME.HERO_WELCOME[preferences.language]}
               </span>
               <span className="block text-indigo-600 mt-1">{BRANDNAME}</span>
             </h1>
-            <p className="mt-6 text-xl text-gray-500 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="mt-6 text-xl text-gray-300 max-w-2xl mx-auto">
               {LANGUAGE.WELCOME.HERO_DESCRIPTION[preferences.language]}
             </p>
             <div className="mt-10 flex justify-center gap-3">

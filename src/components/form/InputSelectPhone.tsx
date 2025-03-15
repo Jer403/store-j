@@ -25,7 +25,7 @@ export function InputSelectPhone({
     <div>
       <label
         htmlFor={id}
-        className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        className="block text-sm font-medium text-gray-300 mb-1"
       >
         {label} {required && <span className="text-red-500">*</span>}
       </label>
@@ -33,7 +33,7 @@ export function InputSelectPhone({
         <select
           id={id}
           name={name}
-          className="w-1/6 min-w-[92px] px-3 py-2 border-t border-l border-b dark:bg-gray-900 dark:border-gray-500 dark:text-white appearance-none border-gray-300 rounded-tl-md rounded-bl-md focus:z-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-1/6 min-w-[92px] px-3 py-2 border-t border-l border-b bg-gray-900 border-gray-500 text-white appearance-none rounded-tl-md rounded-bl-md focus:z-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           value={value}
           disabled={disabled}
           onChange={(e) => setCallingCode(e.target.value)}
@@ -57,7 +57,7 @@ export function InputSelectPhone({
           onChange={(e) => {
             setValue(e.target.value);
           }}
-          className={`w-full px-3 py-2 dark:bg-gray-900 dark:border-gray-500 dark:text-white  [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield] border border-gray-300 rounded-tr-md rounded-br-md  focus:outline-none focus:ring-2 focus:ring-indigo-500 `}
+          className={`w-full px-3 py-2 bg-gray-900 border-gray-500 text-white  [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield] border rounded-tr-md rounded-br-md  focus:outline-none focus:ring-2 focus:ring-indigo-500 `}
           placeholder="2125844128"
         />
       </div>

@@ -148,11 +148,11 @@ export default function Login() {
     <div className="min-h-screen-minus-64 dottedBackground flex justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-lg w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             {LANGUAGE.LOGIN.TITLE[preferences.language]}
           </h2>
         </div>
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-7">
+        <div className="bg-gray-900 rounded-lg shadow-md p-7">
           <form className=" space-y-7">
             <div className="rounded-md shadow-sm -space-y-px gap-3 flex flex-col">
               <div className="relative">
@@ -161,7 +161,7 @@ export default function Login() {
                 </label>
                 <label
                   htmlFor="email-address"
-                  className="text-md text-gray-500 dark:text-gray-300"
+                  className="text-md text-gray-300"
                 >
                   {LANGUAGE.LOGIN.EMAIL[preferences.language]}
                 </label>
@@ -178,7 +178,7 @@ export default function Login() {
                   }}
                   className={`${
                     emailShake && "shake !border-[--wrong]"
-                  } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-4 py-3 border dark:bg-gray-900 dark:border-gray-500 dark:text-white border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
+                  } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-4 py-3 border bg-gray-900 text-white border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
                 />
                 <div
                   className={`absolute group w-6 h-6 check ${
@@ -194,7 +194,7 @@ export default function Login() {
                     <XCircle></XCircle>
                   )}
 
-                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-gray-300 dark:shadow-gray-600 text-gray-800 bg-gray-50 after:border-r-gray-50 dark:text-white dark:bg-gray-800 dark:after:border-r-gray-800">
+                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-gray-300 dark:shadow-gray-600 text-white bg-gray-800 after:border-r-gray-800">
                     {valEmail
                       ? LANGUAGE.LOGIN.EMAIL_VALID[preferences.language]
                       : LANGUAGE.LOGIN.EMAIL_NOT_VALID[preferences.language]}
@@ -205,10 +205,7 @@ export default function Login() {
                 <label htmlFor="password" className="sr-only">
                   {LANGUAGE.LOGIN.PASS[preferences.language]}
                 </label>
-                <label
-                  htmlFor="password"
-                  className="text-md text-gray-500 dark:text-gray-300"
-                >
+                <label htmlFor="password" className="text-md text-gray-300">
                   {LANGUAGE.LOGIN.PASS[preferences.language]}
                 </label>
                 <input
@@ -226,7 +223,7 @@ export default function Login() {
                   onMouseLeave={() => setEyeVisible(false)}
                   className={`${
                     passShake && "shake !border-[--wrong]"
-                  } appearance-non text-md h-12 mt-1 rounded-md relative block w-full px-3 py-2 border dark:bg-gray-900 dark:border-gray-500 dark:text-white border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
+                  } appearance-non text-md h-12 mt-1 rounded-md relative block w-full px-3 py-2 border bg-gray-900 border-gray-500 text-white placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
                 />
                 <div className="absolute w-6 h-6 eye" style={{ color: "#111" }}>
                   <button
@@ -267,7 +264,7 @@ export default function Login() {
                     <XCircle></XCircle>
                   )}
 
-                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-gray-300 dark:shadow-gray-600 text-gray-800 bg-gray-50 after:border-r-gray-50 dark:text-white dark:bg-gray-800 dark:after:border-r-gray-800">
+                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm  shadow-gray-600 text-white bg-gray-800 after:border-r-gray-800">
                     {valPassword
                       ? LANGUAGE.LOGIN.PASS_VALID[preferences.language]
                       : LANGUAGE.LOGIN.PASS_NOT_VALID[preferences.language]}
@@ -301,11 +298,11 @@ export default function Login() {
                     name="remember-me"
                     type="checkbox"
                     onChange={() => setRemeberme(!remeberme)}
-                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded dark:bg-gray-900"
+                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded bg-gray-900"
                   />
                   <label
                     htmlFor="remember-me"
-                    className="ml-2 block text-sm md:text-base text-gray-900 dark:text-gray-100"
+                    className="ml-2 block text-sm md:text-base text-gray-100"
                   >
                     {LANGUAGE.LOGIN.REMEMBERME[preferences.language]}
                   </label>

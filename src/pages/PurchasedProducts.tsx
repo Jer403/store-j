@@ -9,12 +9,12 @@ export default function PurchasedProducts() {
 
   return (
     <div className="lg:col-span-3">
-      <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold mb-6 dark:text-white">
+      <div className="bg-gray-900 rounded-lg shadow-md p-6">
+        <h2 className="text-2xl font-bold mb-6 text-white">
           {LANGUAGE.DASHBOARD.PURCHASED[preferences.language]}
         </h2>
         {purchased.length == 0 ? (
-          <p className="text-xl flex dark:text-gray-200 justify-center">
+          <p className="text-xl flex text-gray-200 justify-center">
             {LANGUAGE.DASHBOARD.ANYITEMS[preferences.language]}
           </p>
         ) : (

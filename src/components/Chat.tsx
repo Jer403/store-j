@@ -172,10 +172,8 @@ export function Chat() {
       >
         <div
           className={`${
-            isChatOpen
-              ? "flex border border-gray-200 dark:border-gray-500"
-              : "hidden"
-          } flex-col bg-white rounded-lg overflow-hidden w-full h-[600px] max-h-[600px] shadow-m shadow-gray-300 dark:shadow-gray-600`}
+            isChatOpen ? "flex border border-gray-500" : "hidden"
+          } flex-col bg-white rounded-lg overflow-hidden w-full h-[600px] max-h-[600px] shadow-m shadow-gray-600`}
         >
           <div
             className={`flex w-full border-b border-gray-200 rounded-t-md h-12 items-center justify-center gap-3 p-2`}
@@ -316,7 +314,7 @@ export function Chat() {
         <div
           className={`${
             isChatOpen ? "rotate-0" : "rotate-12"
-          } bg-white absolute border-2 -bottom-[64px] right-0 border-indigo-500 dark:border-transparent dark:bg-gray-50 w-14 h-14 rounded-xl flex justify-center items-center transition-transform`}
+          } absolute border-2 -bottom-[64px] right-0 border-indigo-500 border-transparent bg-gray-50 w-14 h-14 rounded-xl flex justify-center items-center transition-transform`}
           onClick={() => {
             setIsChatOpen(!isChatOpen);
             setNotSeenMessagesToSeen();

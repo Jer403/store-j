@@ -18,12 +18,10 @@ export function PurchasedProductCard({
         src={`${IMG_API_URL}${product.image}.webp`}
         alt={product.title}
         draggable={false}
-        className="w-full h-72 object-cover rounded-lg aspect-auto dark:text-white dark:bg-gray-950"
+        className="w-full h-72 object-cover rounded-lg aspect-auto text-white bg-gray-950"
       />
-      <h3 className="mt-4 text-lg font-semibold dark:text-white">
-        {product.title}
-      </h3>
-      <p className="text-gray-600 text-sm mt-1  dark:text-gray-200">{`${
+      <h3 className="mt-4 text-lg font-semibold text-white">{product.title}</h3>
+      <p className="text-sm mt-1  text-gray-200">{`${
         LANGUAGE.DASHBOARD.PURCHASED_AT[preferences.language]
       } ${createDateTextFromLanguage(preferences.language, date)}`}</p>
       <button className="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">

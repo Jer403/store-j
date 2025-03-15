@@ -45,10 +45,7 @@ export function InputPasswordRepeat({
         <label htmlFor={id1} className="sr-only">
           {label1}
         </label>
-        <label
-          htmlFor={id1}
-          className="text-md text-gray-500 dark:text-gray-300"
-        >
+        <label htmlFor={id1} className="text-md text-gray-300">
           {label1}
         </label>
         <input
@@ -88,7 +85,7 @@ export function InputPasswordRepeat({
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                className={`dark:text-white ${
+                className={`text-white ${
                   eyeVisible ? "sm:block" : "sm:hidden"
                 }`}
               >
@@ -108,7 +105,7 @@ export function InputPasswordRepeat({
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                className={`dark:text-white block ${
+                className={`text-white block ${
                   eyeVisible ? "sm:block" : "sm:hidden"
                 }`}
               >
@@ -171,7 +168,7 @@ export function InputPasswordRepeat({
             </svg>
           )}
 
-          <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-gray-300 dark:shadow-gray-600 text-gray-800 bg-gray-50 after:border-r-gray-50 dark:text-white dark:bg-gray-800 dark:after:border-r-gray-800">
+          <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-gray-600 text-white bg-gray-800 after:border-r-gray-800">
             {valPassword
               ? pass_valid
               : password2.length < 6 || password2.length < 6
@@ -184,10 +181,7 @@ export function InputPasswordRepeat({
         <label htmlFor={id2} className="sr-only">
           {label2}
         </label>
-        <label
-          htmlFor={id2}
-          className="text-md text-gray-500 dark:text-gray-300"
-        >
+        <label htmlFor={id2} className="text-md text-gray-300">
           {label2}
         </label>
         <input
@@ -205,7 +199,7 @@ export function InputPasswordRepeat({
           onMouseLeave={() => setEyeVisible(false)}
           className={`${
             shake && "shake !border-[--wrong]"
-          } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border autofill:bg-gray-900 dark:bg-gray-900 dark:border-gray-500 dark:text-white border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
+          } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border autofill:bg-gray-900 bg-gray-900 border-gray-500 text-white placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
         />
         <div className="absolute w-6 h-6 eye">
           <button
@@ -227,7 +221,7 @@ export function InputPasswordRepeat({
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                className={`dark:text-white ${
+                className={`text-white ${
                   eyeVisible ? "sm:block" : "sm:hidden"
                 }`}
               >
@@ -247,7 +241,7 @@ export function InputPasswordRepeat({
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                className={`dark:text-white block ${
+                className={`text-white block ${
                   eyeVisible ? "sm:block" : "sm:hidden"
                 }`}
               >

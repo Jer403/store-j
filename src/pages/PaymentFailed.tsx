@@ -57,11 +57,11 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen-minus-64 bg-gray-100 dark:bg-gray-950 py-12">
+    <div className="min-h-screen-minus-64 bg-gray-950 py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div
-            className={`bg-white dark:bg-gray-900 rounded-lg shadow-md p-8 ${
+            className={`bg-gray-900 rounded-lg shadow-md p-8 ${
               loadingPayment && "py-11"
             }`}
           >
@@ -70,36 +70,34 @@ export default function About() {
                 loadingPayment ? "flex" : "hidden"
               } justify-center items-center gap-3`}
             >
-              <CircleDashed className="h-16 w-16 loader dark:text-white"></CircleDashed>
-              <span className="text-4xl dark:text-white">Loading...</span>
+              <CircleDashed className="h-16 w-16 loader text-white"></CircleDashed>
+              <span className="text-4xl text-white">Loading...</span>
             </div>
             <div className={`${loadingPayment && "hidden"}`}>
               <p className="text-5xl font-bold text-center mb-4 flex justify-center items-center gap-3">
                 <XCircleIcon className="h-20 w-20 text-[--wrong]"></XCircleIcon>
-                <span className="text-gray-700 dark:text-white">
+                <span className="text-white">
                   {LANGUAGE.PAY_FAILED.TITLE[preferences.language]}
                 </span>
               </p>
               <div className="flex justify-center items-center mb-10"></div>
 
-              <p className="text-lg text-gray-700 dark:text-white mb-6">
+              <p className="text-lg text-white mb-6">
                 {LANGUAGE.PAY_FAILED.TEXT1[preferences.language]}
               </p>
-              <p className="text-lg text-gray-700 dark:text-white mb-6">
+              <p className="text-lg text-white mb-6">
                 {LANGUAGE.PAY_FAILED.TEXT2[preferences.language]}
               </p>
-              <p className="text-lg font-bold text-gray-700 dark:text-white mb-6">
+              <p className="text-lg font-bold text-white mb-6">
                 {LANGUAGE.PAY_FAILED.TEXT3[preferences.language]}
               </p>
-              <p className="text-lg font-bold text-gray-700 dark:text-white mb-6">
+              <p className="text-lg font-bold text-white mb-6">
                 {LANGUAGE.PAY_FAILED.TEXT4[preferences.language]}
               </p>
-              <p className="text-lg text-gray-700 dark:text-white">
+              <p className="text-lg text-white">
                 {LANGUAGE.PAY_FAILED.GREETINGS[preferences.language]},
               </p>
-              <p className="text-lg font-bold text-gray-700 dark:text-white mb-10">
-                {BRANDNAME}.
-              </p>
+              <p className="text-lg font-bold text-white mb-10">{BRANDNAME}.</p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
                 <Link
@@ -118,15 +116,15 @@ export default function About() {
                 </Link>
               </div>
 
-              <div className="bg-gray-100 dark:bg-gray-950 p-5 rounded-md">
+              <div className="bg-gray-950 p-5 rounded-md">
                 <h2
                   key={orderCId}
-                  className="text-xl text-gray-700 dark:text-white font-semibold mb-4"
+                  className="text-xl text-white font-semibold mb-4"
                 >
                   {LANGUAGE.PAY_FAILED.DETAILS[preferences.language]}
                 </h2>
                 <div key={"chrc-0" + itemsCId}>
-                  <h3 className="text-lg font-medium text-gray-700 dark:text-white">
+                  <h3 className="text-lg font-medium text-white">
                     {LANGUAGE.PAY_FAILED.PRODUCTS[preferences.language]}
                   </h3>
                 </div>
@@ -139,13 +137,13 @@ export default function About() {
                           className="flex justify-between items-center"
                         >
                           <div key={"chrp-0" + prod.id + itemsCId}>
-                            <h3 className="font-medium text-gray-800 dark:text-white">
+                            <h3 className="font-medium text-white">
                               {prod.title}
                             </h3>
                           </div>
                           <span
                             key={"chrp-1" + prod.id + itemsCId}
-                            className="font-semibold text-gray-800 dark:text-white"
+                            className="font-semibold text-white"
                           >
                             ${prod.price}
                           </span>
@@ -159,13 +157,13 @@ export default function About() {
                   className="flex justify-between items-center  mb-3"
                 >
                   <div key={"chra-0" + itemsCId}>
-                    <h3 className="text-lg font-medium text-gray-700 dark:text-white">
+                    <h3 className="text-lg font-medium text-white">
                       {LANGUAGE.PAY_FAILED.AMOUNT[preferences.language]}
                     </h3>
                   </div>
                   <span
                     key={"chra-1" + itemsCId}
-                    className="font-semibold text-gray-800 dark:text-white"
+                    className="font-semibold text-white"
                   >
                     ${price}
                   </span>
@@ -175,13 +173,13 @@ export default function About() {
                   className="flex justify-between items-center  mb-3"
                 >
                   <div key={"chro-0" + itemsCId}>
-                    <h3 className="text-md sm:text-lg  font-medium text-gray-700 dark:text-white">
+                    <h3 className="text-md sm:text-lg  font-medium text-white">
                       {LANGUAGE.PAY_FAILED.ORDER[preferences.language]}
                     </h3>
                   </div>
                   <span
                     key={"chro-1" + itemsCId}
-                    className="font-semibold text-sm sm:text-lg text-gray-800 dark:text-white"
+                    className="font-semibold text-sm sm:text-lg text-white"
                   >
                     {order}
                   </span>
@@ -191,13 +189,13 @@ export default function About() {
                   className="flex justify-between items-center  mb-3"
                 >
                   <div key={"chri-0" + itemsCId}>
-                    <h3 className="text-md sm:text-lg  font-medium text-gray-700 dark:text-white">
+                    <h3 className="text-md sm:text-lg  font-medium text-white">
                       {LANGUAGE.PAY_SUCCESS.PAY_ID[preferences.language]}
                     </h3>
                   </div>
                   <span
                     key={"chri-1" + itemsCId}
-                    className="font-semibold text-sm sm:text-lg text-gray-800 dark:text-white"
+                    className="font-semibold text-sm sm:text-lg text-white"
                   >
                     {payId}
                   </span>
@@ -207,13 +205,13 @@ export default function About() {
                   className="flex justify-between items-center  mb-3"
                 >
                   <div key={"chrd-0" + itemsCId}>
-                    <h3 className="text-md sm:text-lg  font-medium text-gray-700 dark:text-white">
+                    <h3 className="text-md sm:text-lg  font-medium text-white">
                       {LANGUAGE.PAY_FAILED.DATE[preferences.language]}
                     </h3>
                   </div>
                   <span
                     key={"chrd-1" + itemsCId}
-                    className="font-semibold text-sm sm:text-lg text-gray-800 dark:text-white"
+                    className="font-semibold text-sm sm:text-lg text-white"
                   >
                     {createDateTextFromLanguage(
                       preferences.language,

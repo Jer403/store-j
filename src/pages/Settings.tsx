@@ -61,7 +61,7 @@ export default function Settings() {
     <div className="min-h-screen-minus-64 dottedBackground py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
+          <h1 className="text-3xl font-bold text-center text-white mb-8">
             {LANGUAGE.SETTINGS.TITLE[preferences.language]}
           </h1>
 
@@ -75,7 +75,7 @@ export default function Settings() {
             >
               <div className="grid grid-cols-1 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                  <label className="block text-sm font-medium text-gray-200 mb-1">
                     {LANGUAGE.SETTINGS.LANGUAGE[preferences.language]}
                   </label>
                   <select
@@ -86,14 +86,14 @@ export default function Settings() {
                         value: e.target.value as Language,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-500 dark:bg-gray-950 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 border border-gray-500 bg-gray-950 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="en">English</option>
                     <option value="es">Español</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                  <label className="block text-sm font-medium text-gray-200 mb-1">
                     {LANGUAGE.SETTINGS.CURRENCY[preferences.language]}
                   </label>
                   <select
@@ -104,7 +104,7 @@ export default function Settings() {
                         value: e.target.value as Currency,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-500 dark:bg-gray-950 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 border border-gray-500 bg-gray-950 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="USD">USD ($)</option>
                     <option value="EUR">EUR (€)</option>

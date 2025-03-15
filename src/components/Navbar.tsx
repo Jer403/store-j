@@ -46,8 +46,8 @@ export function Navbar() {
   }, [location]);
 
   return (
-    <nav className="bg-white fixed top-0 z-[400] w-full dark:bg-gray-900">
-      <div className="mx-auto px-4 bg-white dark:bg-gray-900 w-full relative z-20">
+    <nav className=" fixed top-0 z-[400] w-full bg-gray-900">
+      <div className="mx-auto px-4 bg-gray-900 w-full relative z-20">
         <div className="flex justify-between items-center h-16">
           <Link
             to="/"
@@ -61,7 +61,7 @@ export function Navbar() {
             <div className="hidden md:flex items-center relative space-x-7">
               <Link
                 to="/"
-                className="text-gray-700 dark:text-white font-medium hover:text-indigo-600"
+                className="text-white font-medium hover:text-indigo-600"
                 onClick={() => {
                   setLineLeftProperties(POSITIONS.Home);
                   setMobileLinksShown(false);
@@ -73,7 +73,7 @@ export function Navbar() {
               </Link>
               <Link
                 to="/about"
-                className="text-gray-700 dark:text-white font-medium hover:text-indigo-600"
+                className="text-white font-medium hover:text-indigo-600"
                 onClick={() => {
                   setLineLeftProperties(POSITIONS.About);
                   setMobileLinksShown(false);
@@ -85,7 +85,7 @@ export function Navbar() {
               </Link>
               <Link
                 to="/contact"
-                className="text-gray-700 dark:text-white font-medium hover:text-indigo-600"
+                className="text-white font-medium hover:text-indigo-600"
                 onClick={() => {
                   setLineLeftProperties(POSITIONS.Contact);
                   setMobileLinksShown(false);
@@ -106,7 +106,7 @@ export function Navbar() {
                 setMobileLinksShown(false);
               }}
             />
-            <button className="md:hidden dark:text-white">
+            <button className="md:hidden text-white">
               <div
                 className="flex justify-center items-center"
                 onClick={() => setMobileLinksShown(!mobileLinksShown)}
@@ -124,26 +124,26 @@ export function Navbar() {
       <div
         className={`${
           mobileLinksShown ? "translate-y-0" : "-translate-y-full"
-        } w-full absolute bg-white dark:bg-gray-900 h-auto p-4 z-0 transition-transform duration-300`}
+        } w-full absolute bg-gray-900 h-auto p-4 z-0 transition-transform duration-300`}
       >
         <div className="flex flex-col justify-center md:hidden gap-1 items-end relative space-x-8">
           <Link
             to="/"
-            className="text-gray-700 dark:text-white hover:text-indigo-600 text-xl"
+            className="text-white hover:text-indigo-600 text-xl"
             onClick={() => setMobileLinksShown(!mobileLinksShown)}
           >
             <>{LANGUAGE.NAVBAR.HOME[preferences.language]}</>
           </Link>
           <Link
             to="/about"
-            className="text-gray-700 dark:text-white hover:text-indigo-600 text-xl"
+            className="text-white hover:text-indigo-600 text-xl"
             onClick={() => setMobileLinksShown(!mobileLinksShown)}
           >
             <>{LANGUAGE.NAVBAR.ABOUT[preferences.language]}</>
           </Link>
           <Link
             to="/contact"
-            className="text-gray-700 dark:text-white hover:text-indigo-600 text-xl"
+            className="text-white hover:text-indigo-600 text-xl"
             onClick={() => setMobileLinksShown(!mobileLinksShown)}
           >
             <>{LANGUAGE.NAVBAR.CONTACT[preferences.language]}</>

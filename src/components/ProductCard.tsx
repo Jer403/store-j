@@ -17,7 +17,7 @@ export function ProductCard({
   return (
     <div
       onClick={onClick}
-      className="relative flex flex-col justify-between group hover:scale-105 dark:bg-gray-900 dark:shadow-gray-800 rounded-xl shadow-md hover:shadow-lg transition-[box-shadow,transform] duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      className="relative flex flex-col justify-between group hover:scale-105 bg-gray-900 shadow-gray-800 rounded-xl shadow-md hover:shadow-lg transition-[box-shadow,transform] duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
     >
       <div className="aspect-video bg-gray-900 rounded-t-xl">
         <img
@@ -28,7 +28,7 @@ export function ProductCard({
       </div>
       <div className="p-3 h-full flex flex-col justify-between">
         <div className="flex justify-between items-center">
-          <h3 className="font-semibold text-gray-900 text-lg dark:text-white group-hover:text-indigo-600 transition-colors">
+          <h3 className="font-semibold text-lg text-white group-hover:text-indigo-600 transition-colors">
             {product.title}
           </h3>
           <div className="flex items-center justify-center gap-1">

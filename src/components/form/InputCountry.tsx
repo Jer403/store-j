@@ -25,7 +25,7 @@ export function InputCountry({
     <div>
       <label
         htmlFor={id}
-        className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        className="block text-sm font-medium :text-gray-300 mb-1"
       >
         {label} {required && <span className="text-red-500">*</span>}
       </label>
@@ -35,7 +35,7 @@ export function InputCountry({
         value={value}
         disabled={disabled}
         onChange={(e) => setValue(Number(e.target.value))}
-        className={`w-full px-3 py-2 border dark:bg-gray-900 dark:border-gray-500 dark:text-white  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+        className={`w-full px-3 py-2 border bg-gray-900 border-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
           loadingSubmit ? "appearance-none" : ""
         }`}
       >

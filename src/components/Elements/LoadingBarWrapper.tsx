@@ -11,7 +11,7 @@ export function LoadingBarWrapper() {
   return (
     <>
       <LoadingBar isLoading={isLoading} />
-      <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-950">
+      <div className="flex items-center justify-center h-screen bg-gray-950">
         <div className="flex-col gap-4 w-full flex items-center justify-center">
           <svg className="pl" width="240" height="240" viewBox="0 0 240 240">
             <circle
