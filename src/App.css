@@ -1,0 +1,315 @@
+:root {
+  --good: #4cf136;
+  --wrong: #ff5d5d;
+  --aside_width: 480px;
+  --density-lg-font-family: "Inter Tight";
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.min-h-screen-minus-64 {
+  min-height: calc(100vh - 64px);
+}
+
+.h-screen-minus-nav {
+  height: calc(100vh - 64px);
+}
+
+.w-130 {
+  width: 130px;
+}
+
+.flex {
+  display: flex;
+}
+
+.right-3 {
+  right: 0.75rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.pr-10 {
+  padding-right: 2.5rem;
+}
+
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
+.density-lg-font-family {
+  font-family: var(--density-lg-font-family);
+}
+
+#line {
+  margin: 0;
+  top: 26px;
+  transition: left 0.5s, width 0.5s;
+}
+
+.loader {
+  animation: loading 1.7s infinite linear;
+}
+
+.align-center {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.l-2 {
+  left: 0.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
+}
+
+.pl-6 {
+  padding-left: 1.5rem;
+}
+
+.pl-8 {
+  padding-left: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.w-1 {
+  width: 8rem;
+}
+
+.w-2 {
+  width: 16rem;
+}
+
+.infos {
+  grid-area: infos;
+}
+
+.medias {
+  grid-area: medias;
+}
+
+.aside {
+  grid-area: aside;
+}
+
+.grid-dis {
+  grid-template-areas:
+    "medias"
+    "aside"
+    "infos";
+  grid-template-rows: auto;
+}
+
+@media (min-width: 1024px) {
+  .grid-dis {
+    grid-template-areas:
+      "medias aside"
+      "infos aside";
+  }
+}
+
+.w-3 {
+  width: 24rem;
+}
+
+.w-50p {
+  width: 50%;
+}
+
+.w-60p {
+  width: 60%;
+}
+
+.w-75p {
+  width: 75%;
+}
+
+.top-left-align-name {
+  top: -10px;
+  left: 12px;
+}
+
+.back-white {
+  background-color: white;
+  padding: 0 2px;
+}
+
+/* NProgress styles */
+#progressBar {
+  pointer-events: none;
+  z-index: 1031;
+  transition: width 0.7s;
+}
+
+.prb {
+  display: none;
+  width: 0;
+}
+
+.prog {
+  width: 37%;
+  display: block;
+}
+
+.finish {
+  width: 100%;
+  display: block;
+}
+
+.dottedBackground {
+  background-color: rgb(243 244 246);
+  background-image: radial-gradient(
+    circle,
+    rgba(88, 88, 88, 0.1) 2px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+}
+
+.dark .dottedBackground {
+  background-color: rgb(3 7 18);
+  background-image: radial-gradient(
+    circle,
+    rgba(153, 153, 153, 0.1) 2px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+}
+
+.loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background-color: #4f46e5; /* Cambia el color si lo deseas */
+  z-index: 1000;
+  transition: width 0.2s ease, opacity 0.4s;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: max-content;
+  padding: 5px 18px;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  top: -5px;
+  z-index: 1;
+}
+.tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  display: none;
+}
+
+.tooltip-right {
+  left: 140%;
+}
+
+.tooltip-left {
+  top: -5px;
+  right: 140%;
+}
+
+.check {
+  top: calc(50% + 1px);
+  right: -26px;
+}
+
+.pass-check {
+  top: calc(100% + 3px);
+  right: -26px;
+}
+
+.pass-check:before,
+.pass-check:after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 3px;
+  height: 20px;
+  width: 10px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-radius: 0 0.5em 0 0;
+}
+.pass-check:after {
+  border-top: none;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  top: 24px;
+  border-radius: 0 0 0.5em 0;
+}
+
+.eye {
+  top: calc(50% + 2px);
+  right: 6px;
+  z-index: 90;
+}
+
+.shake {
+  animation: wrongShake 0.3s linear;
+  border-color: var(--wrong);
+  z-index: 100;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes wrongShake {
+  0% {
+    transform: translateX(0px);
+  }
+  20% {
+    transform: translateX(10px);
+  }
+  40% {
+    transform: translateX(-10px);
+  }
+  60% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
