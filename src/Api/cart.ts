@@ -1,3 +1,4 @@
+import { License } from "../types/index.ts";
 import axios from "./axios.ts";
 
 export const getCartRequest = async () => {
@@ -8,9 +9,15 @@ export const getCartRequest = async () => {
   }
 };
 
-export const addProductToCartRequest = async (id: string) => {
+export const addProductToCartRequest = async ({
+  id,
+  l,
+}: {
+  id: string;
+  l: License;
+}) => {
   try {
-    return await axios.post(`/cart/add`, { id });
+    return await axios.post(`/cart/add`, { id, license: l });
   } catch (error) {
     console.log(error);
   }

@@ -178,7 +178,7 @@ export default function Login() {
                   }}
                   className={`${
                     emailShake && "shake !border-[--wrong]"
-                  } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-4 py-3 border bg-gray-900 text-white border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
+                  } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-4 py-3 border bg-gray-900 text-white border-gray-500 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
                 />
                 <div
                   className={`absolute group w-6 h-6 check ${
@@ -236,13 +236,13 @@ export default function Login() {
                   >
                     {passwordVisible ? (
                       <EyeOff
-                        className={`dark:text-white ${
+                        className={`text-white ${
                           eyeVisible ? "sm:block" : "sm:hidden"
                         }`}
                       ></EyeOff>
                     ) : (
                       <EyeIcon
-                        className={`dark:text-white block ${
+                        className={`text-white block ${
                           eyeVisible ? "sm:block" : "sm:hidden"
                         }`}
                       ></EyeIcon>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useCart } from "../hooks/useCart";
-import { Product as ProductI } from "../types";
+import { License, Product as ProductI, Sections } from "../types";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IMG_API_URL, LANGUAGE } from "../consts";
 import { usePreferences } from "../hooks/usePreferences";
@@ -12,22 +12,23 @@ import {
   Download,
   LucideCircleDollarSign,
   ShoppingCart,
-  Star,
 } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
 import { useProduct } from "../hooks/useProduct";
-
-type Licenses = "personal" | "professional";
+import { InputTextSimple } from "../components/form/InputTextSimple";
+import { ButtonSubmitSimple } from "../components/form/ButtonSubmitSimple";
+import { SectionButton } from "../components/form/SectionButton";
 
 export default function Product() {
   const { state: cart, purchased, addToCart, rate } = useCart();
   const { products } = useProduct();
   const { logged } = useAuth();
   const [isInCart, setIsInCart] = useState<boolean>(false);
+  const [section, setSection] = useState<Sections>("info");
   const [isInPurchased, setIsInPurchased] = useState<boolean>(false);
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
   const [licenseOpen, setLicenseOpen] = useState<boolean>(false);
-  const [license, setLicense] = useState<Licenses | null>(null);
+  const [license, setLicense] = useState<License | null>(null);
   const [price, setPrice] = useState<number>(0);
   const [currency, setCurrency] = useState<string>("€");
   const [currentImage, setCurrentImage] = useState<string | null>(null);
@@ -137,7 +138,8 @@ export default function Product() {
       window.scrollTo({ top: 0 });
       return;
     }
-    addToCart(id);
+    if (!license) return;
+    addToCart(id, license);
     setLoadingSubmit(true);
   };
 
@@ -205,60 +207,88 @@ export default function Product() {
               </div>
 
               <div className="infos">
-                <div className="max-w-none mb-8">
-                  <h3 className="text-xl font-bold text-gray-100 mb-2">
+                <div className="w-full rounded-xl h-16 flex p-2 gap-2 bg-gray-90">
+                  <SectionButton
+                    id="info"
+                    text="Information"
+                    section={section}
+                    setSection={setSection}
+                  ></SectionButton>
+                  <SectionButton
+                    id="comments"
+                    text="Comments (1)"
+                    section={section}
+                    setSection={setSection}
+                  ></SectionButton>
+                </div>
+
+                <div
+                  className={`${
+                    section == "info" ? "flex" : "hidden"
+                  } max-w-none flex-col p-4 mb-8`}
+                >
+                  <h3 className="text-2xl font-bold text-gray-100 mb-2">
                     Description
                   </h3>
-                  <p className="whitespace-pre-line text-base font-medium text-gray-200">
+                  <p className="whitespace-pre-line text-lg font-medium text-gray-200">
                     {product.description}
                   </p>
+                </div>
+
+                <div
+                  className={`${
+                    section == "comments" ? "flex" : "hidden"
+                  } flex-col gap-4 w-full h-fit p-4 rounded-xl`}
+                >
+                  <div className="">
+                    <h3 className="text-2xl font-bold text-gray-100">
+                      1 Comments
+                    </h3>
+                  </div>
+                  <div>
+                    <form className="flex flex-col">
+                      <label className="text-md text-gray-100">
+                        Add a Comment
+                      </label>
+                      <div className="flex flex-col md:flex-row items-end md:items-center justify-center gap-2">
+                        <InputTextSimple
+                          className="rounded-xl"
+                          id="comment"
+                          value="asd"
+                          setValue={() => {}}
+                        ></InputTextSimple>
+                        <ButtonSubmitSimple
+                          text="Comment"
+                          type="submit"
+                          className="w-full md:w-64 rounded-xl"
+                        ></ButtonSubmitSimple>
+                      </div>
+                    </form>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex flex-col p-4 pt-3 bg-gray-900 border border-gray-600 rounded-xl">
+                      <div className="flex items-center justify-between">
+                        <span className="text-white text-2xl font-medium">
+                          Jose
+                        </span>
+                        <span className="text-gray-400 text-base font-medium">
+                          hace 1 dia
+                        </span>
+                      </div>
+                      <p className="text-white">Mu bueno paisa</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <aside
                 className={`bg-gray-900 rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:340px] xl:[--aside_width:402px] flex lg:sticky lg:top-[88px] flex-col aside`}
               >
-                <div className="p-9 pb-7">
+                <div className="flex p-9 py-7 gap-3 flex-col items-start justify-between border-y border-gray-950">
                   <h2 className="text-3xl font-bold text-gray-50 mb-2">
                     {product.title}
                   </h2>
-                  <div className="flex gap-2 items-center">
-                    <p className="text-gray-200 text-lg">4.2</p>
-                    <div className="relative">
-                      <div className="flex">
-                        <Star className="h-7" fill="#000" stroke="#000"></Star>
-                        <Star className="h-7" fill="#000" stroke="#000"></Star>
-                        <Star className="h-7" fill="#000" stroke="#000"></Star>
-                        <Star className="h-7" fill="#000" stroke="#000"></Star>
-                        <Star className="h-7" fill="#000" stroke="#000"></Star>
-                      </div>
-                      <div
-                        className="flex absolute top-[2px] overflow-hidden"
-                        style={{ width: "84%" }}
-                      >
-                        <div className="min-h-7">
-                          <Star fill="#ffc229" stroke="#ffc229"></Star>
-                        </div>
-                        <div className="min-h-7">
-                          <Star fill="#ffc229" stroke="#ffc229"></Star>
-                        </div>
-                        <div className="min-h-7">
-                          <Star fill="#ffc229" stroke="#ffc229"></Star>
-                        </div>
-                        <div className="min-h-7">
-                          <Star fill="#ffc229" stroke="#ffc229"></Star>
-                        </div>
-                        <div className="min-h-7">
-                          <Star fill="#ffc229" stroke="#ffc229"></Star>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-gray-500 text-lg">(44)</p>
-                  </div>
-                </div>
-
-                <div className="flex p-9 py-7 gap-3 flex-col items-start justify-between border-y border-gray-950">
-                  <span className="text-gray-100 text-lg font-medium">
+                  <span className="text-gray-200 text-lg font-medium">
                     License
                   </span>
                   <div className="relative w-full flex">

@@ -54,6 +54,11 @@ export function formatDateTime(date: Date): string {
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
+export function formatSinceDate(date: Date): string {
+  const actual = new Date();
+  const substracted = actual.getTime() - date.getTime();
+}
+
 export function formatDateTimeToUTC(date: Date): string {
   const pad = (num: number) => String(num).padStart(2, "0");
 

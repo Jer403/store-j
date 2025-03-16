@@ -2,7 +2,6 @@ import { useCart } from "../hooks/useCart";
 import { Product } from "../types";
 import { IMG_API_URL, LANGUAGE } from "../consts";
 import { usePreferences } from "../hooks/usePreferences";
-import { Star } from "lucide-react";
 
 export function ProductCard({
   product,
@@ -31,11 +30,6 @@ export function ProductCard({
           <h3 className="font-semibold text-lg text-white group-hover:text-indigo-600 transition-colors">
             {product.title}
           </h3>
-          <div className="flex items-center justify-center gap-1">
-            <Star className="h-5 w-5" fill="#ffc229" stroke="#ffc229"></Star>
-            <span className="text-gray-300">4.2</span>
-            <span className="text-gray-300">(44)</span>
-          </div>
         </div>
         <div className="flex items-center justify-between">
           <div className="font-semibold text-indigo-600 flex justify-start items-end gap-1">

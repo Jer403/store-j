@@ -17,12 +17,12 @@ import {
   getCartRequest,
   removeProductFromCartRequest,
 } from "../Api/cart.ts";
-import { CartProduct, PurchasedProduct } from "../types/index.ts";
+import { CartProduct, License, PurchasedProduct } from "../types/index.ts";
 import { getPurchasedRequest, getRateRequest } from "../Api/payment.ts";
 
 export const CartContext = createContext({
   state: [] as CartProduct[],
-  addToCart: (id: string) => {},
+  addToCart: (id: string, l: License) => {},
   removeFromCart: (id: string) => {},
   clearCart: () => {},
   clearPurchased: () => {},
@@ -41,7 +41,7 @@ function useCartReducer() {
   const [loadingPurchased, setLoadingPurchased] = useState(true);
   const [rate, setRate] = useState(1);
   const loadingcartQueue = useRef(false);
-  const cartQueue = useRef<string[]>([]);
+  const cartQueue = useRef<{ id: string; l: License }[]>([]);
   const [purchased, setPurchased] = useState([] as PurchasedProduct[]);
 
   const loadCart = async () => {
@@ -104,8 +104,8 @@ function useCartReducer() {
     loadRate();
   }, []);
 
-  const addToCart = async (id: string) => {
-    cartQueue.current = [...cartQueue.current, id];
+  const addToCart = async (id: string, l: License) => {
+    cartQueue.current = [...cartQueue.current, { id, l }];
     if (!loadingcartQueue.current) {
       addToCartSequence();
     }
@@ -114,7 +114,10 @@ function useCartReducer() {
   const addToCartSequence = async () => {
     if (cartQueue.current.length != 0) {
       loadingcartQueue.current = true;
-      const res = await addProductToCartRequest(cartQueue.current[0]);
+      const res = await addProductToCartRequest({
+        id: cartQueue.current[0].id,
+        l: cartQueue.current[0].l,
+      });
 
       if (!res) throw new Error("Add product request failed");
       if (res.status === 200) {

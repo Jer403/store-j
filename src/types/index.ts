@@ -53,6 +53,18 @@ export interface Payment {
   price: string;
 }
 
+export interface Comment {
+  id: string;
+  userId: string;
+  productId: string;
+  message: string;
+  created_at: string;
+}
+
+export type Sections = "info" | "comments";
+
+export type License = "personal" | "professional";
+
 export interface Preferences {
   language: Language;
   currency: Currency;

@@ -109,6 +109,10 @@
   grid-area: infos;
 }
 
+.comments {
+  grid-area: comments;
+}
+
 .medias {
   grid-area: medias;
 }
