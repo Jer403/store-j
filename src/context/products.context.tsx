@@ -39,6 +39,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
       console.log("Response from products: ", res);
       if (!res) throw new Error("Products request failed");
       if (res.status == 200) {
+        console.log(res.data);
         setProducts(res.data);
         saveInLocal(res.data);
       } else {

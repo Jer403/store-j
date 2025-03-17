@@ -18,7 +18,7 @@ export function CartProductItem({
 }) {
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
   return (
-    <div className="w-full flex flex-row p-2 bg-gray-800 border border-gray-500 rounded-lg">
+    <div className="w-full flex flex-row p-2 bg-[--bg_sec] border border-[--border_light_500] rounded-lg">
       <div>
         <img
           src={`${IMG_API_URL}${product.image}.webp`}
@@ -27,7 +27,7 @@ export function CartProductItem({
         />
       </div>
       <div className="w-full ml-4 flex flex-row justify-between">
-        <p className="w-full text-lg md:text-2xl flex items-start text-gray-50">
+        <p className="w-full text-lg md:text-2xl flex items-start text-[--text_light_50]">
           {product.title}
         </p>
         <div className="flex flex-col-reverse justify-between items-end">
@@ -39,7 +39,7 @@ export function CartProductItem({
             }}
           >
             {loadingSubmit ? (
-              <CircleDashed className="h-4 w-4 loader text-white" />
+              <CircleDashed className="h-4 w-4 loader text-[--text_light_0]" />
             ) : (
               <>
                 <Trash2 className="h-4 w-4"></Trash2>
@@ -47,7 +47,7 @@ export function CartProductItem({
               </>
             )}
           </button>
-          <p className="text-lg font-medium flex items-center text-gray-50">
+          <p className="text-lg font-medium flex items-center text-[--text_light_50]">
             ${product.price}.00
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function Cart() {
         <div className="w-full">
           <h1
             key={titleCId}
-            className="text-4xl font-bold text-center mb-8 text-white"
+            className="text-4xl font-bold text-center mb-8 text-[--text_light_0]"
           >
             {LANGUAGE.CART.TITLE[preferences.language]}
           </h1>
@@ -89,15 +89,15 @@ export default function Cart() {
           >
             <div
               key={itemsCId}
-              className={`w-full min-w-80 bg-gray-900 rounded-lg shadow-md p-4 ${
+              className={`w-full min-w-80 bg-[--bg_sec] rounded-lg shadow-md p-4 ${
                 loadingCart && "pt-9"
               } lg:p-8 flex flex-col gap-2 relative`}
             >
               {loadingCart && (
-                <CircleDashed className="loader h-6 w-6 absolute top-0 right-0 mr-2 mt-2 text-white"></CircleDashed>
+                <CircleDashed className="loader h-6 w-6 absolute top-0 right-0 mr-2 mt-2 text-[--text_light_0]"></CircleDashed>
               )}
               {loadingCart && cart.length == 0 ? (
-                <p className="text-2xl text-white flex justify-center">
+                <p className="text-2xl text-[--text_light_0] flex justify-center">
                   {LANGUAGE.CART.LOADING[preferences.language]}
                 </p>
               ) : cart.length > 0 ? (
@@ -117,7 +117,7 @@ export default function Cart() {
                     key={anyCId}
                     className="flex flex-col items-center justify-center"
                   >
-                    <p className="text-xl text-gray-50">
+                    <p className="text-xl text-[--text_light_50]">
                       {LANGUAGE.CART.ANY_PRODUCT[preferences.language]}
                     </p>
                   </div>
@@ -126,16 +126,16 @@ export default function Cart() {
             </div>
             <div
               key={checkCId}
-              className="w-full min-w-80 md:max-w-72 lg:max-w-sm bg-gray-900 rounded-lg shadow-md p-4 flex flex-col gap-1 max-h-[288px] md:sticky top-10"
+              className="w-full min-w-80 md:max-w-72 lg:max-w-sm bg-[--bg_sec] rounded-lg shadow-md p-4 flex flex-col gap-1 max-h-[288px] md:sticky top-10"
             >
-              <p className="text-2xl font-bold text-white">
+              <p className="text-2xl font-bold text-[--text_light_0]">
                 {LANGUAGE.CART.SUMMARY[preferences.language]}
               </p>
-              <p className="text-xl mb-3 flex justify-between text-gray-200">
+              <p className="text-xl mb-3 flex justify-between text-[--text_light_200]">
                 {LANGUAGE.CART.PRODUCT[preferences.language]}{" "}
                 <span>{cart.length}</span>
               </p>
-              <p className="text-xl border-t py-2 flex justify-between items-end text-gray-200">
+              <p className="text-xl border-t py-2 flex justify-between items-end text-[--text_light_200]">
                 {LANGUAGE.CART.TOTAL[preferences.language]}{" "}
                 <span className="font-bold text-lg">
                   ${cart.reduce((sum = 0, item) => sum + item.price, 0)}.00
@@ -144,14 +144,15 @@ export default function Cart() {
 
               <Link
                 to={"/checkout"}
-                className="text-gray-700 hover:text-indigo-600 mt-2"
+                className="text-[--text_light_700] hover:text-[--brand_color] mt-2"
               >
                 <button
                   type="button"
                   disabled={cart.length == 0}
                   className={`px-4 py-2 w-full flex flex-row ${
-                    cart.length == 0 && "cursor-not-allowed bg-indigo-800"
-                  } items-center justify-center gap-2 border border-transparent text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+                    cart.length == 0 &&
+                    "cursor-not-allowed bg-[--button_not_allowed]"
+                  } items-center justify-center gap-2 border border-transparent text-lg font-medium rounded-md text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]`}
                 >
                   <CreditCard></CreditCard>{" "}
                   {LANGUAGE.CART.PAY[preferences.language]}

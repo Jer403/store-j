@@ -9,9 +9,11 @@ export interface Product {
   id: string;
   title: string;
   description: string;
-  price: number;
+  personal: number;
+  professional: number;
   image: string;
   gallery?: string[];
+  created_at: string;
 }
 
 export type PayMethods = "tpp" | "qvapay" | "asd";

@@ -59,6 +59,19 @@ export function formatSinceDate(date: Date): string {
   const substracted = actual.getTime() - date.getTime();
 }
 
+export function formatDateString(str: string, lang: "es" | "en") {
+  const date = new Date(str);
+  console.log(str);
+  if (lang == "es") {
+    return `${date.getDate()} de ${
+      monthsEs[date.getMonth() - 1]
+    }, ${date.getFullYear()}`;
+  }
+  return `${date.getDate()} ${
+    monthsEn[date.getMonth() - 1]
+  }, ${date.getFullYear()}`;
+}
+
 export function formatDateTimeToUTC(date: Date): string {
   const pad = (num: number) => String(num).padStart(2, "0");
 

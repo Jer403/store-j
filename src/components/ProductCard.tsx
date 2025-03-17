@@ -16,31 +16,31 @@ export function ProductCard({
   return (
     <div
       onClick={onClick}
-      className="relative flex flex-col justify-between group hover:scale-105 bg-gray-900 shadow-gray-800 rounded-xl shadow-md hover:shadow-lg transition-[box-shadow,transform] duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      className="relative flex flex-col justify-between group hover:scale-105 bg-[--bg_light_900] shadow-[--shadow_light_500] rounded-xl shadow-md hover:shadow-lg transition-[box-shadow,transform] duration-200 focus:outline-none focus:ring-2 focus:ring-[--brand_color] focus:ring-offset-2"
     >
-      <div className="aspect-video bg-gray-900 rounded-t-xl">
+      <div className="aspect-video bg-[--bg_sec] rounded-t-xl">
         <img
           src={`${IMG_API_URL}${product.image}.webp`}
           alt={product.title}
           className="w-full h-full object-contain transform rounded-t-xl transition-transform duration-200"
         />
       </div>
-      <div className="p-3 h-full flex flex-col justify-between">
+      <div className="p-3 h-full flex justify-between">
         <div className="flex justify-between items-center">
-          <h3 className="font-semibold text-lg text-white group-hover:text-indigo-600 transition-colors">
+          <h3 className="font-semibold text-lg text-[--text_light_0] group-hover:text-[--brand_color] transition-colors">
             {product.title}
           </h3>
         </div>
         <div className="flex items-center justify-between">
-          <div className="font-semibold text-indigo-600 flex justify-start items-end gap-1">
-            <span className="font-semibold">From</span>
-            <span className="font-semibold">
+          <div className="font-semibold text-[--brand_color] flex justify-start items-end gap-1">
+            <span className="font-semibold text-lg">From</span>{" "}
+            <span className="font-semibold text-lg">
               {LANGUAGE.CURRENCIES[preferences.currency]}
               {preferences.currency == "USD"
                 ? rate == 1
-                  ? product.price
-                  : Math.floor((product.price / rate) * 100) / 100
-                : product.price}
+                  ? product.personal
+                  : Math.floor((product.personal / rate) * 100) / 100
+                : product.personal}
             </span>
           </div>
         </div>

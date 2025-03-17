@@ -3,7 +3,7 @@ import { BRANDNAME } from "../consts";
 export function Footer() {
   const date = new Date();
   return (
-    <footer className="bg-gray-900 text-white py-8">
+    <footer className="bg-[--bg_sec] text-[--text_light_0] py-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col max-w-[75%] items-center md:items-start my-2">

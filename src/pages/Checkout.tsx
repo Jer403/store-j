@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useId, useState } from "react";
 import { useCart } from "../hooks/useCart";
 import { COUNTRIES, LANGUAGE } from "../consts";
@@ -21,7 +22,7 @@ import { paymentLinkRequest as tppPaymentLinkRequest } from "../Api/tpp";
 
 export default function Checkout() {
   const { state: cart, loadingCart } = useCart();
-  const [payMethod, setPayMethod] = useState<PayMethods | null>(null);
+  const [payMethod, setPayMethod] = useState<PayMethods | null>("tpp");
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [requestErrors, setRequestErrors] = useState<string[]>([]);
   const { preferences } = usePreferences();
@@ -108,26 +109,26 @@ export default function Checkout() {
     <div className="min-h-screen-minus-64 dottedBackground py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="max-w-full mx-auto mb-10 ">
-          <div className="bg-gray-900 md:dark:bg-transparent md:bg-transparent rounded-lg">
+          <div className="bg-[--bg_sec] md:dark:bg-transparent md:bg-transparent rounded-lg">
             <div className=" flex flex-col md:flex-row-reverse md:justify-center md:gap-3 shadow-md md:shadow-none p-6 md:p-0">
               <div className="w-full flex flex-col md:flex-row-reverse md:justify-center md:gap-3 ">
-                <div className="md:bg-gray-900  md:p-6 md:rounded-lg md:shadow-md w-full md:max-w-80 lg:max-w-[360px] flex flex-col max-h-full h-fit mb-6 md:!mb-0">
-                  <h1 className="text-2xl font-bold text-white mb-8">
+                <div className="md:bg-[--bg_sec]  md:p-6 md:rounded-lg md:shadow-md w-full md:max-w-80 lg:max-w-[360px] flex flex-col max-h-full h-fit mb-6 md:!mb-0">
+                  <h1 className="text-2xl font-bold text-[--text_light_0] mb-8">
                     {LANGUAGE.CHECKOUT.TITLE[preferences.language]}
                   </h1>
 
                   <div>
                     <h2
                       key={orderCId}
-                      className="text-xl font-bold text-gray-100 mb-4"
+                      className="text-xl font-bold text-[--text_light_100] mb-4"
                     >
                       {LANGUAGE.CHECKOUT.SUMMARY[preferences.language]}
                     </h2>
                     <div
                       key={itemsCId}
-                      className="border-t border-b border-gray-600 py-4"
+                      className="border-t border-b border-[--border_light_600] py-4"
                     >
-                      <div className="max-h-full px-1 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb]:rounded-md">
+                      <div className="max-h-full px-1 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[--bg_light_700] [&::-webkit-scrollbar-thumb]:rounded-md">
                         {cart.length != 0 ? (
                           <>
                             {cart.map((prod) => (
@@ -138,17 +139,17 @@ export default function Checkout() {
                             ))}
                           </>
                         ) : (
-                          <p className="text-xl text-gray-100">
+                          <p className="text-xl text-[--text_light_100]">
                             {LANGUAGE.CHECKOUT.ANY[preferences.language]}
                           </p>
                         )}
                       </div>
                     </div>
                     <div className="flex flex-col mt-4">
-                      <span className="font-bold text-lg flex justify-between text-gray-100">
+                      <span className="font-bold text-lg flex justify-between text-[--text_light_100]">
                         {LANGUAGE.CHECKOUT.TOTAL[preferences.language]}
                         <span>
-                          <span className="font-bold text-xl text-gray-100">
+                          <span className="font-bold text-xl text-[--text_light_100]">
                             ${total}
                           </span>
                         </span>
@@ -185,8 +186,8 @@ export default function Checkout() {
                     text={LANGUAGE.CHECKOUT.PAY[preferences.language]}
                   />
                 </div>
-                <div className="md:bg-gray-900 md:p-6 md:rounded-lg md:shadow-md w-full max-w-2xl flex flex-col gap-3 ">
-                  <span className="text-white text-xl font-bold">
+                <div className="md:bg-[--bg_sec] md:p-6 md:rounded-lg md:shadow-md w-full max-w-2xl flex flex-col gap-3 ">
+                  <span className="text-[--text_light_0] text-xl font-bold">
                     {LANGUAGE.CHECKOUT.PAYMENT_METHODS[preferences.language]}
                   </span>
 
@@ -308,7 +309,7 @@ export default function Checkout() {
                     handleSubmit={handleTppSubmit}
                   />
 
-                  <PaymentSelectorCard
+                  {/* <PaymentSelectorCard
                     id="qvapay"
                     title="Pay with QvaPay"
                     payMethod={payMethod}
@@ -320,17 +321,17 @@ export default function Checkout() {
                         <BitcoinLogo className="h-5 md:h-7 -mr-3 z-50" />
                         <EthereumLogo className="h-5 md:h-7 -mr-3 z-40" />
                         <LitecoinLogo className="h-5 md:h-7 -mr-3 z-30" />
-                        <div className="h-5 md:h-7 w-7 md:w-10 rounded-full bg-gray-700 flex items-center justify-center gap-1">
-                          <div className="h-1 w-[4px] rounded-full bg-gray-800"></div>
-                          <div className="h-1 w-[4px] rounded-full bg-gray-800"></div>
-                          <div className="h-1 w-[4px] rounded-full bg-gray-800"></div>
+                        <div className="h-5 md:h-7 w-7 md:w-10 rounded-full bg-[--bg_light_900] flex items-center justify-center gap-1">
+                          <div className="h-1 w-[4px] rounded-full bg-[--bg_light_800]"></div>
+                          <div className="h-1 w-[4px] rounded-full bg-[--bg_light_800]"></div>
+                          <div className="h-1 w-[4px] rounded-full bg-[--bg_light_800]"></div>
                         </div>
                       </>
                     }
                     gap={"2px"}
                     formChildren={<></>}
                     handleSubmit={handleQvaPaySubmit}
-                  />
+                  /> */}
                   {requestErrors.length > 0 && (
                     <div className="flex md:!hidden flex-col items-start justify-center mt-2">
                       {requestErrors.map((er) => {
@@ -365,7 +366,7 @@ export default function Checkout() {
             </div>
           </div>
           <div className="flex mt-4 items-center justify-center">
-            <p className="text-sm text-gray-600 px-3">
+            <p className="text-sm text-[--text_light_600] px-3">
               {LANGUAGE.CHECKOUT.TERMS_AND_CONDITIONS[preferences.language]}
             </p>
           </div>

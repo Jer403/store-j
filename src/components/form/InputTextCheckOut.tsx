@@ -21,7 +21,10 @@ export function InputTextCheckOut({
 }: InputInterface) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-300">
+      <label
+        htmlFor={id}
+        className="block text-sm font-medium text-[--text_light_300]"
+      >
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <input
@@ -34,7 +37,7 @@ export function InputTextCheckOut({
         onChange={(e) => {
           setValue(e.target.value);
         }}
-        className={`w-full px-3 py-2 border bg-gray-900 border-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500  [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]`}
+        className={`w-full px-3 py-2 border bg-[--bg_sec] border-[--border_light_500] text-[--text_light_0] rounded-md focus:outline-none focus:ring-2 focus:ring-[--brand_color]  [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]`}
       />
     </div>
   );

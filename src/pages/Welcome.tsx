@@ -24,19 +24,19 @@ export default function Welcome() {
         {/* Hero Section */}
         <div className="max-w-7xl flex items-center justify-center mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
+            <h1 className="text-4xl font-extrabold text-[--text_light_0] sm:text-5xl md:text-6xl">
               <span className="block">
                 {LANGUAGE.WELCOME.HERO_WELCOME[preferences.language]}
               </span>
               <span className="block text-indigo-600 mt-1">{BRANDNAME}</span>
             </h1>
-            <p className="mt-6 text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="mt-6 text-xl text-[--text_light_300] max-w-2xl mx-auto">
               {LANGUAGE.WELCOME.HERO_DESCRIPTION[preferences.language]}
             </p>
             <div className="mt-10 flex justify-center gap-3">
               <Link
                 to={logged ? "#store" : "/login"}
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-[--text_light_0] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200"
                 onClick={() => clickHandler()}
               >
                 {logged ? (
@@ -52,10 +52,10 @@ export default function Welcome() {
                 )}
               </Link>
               <Link
-                to="/about"
-                className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+                to="/contact"
+                className="inline-flex items-center px-6 py-3 border border-[--border_light_300] text-base font-medium rounded-full text-[--text_light_700] bg-[--bg_light_0] hover:bg-[--bg_light_50] transition-colors duration-200"
               >
-                {LANGUAGE.WELCOME.HERO_BUTTON_LEARN[preferences.language]}
+                {LANGUAGE.WELCOME.HERO_BUTTON_CONTACT[preferences.language]}
               </Link>
             </div>
           </div>
@@ -63,7 +63,7 @@ export default function Welcome() {
           {/* Features Grid */}
           <div className="pb-24" style={{ display: "none" }}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
+              <div className="bg-[--bg_light_0] p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-indigo-600"

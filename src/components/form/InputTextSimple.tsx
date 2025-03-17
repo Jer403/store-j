@@ -22,7 +22,7 @@ export function InputTextSimple({
       {label && (
         <label
           htmlFor={id}
-          className={`${labelClassName} text-md text-gray-300`}
+          className={`${labelClassName} text-md text-[--text_light_300]`}
         >
           {label}
         </label>
@@ -37,7 +37,7 @@ export function InputTextSimple({
         }}
         className={`${
           shake && "shake !border-[--wrong]"
-        } ${className} appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border autofill:bg-gray-900 bg-gray-900 border-gray-500 text-white placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
+        } ${className} appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_sec] border-[--border_light_300] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
       />
     </div>
   );

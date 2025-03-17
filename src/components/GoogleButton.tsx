@@ -10,7 +10,7 @@ export function GoogleButton({
   return (
     <div>
       <button
-        className={`group h-12 relative w-full flex gap-3 justify-center items-center py-2 px-4 border border-transparent text-md font-medium rounded-md bg-white hover:bg-gray-200`}
+        className={`group h-12 relative w-full flex gap-3 justify-center items-center py-2 px-4 border border-transparent text-md font-medium rounded-md bg-[--bg_light_0] hover:bg-[--bg_light_200]`}
         onClick={() => {
           location.href = url;
         }}

@@ -2,7 +2,7 @@ export const POSITIONS = {
   Home: { left: "0px", width: "43" },
   About: { left: "73px", width: "48" },
   Contact: { left: "150px", width: "56" },
-  User: { left: "500px", width: "0" },
+  User: { left: "300px", width: "0" },
 };
 
 export const API_URL = "https://modelfantasy.up.railway.app/app";
@@ -59,9 +59,9 @@ export const LANGUAGE = {
       es: "Ver nuestros productos",
       en: "See our products",
     },
-    HERO_BUTTON_LEARN: {
-      es: "Aprender más",
-      en: "Learn More",
+    HERO_BUTTON_CONTACT: {
+      es: "Contactar",
+      en: "Contact",
     },
   },
   NAVBAR: {

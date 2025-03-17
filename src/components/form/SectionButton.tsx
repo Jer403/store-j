@@ -14,8 +14,8 @@ export function SectionButton({
   return (
     <button
       className={`${
-        section == id ? "bg-indigo-600" : ""
-      } w-40 h-full rounded-lg text-lg  border border-indigo-600 text-white`}
+        section == id ? "bg-[--brand_color] text-[--text_light_800]" : ""
+      } w-40 h-full rounded-lg text-lg border border-[--brand_color] text-[--text_light_0]`}
       onClick={() => {
         setSection(id);
       }}

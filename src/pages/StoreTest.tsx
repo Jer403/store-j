@@ -12,10 +12,10 @@ export function StoreTest() {
 
   //  bg-gray-50 dark:bg-gray-950 bg-radial
   return (
-    <div className="min-h-screen bg-gray-950 py-12 relative" id="store">
+    <div className="min-h-screen bg-[--bg_prim] py-12 relative" id="store">
       <div className="max-w-[115rem] mx-auto px-4 lg:px-3 2xl:px-2">
         <h1
-          className={`text-4xl font-bold mb-8 transition-[padding] text-gray-50 text-center`}
+          className={`text-4xl font-bold mb-8 transition-[padding] text-[--text_light_50] text-center`}
         >
           {LANGUAGE.STORE.TITLE[preferences.language]}
         </h1>
@@ -41,21 +41,21 @@ export function StoreTest() {
                   })}
                 </div>
               ) : (
-                <p className="text-2xl sm:text-3xl md:text-4xl mt-12 flex items-center justify-center text-white">
+                <p className="text-2xl sm:text-3xl md:text-4xl mt-12 flex items-center justify-center text-[--text_light_0]">
                   {LANGUAGE.STORE.NO_PRODUCTS[preferences.language]}
                 </p>
               )
             ) : loadingProducts ? (
               <div className=" mt-12 flex items-center justify-center gap-2">
-                <CircleDashed className="loader h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-white"></CircleDashed>
-                <span className="text-2xl sm:text-4xl lg:text-4xl text-white">
+                <CircleDashed className="loader h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-[--text_light_0]"></CircleDashed>
+                <span className="text-2xl sm:text-4xl lg:text-4xl text-[--text_light_0]">
                   {LANGUAGE.STORE.LOADING[preferences.language]}
                 </span>
               </div>
             ) : (
-              <p className="text-2xl sm:text-3xl md:text-4xl mt-12 flex items-center justify-center text-white">
+              <p className="text-2xl sm:text-3xl md:text-4xl mt-12 flex items-center justify-center text-[--text_light_0]">
                 {LANGUAGE.STORE.WRONG[preferences.language]}
-                <a className="ml-4 underline text-white" href="/">
+                <a className="ml-4 underline text-[--text_light_0]" href="/">
                   {LANGUAGE.STORE.RELOAD[preferences.language]}
                 </a>
               </p>

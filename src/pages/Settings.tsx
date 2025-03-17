@@ -61,7 +61,7 @@ export default function Settings() {
     <div className="min-h-screen-minus-64 dottedBackground py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold text-center text-white mb-8">
+          <h1 className="text-3xl font-bold text-center text-[--text_light_0] mb-8">
             {LANGUAGE.SETTINGS.TITLE[preferences.language]}
           </h1>
 
@@ -75,7 +75,7 @@ export default function Settings() {
             >
               <div className="grid grid-cols-1 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">
+                  <label className="block text-sm font-medium text-[--text_light_200] mb-1">
                     {LANGUAGE.SETTINGS.LANGUAGE[preferences.language]}
                   </label>
                   <select
@@ -86,14 +86,14 @@ export default function Settings() {
                         value: e.target.value as Language,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-500 bg-gray-950 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 border border-[--border_light_500] bg-[--bg_prim] text-[--text_light_0] rounded-md focus:outline-none focus:ring-2 focus:ring-[--brand_color]"
                   >
                     <option value="en">English</option>
                     <option value="es">Español</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">
+                  <label className="block text-sm font-medium text-[--text_light_200] mb-1">
                     {LANGUAGE.SETTINGS.CURRENCY[preferences.language]}
                   </label>
                   <select
@@ -104,7 +104,7 @@ export default function Settings() {
                         value: e.target.value as Currency,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-500 bg-gray-950 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 border border-[--border_light_500] bg-[--bg_prim] text-[--text_light_0] rounded-md focus:outline-none focus:ring-2 focus:ring-[--brand_color]"
                   >
                     <option value="USD">USD ($)</option>
                     <option value="EUR">EUR (€)</option>
@@ -146,7 +146,7 @@ export default function Settings() {
           <div className="mt-8 flex justify-end gap-3">
             <button
               type="button"
-              className="px-5 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="px-5 py-2 border border-transparent text-sm font-medium rounded-md text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]"
               onClick={() => {
                 navigate("/dashboard");
               }}
@@ -155,7 +155,7 @@ export default function Settings() {
             </button>
             <button
               type="button"
-              className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]"
               onClick={(e) => {
                 submitClickHandler({ e });
               }}

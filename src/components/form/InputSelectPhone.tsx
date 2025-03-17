@@ -25,7 +25,7 @@ export function InputSelectPhone({
     <div>
       <label
         htmlFor={id}
-        className="block text-sm font-medium text-gray-300 mb-1"
+        className="block text-sm font-medium text-[--text_light_600] mb-1"
       >
         {label} {required && <span className="text-red-500">*</span>}
       </label>
@@ -33,7 +33,7 @@ export function InputSelectPhone({
         <select
           id={id}
           name={name}
-          className="w-1/6 min-w-[92px] px-3 py-2 border-t border-l border-b bg-gray-900 border-gray-500 text-white appearance-none rounded-tl-md rounded-bl-md focus:z-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-1/6 min-w-[92px] px-3 py-2 border-t border-l border-b bg-[--bg_sec] border-[--border_light_500] text-[--text_light_0] appearance-none rounded-tl-md rounded-bl-md focus:z-50 focus:outline-none focus:ring-2 focus:ring-[--brand_color]"
           value={value}
           disabled={disabled}
           onChange={(e) => setCallingCode(e.target.value)}

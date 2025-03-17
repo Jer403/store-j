@@ -26,7 +26,7 @@ const LoadingBar = ({ isLoading }: { isLoading: boolean }) => {
         left: 0,
         width: `${progress}%`,
         height: "4px",
-        backgroundColor: "#4f46e5",
+        backgroundColor: "var(--brand_color)",
         transition: "width 0.5s ease, opacity 0.4s",
         opacity: progress > 0 && progress < 100 ? 1 : 0,
         zIndex: 1000,

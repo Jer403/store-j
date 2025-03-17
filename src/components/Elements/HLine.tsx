@@ -19,7 +19,7 @@ export function HLine({ style }: HLineProps) {
         y1="0"
         x2="100%"
         y2="0"
-        stroke="rgb(79, 70, 229)"
+        stroke="var(--brand_color)"
         strokeWidth="3"
       />
     </svg>

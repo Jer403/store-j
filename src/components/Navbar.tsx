@@ -46,12 +46,12 @@ export function Navbar() {
   }, [location]);
 
   return (
-    <nav className=" fixed top-0 z-[400] w-full bg-gray-900">
-      <div className="mx-auto px-4 bg-gray-900 w-full relative z-20">
+    <nav className=" fixed top-0 z-[400] w-full bg-[--bg_sec]">
+      <div className="mx-auto px-4 bg-[--bg_sec] w-full relative z-20">
         <div className="flex justify-between items-center h-16">
           <Link
             to="/"
-            className="font-bold text-xl text-indigo-600"
+            className="font-bold text-xl text-[--brand_color]"
             onClick={() => setMobileLinksShown(false)}
           >
             <span>{BRANDNAME}</span>
@@ -61,7 +61,7 @@ export function Navbar() {
             <div className="hidden md:flex items-center relative space-x-7">
               <Link
                 to="/"
-                className="text-white font-medium hover:text-indigo-600"
+                className="text-[--text_light_0] font-medium hover:text-[--brand_color]"
                 onClick={() => {
                   setLineLeftProperties(POSITIONS.Home);
                   setMobileLinksShown(false);
@@ -72,20 +72,8 @@ export function Navbar() {
                 </span>
               </Link>
               <Link
-                to="/about"
-                className="text-white font-medium hover:text-indigo-600"
-                onClick={() => {
-                  setLineLeftProperties(POSITIONS.About);
-                  setMobileLinksShown(false);
-                }}
-              >
-                <span ref={AboutRef}>
-                  {LANGUAGE.NAVBAR.ABOUT[preferences.language]}
-                </span>
-              </Link>
-              <Link
                 to="/contact"
-                className="text-white font-medium hover:text-indigo-600"
+                className="text-[--text_light_0] font-medium hover:text-[--brand_color]"
                 onClick={() => {
                   setLineLeftProperties(POSITIONS.Contact);
                   setMobileLinksShown(false);
@@ -106,7 +94,7 @@ export function Navbar() {
                 setMobileLinksShown(false);
               }}
             />
-            <button className="md:hidden text-white">
+            <button className="md:hidden text-[--text_light_0]">
               <div
                 className="flex justify-center items-center"
                 onClick={() => setMobileLinksShown(!mobileLinksShown)}
@@ -123,27 +111,27 @@ export function Navbar() {
       </div>
       <div
         className={`${
-          mobileLinksShown ? "translate-y-0" : "-translate-y-full"
-        } w-full absolute bg-gray-900 h-auto p-4 z-0 transition-transform duration-300`}
+          mobileLinksShown ? "translate-y-0" : "-translate-y-[200%]"
+        } w-full absolute bg-[--bg_sec] h-auto p-4 z-0 transition-transform duration-300`}
       >
         <div className="flex flex-col justify-center md:hidden gap-1 items-end relative space-x-8">
           <Link
             to="/"
-            className="text-white hover:text-indigo-600 text-xl"
+            className="text-[--text_light_0] hover:text-[--brand_color] text-xl"
             onClick={() => setMobileLinksShown(!mobileLinksShown)}
           >
             <>{LANGUAGE.NAVBAR.HOME[preferences.language]}</>
           </Link>
           <Link
             to="/about"
-            className="text-white hover:text-indigo-600 text-xl"
+            className="text-[--text_light_0] hover:text-[--brand_color] text-xl"
             onClick={() => setMobileLinksShown(!mobileLinksShown)}
           >
             <>{LANGUAGE.NAVBAR.ABOUT[preferences.language]}</>
           </Link>
           <Link
             to="/contact"
-            className="text-white hover:text-indigo-600 text-xl"
+            className="text-[--text_light_0] hover:text-[--brand_color] text-xl"
             onClick={() => setMobileLinksShown(!mobileLinksShown)}
           >
             <>{LANGUAGE.NAVBAR.CONTACT[preferences.language]}</>

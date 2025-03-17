@@ -28,13 +28,15 @@ function ChatMessageCard({ chat }: { chat: ChatMessage }) {
     <div
       className={`relative rounded-lg flex max-w-80 min-h-max h-fit w-fit ${
         chat.isMessageFromUser == "true"
-          ? "self-end !rounded-br-none bg-indigo-400 border-transparent shadow-gray-300"
-          : "!rounded-bl-none bg-white border-gray-200 shadow-gray-200"
+          ? "self-end !rounded-br-none bg-[--brand_color_400] border-transparent shadow-[--shadow_light_500]"
+          : "!rounded-bl-none bg-[--bg_light_900] border-[--border_light_600] shadow-[--shadow_light_600]"
       } p-2 border shadow-md`}
     >
       <p
         className={`${
-          chat.isMessageFromUser == "true" ? "text-gray-100" : "text-gray-700"
+          chat.isMessageFromUser == "true"
+            ? "text-[--text_light_700]"
+            : "text-[--text_light_100]"
         } flex justify-start text-start text-sm`}
       >
         {chat.message} {date && <>&emsp;&emsp;&emsp;&emsp;</>}
@@ -42,7 +44,9 @@ function ChatMessageCard({ chat }: { chat: ChatMessage }) {
       {date && (
         <p
           className={`${
-            chat.isMessageFromUser == "true" ? "text-gray-100" : "text-gray-500"
+            chat.isMessageFromUser == "true"
+              ? "text-[--text_light_500]"
+              : "text-[--text_light_400]"
           } text-sm absolute right-1 bottom-1`}
         >{`${formatHours(date.getHours())}:${formatMinutes(
           date.getMinutes()
@@ -50,7 +54,11 @@ function ChatMessageCard({ chat }: { chat: ChatMessage }) {
       )}
       {loadingMessage.find((el) => el.id == chat.id) && (
         <div className="absolute top-1 right-1 items-end justify-end">
-          <Clock className="text-gray-500" width={13} height={13}></Clock>
+          <Clock
+            className="text-[--text_light_500]"
+            width={13}
+            height={13}
+          ></Clock>
         </div>
       )}
     </div>
@@ -61,8 +69,8 @@ function DateDivisor({ dateS }: { dateS: string }) {
   const date = new Date(dateS + " UTC");
   return (
     <div className={`relative my-2 flex w-full justify-center items-center`}>
-      <div className="border-b w-[80%] absolute border-gray-300"></div>
-      <p className="bg-gray-100 z-10 text-sm px-4 text-gray-400">{`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}</p>
+      <div className="border-b w-[80%] absolute border-[--border_light_500]"></div>
+      <p className="bg-[--bg_light_700] z-10 text-sm px-4 text-[--text_light_400]">{`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}</p>
     </div>
   );
 }
@@ -163,7 +171,7 @@ export function Chat() {
     <div
       className={`${
         logged ? "fixed" : "hidden"
-      } bottom-0 right-0 mr-4 mb-[80px]  w-[90%] sm:w-auto z-50`}
+      } bottom-0 right-0 mr-4 mb-[80px] w-[90%] sm:w-auto z-50`}
     >
       <div
         className={`${
@@ -172,15 +180,15 @@ export function Chat() {
       >
         <div
           className={`${
-            isChatOpen ? "flex border border-gray-500" : "hidden"
-          } flex-col bg-white rounded-lg overflow-hidden w-full h-[600px] max-h-[600px] shadow-m shadow-gray-600`}
+            isChatOpen ? "flex border border-[--border_light_500]" : "hidden"
+          } flex-col bg-[--bg_light_900] rounded-lg overflow-hidden w-full h-[600px] max-h-[600px] shadow-m shadow-[--shadow_light_600]`}
         >
           <div
-            className={`flex w-full border-b border-gray-200 rounded-t-md h-12 items-center justify-center gap-3 p-2`}
+            className={`flex w-full border-b border-[--border_light_600] rounded-t-md h-12 items-center justify-center gap-3 p-2`}
           >
             <button
               className={`${
-                isInChat ? "bg-gray-200" : "hover:bg-gray-100"
+                isInChat ? "bg-[--bg_light_600]" : "hover:bg-[--bg_light_600]"
               } flex flex-row justify-center items-center gap-1 rounded-md px-3 py-1 text-sm font-medium`}
               onClick={() => setIsInChat(true)}
             >
@@ -189,7 +197,7 @@ export function Chat() {
             </button>
             <button
               className={`${
-                isInChat ? "hover:bg-gray-100" : "bg-gray-200"
+                isInChat ? "hover:bg-[--bg_light_600]" : "bg-[--bg_light_600]"
               } flex flex-row justify-center items-center gap-1 rounded-md px-3 py-1 text-sm font-medium`}
               onClick={() => setIsInChat(false)}
             >
@@ -199,7 +207,7 @@ export function Chat() {
           <div
             className={`${
               isInChat ? "flex" : "hidden"
-            } h-full bg-gray-100 flex-col p-3 max-h-full overflow-auto gap-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-md`}
+            } h-full bg-[--bg_light_700] flex-col p-3 max-h-full overflow-auto gap-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[--bg_light_600] [&::-webkit-scrollbar-thumb]:rounded-md`}
             id="chatBox"
           >
             <ChatMessageCard
@@ -225,7 +233,7 @@ export function Chat() {
           <div
             className={`${
               isInChat ? "hidden" : "flex"
-            } h-full flex-col p-3 max-h-full overflow-auto gap-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-md`}
+            } h-full flex-col p-3 max-h-full overflow-auto gap-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[--bg_light_500] [&::-webkit-scrollbar-thumb]:rounded-md`}
           >
             <DropDownTab
               id="metodos"
@@ -279,12 +287,12 @@ export function Chat() {
           </div>
 
           <div
-            className={`w-full bg-gray-100 ${
+            className={`w-full bg-[--bg_light_700] ${
               isInChat ? "flex" : "hidden"
             } h-16 px-3 pb-3 items-center`}
           >
             <form
-              className="flex h-full w-full bg-white shadow-sm shadow-gray-300 rounded-lg overflow-hidden border border-gray-200"
+              className="flex h-full w-full shadow-md shadow-[--shadow_light_500] rounded-lg overflow-hidden border border-[--bg_light_500]"
               onSubmit={handleChatSubmit}
             >
               <div className="flex w-full">
@@ -295,14 +303,14 @@ export function Chat() {
                   autoComplete="off"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full rounded-l-lg focus:z-30 focus:outline-none border-0 focus:border focus:border-indigo-500 text-md p-1 px-2 bg-white"
+                  className="w-full rounded-l-lg focus:z-30 focus:outline-none border-0 focus:border focus:border-[--brand_color_400] text-md p-1 px-2 bg-[--bg_light_900]"
                   placeholder="Escribe algo..."
                 />
                 <button
-                  className={`h-full w-12 flex justify-center items-center text-gray-900 ${
+                  className={`h-full w-12 flex justify-center items-center text-[--text_light_0] ${
                     message == undefined
-                      ? "hover:text-gray-500"
-                      : "hover:text-indigo-600 hover:bg-indigo-100"
+                      ? "hover:text-[--text_light_500]"
+                      : "hover:text-[--brand_color] hover:bg-[--brand_color_800]"
                   }`}
                 >
                   <Send className="flex justify-center items-center w-7 h-7"></Send>
@@ -312,29 +320,31 @@ export function Chat() {
           </div>
         </div>
         <div
-          className={`${
-            isChatOpen ? "rotate-0" : "rotate-12"
-          } absolute border-2 -bottom-[64px] right-0 border-indigo-500 border-transparent bg-gray-50 w-14 h-14 rounded-xl flex justify-center items-center transition-transform`}
+          className={`absolute border-2 -bottom-[64px] right-0 border-transparent bg-[--button] w-16 h-16 rounded-full flex justify-center items-center transition-transform`}
           onClick={() => {
             setIsChatOpen(!isChatOpen);
             setNotSeenMessagesToSeen();
           }}
         >
           {notSeenMessages > 0 && !isChatOpen && (
-            <div className="absolute -top-3 right-0 rounded-full w-6 h-6 bg-indigo-600 -rotate-12">
-              <div className="w-full h-full flex justify-center items-center text-white">
+            <div className="absolute -top-3 right-0 rounded-full w-6 h-6 bg-[--brand_color]">
+              <div className="w-full h-full flex justify-center items-center text-[--text_light_900]">
                 {notSeenMessages}
               </div>
             </div>
           )}
-          <MessageSquareIcon
-            className={`absolute w-8 h-8 transition-[opacity] ${
-              isChatOpen ? "rotate-0 opacity-0" : "-rotate-12 opacity-1"
-            }`}
-          ></MessageSquareIcon>
+          <div className="w-full h-full flex items-center justify-center palpite">
+            <MessageSquareIcon
+              className={`absolute w-12 h-12 transition-[opacity] ${
+                isChatOpen ? "opacity-0 rotate-0" : "opacity-1 -rotate-12"
+              }`}
+              fill="#fff"
+            ></MessageSquareIcon>
+          </div>
+
           <X
-            className={`absolute w-8 h-8 transition-[opacity] ${
-              isChatOpen ? "rotate-0 opacity-1" : "-rotate-12 opacity-0"
+            className={`absolute text-[--text_light_900] w-12 h-12 transition-[opacity] ${
+              isChatOpen ? "opacity-1 rotate-0" : " opacity-0 -rotate-12"
             }`}
           ></X>
         </div>

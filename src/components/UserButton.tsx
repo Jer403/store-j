@@ -20,14 +20,10 @@ export function UserButton({
   return (
     <>
       {logged && (
-        <Link
-          to="/cart"
-          className="text-gray-700 -mr-6 hover:text-indigo-600"
-          onClick={onClickEvent}
-        >
+        <Link to="/cart" className="-mr-6" onClick={onClickEvent}>
           <button
             type="button"
-            className="rounded-full rounded-r-none px-6 md:px-4 py-2 sm:w-auto flex flex-row items-center justify-center gap-2 border border-transparent text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="rounded-full rounded-r-none px-6 md:px-4 py-2 sm:w-auto flex flex-row items-center justify-center gap-2 border border-transparent text-sm font-medium text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:z-[100] focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]"
           >
             <>
               <ShoppingCart className="h-5 w-5"></ShoppingCart>{" "}
@@ -40,16 +36,15 @@ export function UserButton({
       )}
       <Link
         to={loading ? "/" : logged ? "/dashboard" : "/login"}
-        className="text-gray-700 hover:text-indigo-600"
         onClick={onClickEvent}
       >
         <button
           type="button"
           className={`${
             logged
-              ? "rounded-full rounded-l-none border-l border-l-indigo-400"
+              ? "rounded-full rounded-l-none border-l border-l-[--border_light_700]"
               : "rounded-full"
-          } px-6 md:px-4 py-2 w-auto flex flex-row items-center justify-center gap-2 border border-transparent text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+          } px-6 md:px-4 py-2 w-auto flex z-40 flex-row items-center justify-center gap-2 border border-transparent text-sm font-medium text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]`}
         >
           {loading ? (
             <CircleDashed className="h-6 w-6 loader"></CircleDashed>

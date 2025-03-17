@@ -9,14 +9,14 @@ export function Toggle({ label, description, checked, onChange }: ToggleProps) {
   return (
     <div className="flex items-center justify-between">
       <div>
-        <h4 className="text-sm font-medium text-gray-200">{label}</h4>
-        <p className="text-sm text-gray-300">{description}</p>
+        <h4 className="text-sm font-medium text-[--text_light_200]">{label}</h4>
+        <p className="text-sm text-[--text_light_200]">{description}</p>
       </div>
       <button
         type="button"
         className={`${
-          checked ? "bg-indigo-600" : "bg-gray-200"
-        } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+          checked ? "bg-[--button]" : "bg-[--bg_light_200]"
+        } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[--brand_color] focus:ring-offset-2`}
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
@@ -24,7 +24,7 @@ export function Toggle({ label, description, checked, onChange }: ToggleProps) {
         <span
           className={`${
             checked ? "translate-x-5" : "translate-x-0"
-          } pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
+          } pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-[--bg_light_900] shadow ring-0 transition duration-200 ease-in-out`}
         >
           <span
             className={`${
@@ -35,7 +35,7 @@ export function Toggle({ label, description, checked, onChange }: ToggleProps) {
             aria-hidden="true"
           >
             <svg
-              className="h-3 w-3 text-gray-400"
+              className="h-3 w-3 text-[--text_light_200]"
               fill="none"
               viewBox="0 0 12 12"
             >
@@ -57,7 +57,7 @@ export function Toggle({ label, description, checked, onChange }: ToggleProps) {
             aria-hidden="true"
           >
             <svg
-              className="h-3 w-3 text-indigo-600"
+              className="h-3 w-3 text-[--brand_color]"
               fill="currentColor"
               viewBox="0 0 12 12"
             >

@@ -38,25 +38,25 @@ export default function Contact() {
     <div className="min-h-screen-minus-64 dottedBackground py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold text-center mb-8 text-white">
+          <h1 className="text-4xl font-bold text-center mb-8 text-[--text_light_0]">
             {LANGUAGE.CONTACT.TITLE[preferences.language]}
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div
-              className={`bg-gray-900 rounded-lg shadow-md p-6 ${
+              className={`bg-[--bg_sec] rounded-lg shadow-md p-6 ${
                 success != null &&
                 (success
                   ? "border-b-4 border-b-green-500"
                   : "border-b-4 border-b-red-500")
               }`}
             >
-              <h2 className="text-2xl font-semibold mb-6 text-white">
+              <h2 className="text-2xl font-semibold mb-6 text-[--text_light_0]">
                 {LANGUAGE.CONTACT.TOUCH[preferences.language]}
               </h2>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">
+                  <label className="block text-sm font-medium text-[--text_light_200] mb-1">
                     {LANGUAGE.CONTACT.NAME[preferences.language]}
                   </label>
                   <input
@@ -66,14 +66,14 @@ export default function Contact() {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3 py-2 border text-gray-200 bg-gray-900 border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 border text-[--text_light_200] bg-[--bg_prim] border-[--border_light_500] rounded-md focus:outline-none focus:ring-2 focus:ring-[--brand_color]"
                     placeholder={
                       LANGUAGE.CONTACT.PLACEHOLDER_NAME[preferences.language]
                     }
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">
+                  <label className="block text-sm font-medium text-[--text_light_200] mb-1">
                     {LANGUAGE.CONTACT.EMAIL[preferences.language]}
                   </label>
                   <input
@@ -83,14 +83,14 @@ export default function Contact() {
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3 py-2 border text-gray-200 bg-gray-900 border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 border text-[--text_light_200] bg-[--bg_prim] border-[--border_light_500] rounded-md focus:outline-none focus:ring-2 focus:ring-[--brand_color]"
                     placeholder={
                       LANGUAGE.CONTACT.PLACEHOLDER_EMAIL[preferences.language]
                     }
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">
+                  <label className="block text-sm font-medium text-[--text_light_200] mb-1">
                     {LANGUAGE.CONTACT.MESSAGE[preferences.language]}
                   </label>
                   <textarea
@@ -100,7 +100,7 @@ export default function Contact() {
                     id="message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-3 py-2 border text-gray-200 bg-gray-900 border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 border text-[--text_light_200] bg-[--bg_prim] border-[--border_light_500] rounded-md focus:outline-none focus:ring-2 focus:ring-[--brand_color]"
                     placeholder={
                       LANGUAGE.CONTACT.PLACEHOLDER_MESSAGE[preferences.language]
                     }
@@ -108,7 +108,7 @@ export default function Contact() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-indigo-600 flex justify-center items-center text-white py-2 rounded-lg hover:bg-indigo-700"
+                  className="w-full bg-[--button] flex justify-center items-center text-[--text_light_900] py-2 rounded-lg hover:bg-[--button_hover]"
                 >
                   {loadingSubmit ? (
                     <CircleDashed className="w-6 h-6 loader"></CircleDashed>
@@ -119,18 +119,20 @@ export default function Contact() {
               </form>
             </div>
 
-            <div className="bg-gray-900 rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-semibold mb-6 text-white">
+            <div className="bg-[--bg_sec] rounded-lg shadow-md p-6">
+              <h2 className="text-2xl font-semibold mb-6 text-[--text_light_0]">
                 {LANGUAGE.CONTACT.CONTACT_INFO[preferences.language]}
               </h2>
               <div className="space-y-4">
                 <div className="flex items-center mb-6">
-                  <Mail className="h-5 w-5 text-indigo-600 mr-3" />
-                  <span className="text-white">support@digitalmarket.com</span>
+                  <Mail className="h-5 w-5 text-[--brand_color] mr-3" />
+                  <span className="text-[--text_light_0]">
+                    support@digitalmarket.com
+                  </span>
                 </div>
                 <div className="flex items-center mb-6">
-                  <Facebook className="h-5 w-5 text-indigo-600 mr-3" />
-                  <span className="text-white">
+                  <Facebook className="h-5 w-5 text-[--brand_color] mr-3" />
+                  <span className="text-[--text_light_0]">
                     123 Digital Street, Tech City, TC 12345
                   </span>
                 </div>

@@ -127,11 +127,11 @@ export default function Register() {
     <div className="min-h-screen-minus-64 dottedBackground flex justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-lg w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-[--text_light_0]">
             {LANGUAGE.REGISTER.TITLE[preferences.language]}
           </h2>
         </div>
-        <div className="rounded-lg shadow-md p-7 bg-gray-900">
+        <div className="rounded-lg shadow-md p-7 bg-[--bg_sec]">
           <form className="space-y-7">
             <div className={`rounded-md shadow-sm -space-y-px `}>
               <InputText
@@ -217,11 +217,11 @@ export default function Register() {
                   name="remember-me"
                   type="checkbox"
                   onChange={() => setRemeberme(!remeberme)}
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-[--brand_color] focus:ring-[--brand_color] border-[--border_light_300] rounded"
                 />
                 <label
                   htmlFor="remember-me"
-                  className="ml-2 block text-md text-gray-100"
+                  className="ml-2 block text-md text-[--text_light_100]"
                 >
                   {LANGUAGE.REGISTER.REMEMBERME[preferences.language]}
                 </label>
@@ -230,7 +230,7 @@ export default function Register() {
               <div className="text-md">
                 <Link
                   to="/login"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                  className="font-medium text-[--button] hover:text-[--button_hover]"
                 >
                   {user
                     ? LANGUAGE.REGISTER.ALREADY_ACCOUNT[
@@ -246,13 +246,14 @@ export default function Register() {
                 type="submit"
                 disabled={success || loadingSubmit}
                 className={`${
-                  (success ||
-                    loadingSubmit ||
-                    !valUsername ||
-                    !valEmail ||
-                    !valPassword) &&
-                  "cursor-not-allowed"
-                } group relative h-12 w-full items-center flex justify-center gap-2 py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+                  success ||
+                  loadingSubmit ||
+                  !valUsername ||
+                  !valEmail ||
+                  !valPassword
+                    ? "cursor-not-allowed bg-[--button_not_allowed]"
+                    : "bg-[--button] hover:[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]"
+                } group relative h-12 w-full items-center flex justify-center gap-2 py-2 px-4 border border-transparent text-md font-medium rounded-md text-[--text_light_0]`}
                 onClick={(e) => {
                   submitClickHandler({ e });
                 }}
@@ -262,7 +263,7 @@ export default function Register() {
                 ) : (
                   <span>{LANGUAGE.REGISTER.SIGNUP[preferences.language]}</span>
                 )}
-                {success && <CheckCircle2 className="text-white" />}
+                {success && <CheckCircle2 className="text-[--text_light_0]" />}
               </button>
             </div>
           </form>

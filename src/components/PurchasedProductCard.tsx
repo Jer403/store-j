@@ -13,18 +13,20 @@ export function PurchasedProductCard({
 }: ProductCardProps) {
   const date = new Date(product.purchased_at);
   return (
-    <div className="border dark:border-gray-700 rounded-lg p-4">
+    <div className="border border-[--border_light_700] rounded-lg p-4">
       <img
         src={`${IMG_API_URL}${product.image}.webp`}
         alt={product.title}
         draggable={false}
-        className="w-full h-72 object-cover rounded-lg aspect-auto text-white bg-gray-950"
+        className="w-full h-72 object-cover rounded-lg aspect-auto text-[--text_light_0] bg-[--bg_prim]"
       />
-      <h3 className="mt-4 text-lg font-semibold text-white">{product.title}</h3>
-      <p className="text-sm mt-1  text-gray-200">{`${
+      <h3 className="mt-4 text-lg font-semibold text-[--text_light_0]">
+        {product.title}
+      </h3>
+      <p className="text-sm mt-1  text-[--text_light_0]">{`${
         LANGUAGE.DASHBOARD.PURCHASED_AT[preferences.language]
       } ${createDateTextFromLanguage(preferences.language, date)}`}</p>
-      <button className="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">
+      <button className="mt-4 w-full bg-[--button] text-[--text_light_0] py-2 rounded-lg hover:bg-[--button_hover]">
         {LANGUAGE.DASHBOARD.DOWNLOAD[preferences.language]}
       </button>
     </div>

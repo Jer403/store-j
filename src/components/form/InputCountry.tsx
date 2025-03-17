@@ -35,7 +35,7 @@ export function InputCountry({
         value={value}
         disabled={disabled}
         onChange={(e) => setValue(Number(e.target.value))}
-        className={`w-full px-3 py-2 border bg-gray-900 border-gray-500 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+        className={`w-full px-3 py-2 border bg-[--bg_sec] border-[--border_light_500] text-[--text_light_0] rounded-md focus:outline-none focus:ring-2 focus:ring-[--brand_color] ${
           loadingSubmit ? "appearance-none" : ""
         }`}
       >

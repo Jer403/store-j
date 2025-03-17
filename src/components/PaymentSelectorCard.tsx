@@ -31,16 +31,16 @@ export function PaymentSelectorCard({
       {formHidden ? (
         <>
           <div
-            className={`w-full h-14 bg-gray-800 border hover:cursor-pointer ${
+            className={`w-full h-14 bg-[--bg_light_800] border hover:cursor-pointer ${
               payMethod == id
-                ? "border-indigo-500"
-                : "border-gray-600 hover:border-gray-500"
+                ? "border-[--brand_color]"
+                : "border-[--border_light_600] hover:border-[--border_light_500]"
             }  gap-3 rounded-xl flex items-center justify-between p-3`}
             onClick={() => setPayMethod(id)}
           >
             <div className="flex items-center justify-start gap-3">
               {icon}
-              <span className="text-white text-sm sm:text-md md:text-lg">
+              <span className="text-[--text_light_0] text-sm sm:text-md md:text-lg">
                 {title}
               </span>
             </div>
@@ -56,19 +56,21 @@ export function PaymentSelectorCard({
         <div
           className={`overflow-hidden border transition-[max-height] duration-500 ${
             payMethod == id
-              ? "border-indigo-500 pt-14 max-h-[745px]"
-              : "border-gray-600 hover:border-gray-500 pt-[55px] max-h-0 cursor-pointer"
-          } border-gray-600 rounded-xl relative`}
+              ? "border-[--brand_color] pt-14 max-h-[745px]"
+              : "border-[--border_light_600] hover:border-[--border_light_500] pt-[55px] max-h-0 cursor-pointer"
+          } rounded-xl relative`}
         >
           <div
-            className={`w-full h-14 bg-gray-800 border-b hover:border-indigo-500 ${
-              payMethod == id ? "border-indigo-500" : "border-gray-600"
+            className={`w-full h-14 bg-[--border_light_800] border-b ${
+              payMethod == id
+                ? "border-[--brand_color]"
+                : "border-[--border_light_600] hover:border-[--brand_color]"
             }  absolute top-0 left-0 gap-3 rounded-xl flex items-center justify-between p-3`}
             onClick={() => setPayMethod(id)}
           >
             <div className="flex items-center justify-start gap-3">
               {icon}
-              <span className="text-white text-sm sm:text-md md:text-lg">
+              <span className="text-[--text_light_0] text-sm sm:text-md md:text-lg">
                 {title}
               </span>
             </div>
@@ -77,7 +79,7 @@ export function PaymentSelectorCard({
             </div>
           </div>
           <div className="p-3">
-            <h2 className="text-lg font-semibold mb-4 text-gray-50">
+            <h2 className="text-lg font-semibold mb-4 text-[--text_light_50]">
               {formLabelTitle}
             </h2>
 

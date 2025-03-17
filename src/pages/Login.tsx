@@ -148,11 +148,11 @@ export default function Login() {
     <div className="min-h-screen-minus-64 dottedBackground flex justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-lg w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-[--text_light_0]">
             {LANGUAGE.LOGIN.TITLE[preferences.language]}
           </h2>
         </div>
-        <div className="bg-gray-900 rounded-lg shadow-md p-7">
+        <div className="bg-[--bg_sec] rounded-lg shadow-md p-7">
           <form className=" space-y-7">
             <div className="rounded-md shadow-sm -space-y-px gap-3 flex flex-col">
               <div className="relative">
@@ -161,7 +161,7 @@ export default function Login() {
                 </label>
                 <label
                   htmlFor="email-address"
-                  className="text-md text-gray-300"
+                  className="text-md text-[--text_light_300]"
                 >
                   {LANGUAGE.LOGIN.EMAIL[preferences.language]}
                 </label>
@@ -178,7 +178,7 @@ export default function Login() {
                   }}
                   className={`${
                     emailShake && "shake !border-[--wrong]"
-                  } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-4 py-3 border bg-gray-900 text-white border-gray-500 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
+                  } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-4 py-3 border bg-[--bg_sec] text-[--text_light_0] border-[--border_light_500] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
                 />
                 <div
                   className={`absolute group w-6 h-6 check ${
@@ -194,7 +194,7 @@ export default function Login() {
                     <XCircle></XCircle>
                   )}
 
-                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-gray-300 dark:shadow-gray-600 text-white bg-gray-800 after:border-r-gray-800">
+                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-[--shadow_light_600] text-[--text_light_0] bg-[--bg_light_800] after:border-r-[--bg_light_800]">
                     {valEmail
                       ? LANGUAGE.LOGIN.EMAIL_VALID[preferences.language]
                       : LANGUAGE.LOGIN.EMAIL_NOT_VALID[preferences.language]}
@@ -205,7 +205,10 @@ export default function Login() {
                 <label htmlFor="password" className="sr-only">
                   {LANGUAGE.LOGIN.PASS[preferences.language]}
                 </label>
-                <label htmlFor="password" className="text-md text-gray-300">
+                <label
+                  htmlFor="password"
+                  className="text-md text-[--text_light_300]"
+                >
                   {LANGUAGE.LOGIN.PASS[preferences.language]}
                 </label>
                 <input
@@ -223,7 +226,7 @@ export default function Login() {
                   onMouseLeave={() => setEyeVisible(false)}
                   className={`${
                     passShake && "shake !border-[--wrong]"
-                  } appearance-non text-md h-12 mt-1 rounded-md relative block w-full px-3 py-2 border bg-gray-900 border-gray-500 text-white placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10`}
+                  } appearance-non text-md h-12 mt-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_sec] border-[--border_light_500] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
                 />
                 <div className="absolute w-6 h-6 eye" style={{ color: "#111" }}>
                   <button
@@ -264,7 +267,7 @@ export default function Login() {
                     <XCircle></XCircle>
                   )}
 
-                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm  shadow-gray-600 text-white bg-gray-800 after:border-r-gray-800">
+                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm  shadow-[--shadow_light_600] text-[--text_light_0] bg-[--bg_light_800] after:border-r-[--bg_light_800]">
                     {valPassword
                       ? LANGUAGE.LOGIN.PASS_VALID[preferences.language]
                       : LANGUAGE.LOGIN.PASS_NOT_VALID[preferences.language]}
@@ -298,11 +301,11 @@ export default function Login() {
                     name="remember-me"
                     type="checkbox"
                     onChange={() => setRemeberme(!remeberme)}
-                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded bg-gray-900"
+                    className="h-4 w-4 rounded"
                   />
                   <label
                     htmlFor="remember-me"
-                    className="ml-2 block text-sm md:text-base text-gray-100"
+                    className="ml-2 block text-sm md:text-base text-[--text_light_300]"
                   >
                     {LANGUAGE.LOGIN.REMEMBERME[preferences.language]}
                   </label>
@@ -311,7 +314,7 @@ export default function Login() {
                 <div className="hidden">
                   <a
                     href="#"
-                    className="font-medium text-sm md:text:base text-indigo-600 hover:text-indigo-500"
+                    className="font-medium text-sm md:text:base text-[--button] hover:text-[--button_hover]"
                   >
                     {LANGUAGE.LOGIN.FORGOT[preferences.language]}
                   </a>
@@ -319,7 +322,7 @@ export default function Login() {
                 <div className="text-sm md:text:base">
                   <Link
                     to="/register"
-                    className="font-medium text-sm md:text-base text-indigo-600 hover:text-indigo-500"
+                    className="font-medium text-sm md:text-base text-[--button] hover:text-[--button_hover]"
                   >
                     {LANGUAGE.LOGIN.DONT_HAVE_ACCOUNT[preferences.language]}
                   </Link>
@@ -332,8 +335,10 @@ export default function Login() {
               <button
                 type="submit"
                 className={`${
-                  !valEmail || !valPassword ? "cursor-not-allowed" : ""
-                } group h-12 relative w-full flex justify-center items-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+                  !valEmail || !valPassword
+                    ? "cursor-not-allowed bg-[--button_not_allowed]"
+                    : "bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--button]"
+                } group h-12 relative w-full flex justify-center items-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-[--text_light_0]`}
                 onClick={(e) => {
                   submitClickHandler({ e });
                 }}
@@ -352,7 +357,7 @@ export default function Login() {
 
           <GoogleButton
             text={LANGUAGE.LOGIN.SIGNIN_GOOGLE[preferences.language]}
-            url={`https://3dcute.up.railway.app/app/auth/google`}
+            url={`https://modelfantasy.up.railway.app/app/auth/google`}
             disabled={loadingSubmit}
           ></GoogleButton>
         </div>

@@ -17,7 +17,7 @@ export function DropDownTab({
     <div
       className={`w-full flex ${
         currentQuestion == id ? "gap-2 " : "gap-0"
-      } flex-col p-3 border border-gray-300 rounded-lg`}
+      } flex-col p-3 border border-[--border_light_300] rounded-lg`}
     >
       <div
         className="w-full flex justify-between items-center gap-1"
@@ -29,9 +29,9 @@ export function DropDownTab({
       >
         <p className="text-md">{question}</p>
         {currentQuestion == id ? (
-          <ChevronUp className="text-gray-700" />
+          <ChevronUp className="text-[--text_light_700]" />
         ) : (
-          <ChevronDownIcon className="text-gray-700" />
+          <ChevronDownIcon className="text-[--text_light_700]" />
         )}
       </div>
       <div
