@@ -327,23 +327,21 @@ export function Chat() {
           }}
         >
           {notSeenMessages > 0 && !isChatOpen && (
-            <div className="absolute -top-3 right-0 rounded-full w-6 h-6 bg-[--brand_color]">
+            <div className="absolute -top-3 right-0 rounded-full w-6 h-6 bg-[--brand_color] border border-[--bg_prim]">
               <div className="w-full h-full flex justify-center items-center text-[--text_light_900]">
                 {notSeenMessages}
               </div>
             </div>
           )}
-          <div className="w-full h-full flex items-center justify-center palpite">
-            <MessageSquareIcon
-              className={`absolute w-12 h-12 transition-[opacity] ${
-                isChatOpen ? "opacity-0 rotate-0" : "opacity-1 -rotate-12"
-              }`}
-              fill="#fff"
-            ></MessageSquareIcon>
-          </div>
+          <MessageSquareIcon
+            className={`absolute w-10 h-10 transition-[opacity] ${
+              isChatOpen ? "opacity-0 rotate-0" : "opacity-1 -rotate-12"
+            }`}
+            fill="#fff"
+          ></MessageSquareIcon>
 
           <X
-            className={`absolute text-[--text_light_900] w-12 h-12 transition-[opacity] ${
+            className={`absolute text-[--text_light_900] w-10 h-10 transition-[opacity] ${
               isChatOpen ? "opacity-1 rotate-0" : " opacity-0 -rotate-12"
             }`}
           ></X>

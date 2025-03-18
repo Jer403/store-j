@@ -178,7 +178,7 @@ export default function Login() {
                   }}
                   className={`${
                     emailShake && "shake !border-[--wrong]"
-                  } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-4 py-3 border bg-[--bg_sec] text-[--text_light_0] border-[--border_light_500] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
+                  } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-4 py-3 border bg-[--bg_prim] text-[--text_light_0] border-[--border_light_500] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
                 />
                 <div
                   className={`absolute group w-6 h-6 check ${
@@ -194,7 +194,7 @@ export default function Login() {
                     <XCircle></XCircle>
                   )}
 
-                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-[--shadow_light_600] text-[--text_light_0] bg-[--bg_light_800] after:border-r-[--bg_light_800]">
+                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-[--shadow_light_500] text-[--text_light_0] bg-[--bg_sec] after:border-r-[--bg_light_800]">
                     {valEmail
                       ? LANGUAGE.LOGIN.EMAIL_VALID[preferences.language]
                       : LANGUAGE.LOGIN.EMAIL_NOT_VALID[preferences.language]}
@@ -226,7 +226,7 @@ export default function Login() {
                   onMouseLeave={() => setEyeVisible(false)}
                   className={`${
                     passShake && "shake !border-[--wrong]"
-                  } appearance-non text-md h-12 mt-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_sec] border-[--border_light_500] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
+                  } appearance-non text-md h-12 mt-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_prim] border-[--border_light_500] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
                 />
                 <div className="absolute w-6 h-6 eye" style={{ color: "#111" }}>
                   <button
@@ -239,13 +239,13 @@ export default function Login() {
                   >
                     {passwordVisible ? (
                       <EyeOff
-                        className={`text-white ${
+                        className={`text-[--text_light_0] ${
                           eyeVisible ? "sm:block" : "sm:hidden"
                         }`}
                       ></EyeOff>
                     ) : (
                       <EyeIcon
-                        className={`text-white block ${
+                        className={`text-[--text_light_0] block ${
                           eyeVisible ? "sm:block" : "sm:hidden"
                         }`}
                       ></EyeIcon>
@@ -267,7 +267,7 @@ export default function Login() {
                     <XCircle></XCircle>
                   )}
 
-                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm  shadow-[--shadow_light_600] text-[--text_light_0] bg-[--bg_light_800] after:border-r-[--bg_light_800]">
+                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm  shadow-[--shadow_light_500] text-[--text_light_0] bg-[--bg_sec] after:border-r-[--bg_light_800]">
                     {valPassword
                       ? LANGUAGE.LOGIN.PASS_VALID[preferences.language]
                       : LANGUAGE.LOGIN.PASS_NOT_VALID[preferences.language]}
@@ -338,7 +338,7 @@ export default function Login() {
                   !valEmail || !valPassword
                     ? "cursor-not-allowed bg-[--button_not_allowed]"
                     : "bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--button]"
-                } group h-12 relative w-full flex justify-center items-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-[--text_light_0]`}
+                } group h-12 relative w-full flex justify-center items-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-[--text_light_900]`}
                 onClick={(e) => {
                   submitClickHandler({ e });
                 }}

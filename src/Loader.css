@@ -9,22 +9,22 @@
 }
 
 .pl__ring--a {
-  stroke: #6366f1;
+  stroke: var(--brand_color);
 }
 
 .pl__ring--b {
   animation-name: ringB;
-  stroke: #6366f1;
+  stroke: var(--brand_color);
 }
 
 .pl__ring--c {
   animation-name: ringC;
-  stroke: #6366f1;
+  stroke: var(--brand_color);
 }
 
 .pl__ring--d {
   animation-name: ringD;
-  stroke: #6366f1;
+  stroke: var(--brand_color);
 }
 
 /* Animations */

@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { IMG_API_URL, LANGUAGE } from "../consts";
 import { usePreferences } from "../hooks/usePreferences";
 import {
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   CircleDashed,
@@ -19,6 +18,7 @@ import { InputTextSimple } from "../components/form/InputTextSimple";
 import { ButtonSubmitSimple } from "../components/form/ButtonSubmitSimple";
 import { SectionButton } from "../components/form/SectionButton";
 import { formatDateString } from "../utils";
+import { Comment } from "../components/Comment";
 
 export default function Product() {
   const { state: cart, purchased, addToCart, rate } = useCart();
@@ -28,8 +28,7 @@ export default function Product() {
   const [section, setSection] = useState<Sections>("info");
   const [isInPurchased, setIsInPurchased] = useState<boolean>(false);
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
-  const [licenseOpen, setLicenseOpen] = useState<boolean>(false);
-  const [license, setLicense] = useState<License | null>(null);
+  const [license, setLicense] = useState<License>("personal");
   const [personal, setPersonal] = useState<number>(0);
   const [professional, setProfessional] = useState<number>(0);
   const [currency, setCurrency] = useState<string>("€");
@@ -65,18 +64,6 @@ export default function Product() {
     setIsInCart(checkProductInCart(product));
     setIsInPurchased(checkProductInPurchased(product));
   }, [cart, checkProductInCart, checkProductInPurchased, product]);
-
-  useEffect(() => {
-    const handleClickWindow = () => {
-      if (licenseOpen) {
-        setLicenseOpen(false);
-      }
-    };
-    window.addEventListener("click", handleClickWindow);
-    return () => {
-      window.removeEventListener("click", handleClickWindow);
-    };
-  }, [licenseOpen]);
 
   useEffect(() => {
     const id = location.pathname.slice(9);
@@ -170,7 +157,7 @@ export default function Product() {
           <div className="p-8 flex w-full gap-2">
             <div className="w-full grid grid-dis gap-6 grid-cols-1 lg:grid-cols-[1fr,var(--aside_width)]">
               <div className="w-full medias">
-                <div className="relative aspect-video bg-[--bg_prim] rounded-lg overflow-hidden group">
+                <div className="relative aspect-video bg-[--bg_sec] rounded-lg overflow-hidden group border-2 border-[--border_light_500]">
                   <img
                     src={product.gallery ? `${currentImage}` : ""}
                     alt={product.title}
@@ -180,7 +167,7 @@ export default function Product() {
                 <div className="flex">
                   <div className="flex justify-center items-center p-2">
                     <button onClick={handleGalleryScrollLeft}>
-                      <ChevronLeft className="w-9 h-9 p-1 text-[--text_light_0] hover:bg-[--bg_light_600] transition-colors rounded-full"></ChevronLeft>
+                      <ChevronLeft className="w-9 h-9 p-1 text-[--text_light_0] border border-transparent hover:hover:bg-[--bg_sec] hover:hover:border-[--border_light_400] transition-colors rounded-full"></ChevronLeft>
                     </button>
                   </div>
                   <div
@@ -188,25 +175,25 @@ export default function Product() {
                     style={{ scrollBehavior: "smooth" }}
                     className="w-full flex flex-row overflow-hidden max-w-full gap-2 mt-2"
                   >
-                    <div className="h-24 aspect-video">
+                    <div className="h-24 aspect-video bg-[--bg_sec]">
                       <img
                         key={"main-image"}
                         src={`${IMG_API_URL}${product.image}.webp`}
                         alt={`Preview main-image`}
                         onMouseEnter={handleMouseEnter}
-                        className="object-contain aspect-video rounded-md border-2 border-[--border_light_300]"
+                        className="object-contain aspect-video rounded-md border-2 border-[--border_light_500]"
                       />
                     </div>
 
                     {product.gallery ? (
                       product.gallery.map((image, index) => (
-                        <div className="h-24 aspect-video">
+                        <div className="h-24 aspect-video bg-[--bg_sec]">
                           <img
                             key={index}
                             src={`${IMG_API_URL}${image}.webp`}
                             alt={`Preview ${index + 1}`}
                             onMouseEnter={handleMouseEnter}
-                            className="w-full h-full object-contain aspect-video rounded-md border-2 border-[--border_light_300]"
+                            className="w-full h-full object-contain aspect-video rounded-md border-2 border-[--border_light_500]"
                           />
                         </div>
                       ))
@@ -216,7 +203,7 @@ export default function Product() {
                   </div>
                   <div className="flex justify-center items-center p-2">
                     <button onClick={handleGalleryScrollRight}>
-                      <ChevronRight className="w-9 h-9 p-1 text-[--text_light_0] transition-colors hover:bg-[--bg_sec] rounded-full"></ChevronRight>
+                      <ChevronRight className="w-9 h-9 p-1 text-[--text_light_0] transition-colors border border-transparent hover:hover:bg-[--bg_sec] hover:hover:border-[--border_light_400] rounded-full"></ChevronRight>
                     </button>
                   </div>
                 </div>
@@ -281,34 +268,158 @@ export default function Product() {
                       </div>
                     </form>
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <div className="flex flex-col p-4 pt-3 bg-[--bg_sec] border border-[--border_light_300] rounded-xl">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[--text_light_0] text-2xl font-medium">
-                          Jose
-                        </span>
-                        <span className="text-[--text_light_400] text-base font-medium">
-                          hace 1 dia
-                        </span>
-                      </div>
-                      <p className="text-[--text_light_0]">Mu bueno paisa</p>
-                    </div>
+                  <div className="flex flex-col gap-6">
+                    <Comment
+                      username="Jose"
+                      message="Mu bueno Paisa"
+                      date=""
+                    ></Comment>
+                    <Comment
+                      username="Jose"
+                      message="Mu bueno Paisa"
+                      date=""
+                    ></Comment>
+                    <Comment
+                      username="Jose"
+                      message="Mu bueno Paisa"
+                      date=""
+                    ></Comment>
                   </div>
                 </div>
               </div>
 
               <aside
-                className={`bg-[--bg_sec] rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:340px] xl:[--aside_width:402px] flex lg:sticky lg:top-[88px] flex-col aside`}
+                className={`bg-[--bg_sec] rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:340px] xl:[--aside_width:402px] 2xl:[--aside_width:464px] flex lg:sticky lg:top-[88px] flex-col aside`}
               >
                 <div className="flex p-9 py-7 gap-3 flex-col items-start justify-between border-b border-[--bg_prim]">
                   <h2 className="text-3xl font-bold text-[--text_light_50] mb-2">
                     {product.title}
                   </h2>
-                  <span className="text-[--text_light_200] text-lg font-medium">
+                  {/* <span className="text-[--text_light_200] text-lg font-medium">
                     License
-                  </span>
-                  <div className="relative w-full flex">
-                    <button
+                  </span> */}
+
+                  <div className="relative w-full flex flex-col rounded-xl h-32 border border-[--border_light_200]">
+                    <div className="w-full flex">
+                      <button
+                        className={`w-full h-12 ${
+                          license == "personal" ? "border-b-[3px]" : "border-b"
+                        }  border-[--border_light_200] rounded-tl-xl`}
+                        onClick={() => {
+                          setLicense("personal");
+                        }}
+                      >
+                        Personal
+                      </button>
+                      <button
+                        className={`w-full h-12 ${
+                          license == "professional"
+                            ? "border-b-[3px]"
+                            : "border-b"
+                        }  border-l border-[--border_light_200] rounded-tr-xl`}
+                        onClick={() => {
+                          setLicense("professional");
+                        }}
+                      >
+                        Professional
+                      </button>
+                    </div>
+                    <div
+                      className={`${license == "personal" ? "flex" : "hidden"}`}
+                    >
+                      <p>Personal</p>
+                    </div>
+                    <div
+                      className={`${
+                        license == "professional" ? "flex" : "hidden"
+                      }`}
+                    >
+                      <p>Professional</p>
+                    </div>
+                  </div>
+
+                  <button
+                    className={`flex items-center w-full justify-center gap-2 px-6 py-3 ${
+                      license == null
+                        ? "bg-[--button_not_allowed] cursor-not-allowed"
+                        : isInPurchased
+                        ? "bg-green-500 hover:bg-green-500"
+                        : isInCart
+                        ? "bg-blue-500 hover:bg-blue-500"
+                        : "bg-[--button] hover:bg-[--button_hover]"
+                    } text-[--text_light_900] rounded-xl  transition-colors`}
+                    disabled={license == null}
+                    onClick={() =>
+                      handleProductAction(
+                        product.id,
+                        isInCart,
+                        isInPurchased,
+                        setLoadingSubmit
+                      )
+                    }
+                  >
+                    {isInPurchased ? (
+                      <>
+                        <Download className="h-5 w-5" />{" "}
+                        {LANGUAGE.PRODUCT_BUTTON.DOWNLOAD[preferences.language]}
+                      </>
+                    ) : loadingSubmit ? (
+                      <>
+                        <CircleDashed className="h-5 w-5 loader" />
+                      </>
+                    ) : isInCart ? (
+                      <>
+                        <ShoppingCart className="h-5 w-5" />{" "}
+                        {
+                          LANGUAGE.PRODUCT_BUTTON.GO_TO_CART[
+                            preferences.language
+                          ]
+                        }
+                      </>
+                    ) : (
+                      <>
+                        <ShoppingCart className="h-5 w-5" />
+                        {LANGUAGE.PRODUCT_BUTTON.ADD[preferences.language]}
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                <div className="p-9 pt-7">
+                  <h2 className="text-2xl font-bold text-[--text_light_100] mb-3">
+                    Details
+                  </h2>
+                  <div className="flex flex-col gap-1">
+                    <div className="text-[--text_light_0] text-lg flex justify-between items-center">
+                      <span>Published date</span>
+                      <span>
+                        {formatDateString(
+                          product.created_at,
+                          preferences.language
+                        )}
+                      </span>
+                    </div>
+                    <div className="text-[--text_light_0] text-lg flex justify-between items-center">
+                      <span>Included formats</span>
+                      <div className="rounded-lg py-1">
+                        <LucideCircleDollarSign className="h-6 w-6"></LucideCircleDollarSign>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        ) : (
+          <p>No se ha encontrado ese producto</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/*
+<button
                       className={`relative w-full flex justify-between items-center p-4 border ${
                         license == null
                           ? licenseOpen
@@ -418,93 +529,4 @@ export default function Product() {
                         </div>
                       </button>
                     </div>
-                  </div>
-
-                  <button
-                    className={`flex items-center w-full justify-center gap-2 px-6 py-3 ${
-                      license == null
-                        ? "bg-[--button_not_allowed] cursor-not-allowed"
-                        : isInPurchased
-                        ? "bg-green-500 hover:bg-green-500"
-                        : isInCart
-                        ? "bg-blue-500 hover:bg-blue-500"
-                        : "bg-[--button] hover:bg-[--button_hover]"
-                    } text-[--text_light_900] rounded-xl  transition-colors`}
-                    disabled={license == null}
-                    onClick={() =>
-                      handleProductAction(
-                        product.id,
-                        isInCart,
-                        isInPurchased,
-                        setLoadingSubmit
-                      )
-                    }
-                  >
-                    {isInPurchased ? (
-                      <>
-                        <Download className="h-5 w-5" />{" "}
-                        {LANGUAGE.PRODUCT_BUTTON.DOWNLOAD[preferences.language]}
-                      </>
-                    ) : loadingSubmit ? (
-                      <>
-                        <CircleDashed className="h-5 w-5 loader" />
-                      </>
-                    ) : isInCart ? (
-                      <>
-                        <ShoppingCart className="h-5 w-5" />{" "}
-                        {
-                          LANGUAGE.PRODUCT_BUTTON.GO_TO_CART[
-                            preferences.language
-                          ]
-                        }
-                      </>
-                    ) : (
-                      <>
-                        <ShoppingCart className="h-5 w-5" />
-                        {LANGUAGE.PRODUCT_BUTTON.ADD[preferences.language]}
-                      </>
-                    )}
-                  </button>
-                </div>
-
-                <div className="p-9 pt-7">
-                  <h2 className="text-2xl font-bold text-[--text_light_100] mb-3">
-                    Details
-                  </h2>
-                  <div className="flex flex-col gap-1">
-                    <div className="text-[--text_light_0] text-lg flex justify-between items-center">
-                      <span>Published date</span>
-                      <span>
-                        {formatDateString(
-                          product.created_at,
-                          preferences.language
-                        )}
-                      </span>
-                    </div>
-                    <div className="text-[--text_light_0] text-lg flex justify-between items-center">
-                      <span>Included formats</span>
-                      <div className="rounded-lg py-1">
-                        <LucideCircleDollarSign className="h-6 w-6"></LucideCircleDollarSign>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </aside>
-            </div>
-          </div>
-        ) : (
-          <p>No se ha encontrado ese producto</p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* <span className="text-2xl w-full flex justify-start items-center p-2 border border-gray-500 rounded-xl font-bold text-indigo-600">
-                    {LANGUAGE.CURRENCIES[preferences.currency]}
-                    {preferences.currency == "USD"
-                      ? rate == 1
-                        ? product.price
-                        : Math.floor((product.price / rate) * 100) / 100
-                      : product.price}
-                  </span> */
+*/
