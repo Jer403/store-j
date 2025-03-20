@@ -58,6 +58,7 @@ export interface Payment {
 export interface Comment {
   id: string;
   userId: string;
+  userName: string;
   productId: string;
   message: string;
   created_at: string;
@@ -78,17 +79,4 @@ export interface PurchasedProduct {
   title: string;
   image: string;
   purchased_at: string;
-}
-
-export interface Comment {
-  id: string;
-  userId: string;
-  productId: string;
-  content: string;
-  rating: number;
-  createdAt: string;
-  user: {
-    name: string;
-    avatar?: string;
-  };
 }

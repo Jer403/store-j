@@ -1,128 +1,117 @@
-export function ProductLicenseSelector({
-  product,
-  license,
-  licenseOpen,
-  setLicense,
-  setLicenseOpen,
-}) {
+import {
+  CircleDashed,
+  Download,
+  LucideCircleDollarSign,
+  ShoppingCart,
+} from "lucide-react";
+import { License, Product } from "../types";
+import { useCart } from "../hooks/useCart";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { LANGUAGE } from "../consts";
+import { useAuth } from "../hooks/useAuth";
+import { usePreferences } from "../hooks/usePreferences";
+import { formatDateString } from "../utils";
+
+export function ProductLicenseSelector({ product }: { product: Product }) {
+  const { state: cart, purchased, addToCart } = useCart();
+  const [isInCart, setIsInCart] = useState<boolean>(false);
+  const [isInPurchased, setIsInPurchased] = useState<boolean>(false);
+  const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
+  const [license, setLicense] = useState<License>("personal");
+  const { logged } = useAuth();
+  const { preferences } = usePreferences();
+
+  const checkProductInCart = useCallback(
+    (product: Product) => {
+      return cart.some((item) => item.id == product.id);
+    },
+    [cart]
+  );
+  const checkProductInPurchased = useCallback(
+    (product: Product) => {
+      return purchased.some((item) => item.id == product.id);
+    },
+    [purchased]
+  );
+
+  useEffect(() => {
+    if (!product) return;
+    setIsInCart(checkProductInCart(product));
+    setIsInPurchased(checkProductInPurchased(product));
+  }, [cart, checkProductInCart, checkProductInPurchased, product]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isInCart) {
+      if (loadingSubmit) {
+        setLoadingSubmit(false);
+      }
+    }
+  }, [isInCart, loadingSubmit]);
+
+  const handleProductAction = (
+    id: string,
+    isInCart: boolean,
+    isInPurchased: boolean,
+    setLoadingSubmit: (b: boolean) => void
+  ) => {
+    if (!logged) {
+      navigate(`/login?path=-product-${product.id}`);
+      return;
+    }
+    if (isInPurchased) {
+      navigate("/dashboard");
+      window.scrollTo({ top: 0 });
+      return;
+    }
+    if (isInCart) {
+      navigate("/cart");
+      window.scrollTo({ top: 0 });
+      return;
+    }
+    if (!license) return;
+    addToCart(id, license);
+    setLoadingSubmit(true);
+  };
+
   return (
     <aside
-      className={`bg-[--bg_sec] rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:340px] xl:[--aside_width:402px] flex lg:sticky lg:top-[88px] flex-col aside`}
+      className={`bg-[--bg_sec] rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:340px] xl:[--aside_width:402px] 2xl:[--aside_width:464px] flex lg:sticky lg:top-[88px] flex-col aside`}
     >
       <div className="flex p-9 py-7 gap-3 flex-col items-start justify-between border-b border-[--bg_prim]">
         <h2 className="text-3xl font-bold text-[--text_light_50] mb-2">
           {product.title}
         </h2>
-        <span className="text-[--text_light_200] text-lg font-medium">
-          License
-        </span>
-        <div className="relative w-full flex">
-          <button
-            className={`relative w-full flex justify-between items-center p-4 border ${
-              license == null
-                ? licenseOpen
-                  ? "border-[--brand_color]"
-                  : "border-[--border_light_400] hover:border-[--border_light_300]"
-                : "border-[--brand_color]"
-            } rounded-xl`}
-            onClick={(e) => {
-              e.stopPropagation();
-              setLicenseOpen(!licenseOpen);
-            }}
-          >
-            <div className="flex flex-col justify-center items-start">
-              <span
-                className={`${
-                  license == null
-                    ? "text-normal font-bold text-[--text_light_200]"
-                    : "text-normal font-medium text-[--text_light_200]"
-                } `}
-              >
-                {license == null
-                  ? "Select a License"
-                  : license == "personal"
-                  ? "Personal"
-                  : "Professional"}
-              </span>
-              <span
-                className={`${
-                  license == null
-                    ? "text-normal font-medium text-[--text_light_300]"
-                    : "text-xl font-bold text-[--text_light_100]"
-                }`}
-              >
-                {license == null
-                  ? `(From ${currency + personal} to ${
-                      currency + professional
-                    })`
-                  : license == "personal"
-                  ? currency + personal
-                  : currency + professional}
-              </span>
-            </div>
-            <ChevronDown
-              className={`h-7 w-7 text-[--text_light_200] transition-transform duration-300 ${
-                licenseOpen && "rotate-180"
-              }`}
-            ></ChevronDown>
-          </button>
-          <div
-            className={`absolute p-2 ${
-              licenseOpen ? "flex" : "hidden"
-            } flex-col gap-2 text-[--text_light_0] top-[110%] h-fit left-0 border border-[--border_light_600] rounded-xl w-full bg-[#101625e8]`}
-          >
+
+        <div className="relative w-full flex flex-col rounded-xl h-32 border border-[--brand_color]">
+          <div className="w-full flex">
             <button
-              className="flex gap-2 p-2 pr-4 items-start justify-center rounded-xl hover:bg-[#374151b0] cursor-pointer"
+              className={`w-full h-12 ${
+                license == "personal" ? "border-b-[3px]" : "border-b"
+              }  border-[--brand_color] text-[--brand_color] text-lg font-medium rounded-tl-xl`}
               onClick={() => {
-                setLicenseOpen(false);
                 setLicense("personal");
               }}
             >
-              <div className="relative mt-[3px] w-5 h-5 flex rounded-full items-center justify-center bg-[--bg_light_700]">
-                <i
-                  className={`absolute w-[8px] h-2 ${
-                    license == "personal" && "bg-[--brand_color]"
-                  } rounded-full flex`}
-                ></i>
-              </div>
-              <div className="w-full rounded-xl flex flex-col items-start">
-                <span className="text-normal font-medium text-[--text_light_100]">
-                  Personal
-                </span>
-                <p className="text-sm font-medium text-[--text_light_400] text-start">
-                  For an individual creator or a small team with no more than
-                  100k of revenue or funding in the past 12 months
-                </p>
-                <span className="text-lg font-bold">{currency + personal}</span>
-              </div>
+              Personal
             </button>
             <button
-              className="flex gap-2 p-2 pr-4 items-start justify-center rounded-xl hover:bg-[#374151b0] cursor-pointer"
+              className={`w-full h-12 ${
+                license == "professional" ? "border-b-[3px]" : "border-b"
+              }  border-l border-[--brand_color] text-[--brand_color] text-lg font-medium rounded-tr-xl`}
               onClick={() => {
-                setLicenseOpen(false);
                 setLicense("professional");
               }}
             >
-              <div className="relative mt-[3px] w-5 h-5 flex rounded-full items-center justify-center bg-[--bg_light_700]">
-                <i
-                  className={`absolute w-[8px] h-2 ${
-                    license == "professional" && "bg-[--brand_color]"
-                  } rounded-full flex`}
-                ></i>
-              </div>
-              <div className="w-full rounded-xl flex flex-col items-start">
-                <span className="text-normal font-medium text-[--text_light_100]">
-                  Professional
-                </span>
-                <p className="text-sm font-medium text-[--text_light_400] text-start">
-                  For studios or other entities with over 100k of revenue or
-                  funding in the past 12 months
-                </p>
-                <span className="text-lg font-bold">
-                  {currency + professional}
-                </span>
-              </div>
+              Professional
             </button>
+          </div>
+          <div className={`${license == "personal" ? "flex" : "hidden"}`}>
+            <p>Personal</p>
+          </div>
+          <div className={`${license == "professional" ? "flex" : "hidden"}`}>
+            <p>Professional</p>
           </div>
         </div>
 
@@ -191,3 +180,32 @@ export function ProductLicenseSelector({
     </aside>
   );
 }
+
+// const [personal, setPersonal] = useState<number>(0);
+// const [professional, setProfessional] = useState<number>(0);
+// const [currency, setCurrency] = useState<string>("€");
+// useEffect(() => {
+//   if (!product) return;
+//   setCurrency(LANGUAGE.CURRENCIES[preferences.currency]);
+//   const pers =
+//     preferences.currency == "USD"
+//       ? rate == 1
+//         ? product.personal
+//         : Math.floor((product.personal / rate) * 100) / 100
+//       : product.personal;
+
+//   const prof =
+//     preferences.currency == "USD"
+//       ? rate == 1
+//         ? product.professional
+//         : Math.floor((product.professional / rate) * 100) / 100
+//       : product.professional;
+
+//   setProfessional(prof);
+//   setPersonal(pers);
+// }, [preferences.currency, product, rate]);
+
+// useEffect(() => {
+//   if (!product) return;
+//   setCurrency(LANGUAGE.CURRENCIES[preferences.currency]);
+// }, [preferences.currency, product]);

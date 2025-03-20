@@ -63,7 +63,7 @@ export function InputPasswordRepeat({
           onMouseLeave={() => setEyeVisible(false)}
           className={`${
             shake && "shake !border-[--wrong]"
-          } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_sec] border-[--border_light_500] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
+          } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_prim] border-[--border_light_500] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
         />
         <div className="absolute w-6 h-6 eye">
           <button
@@ -85,7 +85,7 @@ export function InputPasswordRepeat({
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                className={`text-white ${
+                className={`text-[--text_light_0] ${
                   eyeVisible ? "sm:block" : "sm:hidden"
                 }`}
               >
@@ -105,7 +105,7 @@ export function InputPasswordRepeat({
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                className={`text-white block ${
+                className={`text-[--text_light_0] block ${
                   eyeVisible ? "sm:block" : "sm:hidden"
                 }`}
               >
@@ -168,7 +168,7 @@ export function InputPasswordRepeat({
             </svg>
           )}
 
-          <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-[--shadow_light_600] text-[--text_light_0] bg-[--bg_thir] after:border-r-[--bg_thir]">
+          <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-[--shadow_light_500] text-[--text_light_0] bg-[--bg_sec] after:border-r-[--bg_thir]">
             {valPassword
               ? pass_valid
               : password2.length < 6 || password2.length < 6
@@ -199,7 +199,7 @@ export function InputPasswordRepeat({
           onMouseLeave={() => setEyeVisible(false)}
           className={`${
             shake && "shake !border-[--wrong]"
-          } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_sec] border-[--border_light_500] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand-color] focus:border-[--brand_color] focus:z-10`}
+          } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_prim] border-[--border_light_500] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand-color] focus:border-[--brand_color] focus:z-10`}
         />
         <div className="absolute w-6 h-6 eye">
           <button
@@ -221,7 +221,7 @@ export function InputPasswordRepeat({
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                className={`text-white ${
+                className={`text-[--text_light_0] ${
                   eyeVisible ? "sm:block" : "sm:hidden"
                 }`}
               >
@@ -241,7 +241,7 @@ export function InputPasswordRepeat({
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                className={`text-white block ${
+                className={`text-[--text_light_0] block ${
                   eyeVisible ? "sm:block" : "sm:hidden"
                 }`}
               >

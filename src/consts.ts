@@ -2,7 +2,7 @@ export const POSITIONS = {
   Home: { left: "0px", width: "43" },
   About: { left: "73px", width: "48" },
   Contact: { left: "150px", width: "56" },
-  User: { left: "300px", width: "0" },
+  User: { left: "200px", width: "0" },
 };
 
 export const API_URL = "https://modelfantasy.up.railway.app/app";

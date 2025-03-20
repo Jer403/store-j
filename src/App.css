@@ -389,8 +389,36 @@
   z-index: 100;
 }
 
-.palpite {
+.palpite-1 {
   animation: palpite 1s alternate infinite;
+}
+
+.palpite-2 {
+  animation: palpite 2s alternate infinite;
+}
+
+.palpite-3 {
+  animation: palpite 3s alternate infinite;
+}
+
+.palpite-4 {
+  animation: palpite 4s alternate infinite;
+}
+
+.grow-1 {
+  animation: grow 1s infinite;
+}
+
+.grow-2 {
+  animation: grow 2s infinite;
+}
+
+.grow-3 {
+  animation: grow 3s infinite;
+}
+
+.grow-4 {
+  animation: grow 4s infinite;
 }
 
 @keyframes loading {
@@ -407,7 +435,18 @@
     transform: scale(100%);
   }
   100% {
-    transform: scale(110%);
+    transform: scale(105%);
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(100%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(125%);
+    opacity: 0;
   }
 }
 

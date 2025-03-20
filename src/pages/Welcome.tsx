@@ -20,7 +20,7 @@ export default function Welcome() {
 
   return (
     <>
-      <div className="bg-gradient-to-br h-[calc(100vh-64px)] flex items-center justify-center from-indigo-950 via-gray-950 to-purple-950">
+      <div className="bg-gradient-to-br h-[calc(100vh-64px)] flex items-center justify-center from-amber-100 via-[--bg_prim] to-orange-100">
         {/* Hero Section */}
         <div className="max-w-7xl flex items-center justify-center mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -34,26 +34,37 @@ export default function Welcome() {
               {LANGUAGE.WELCOME.HERO_DESCRIPTION[preferences.language]}
             </p>
             <div className="mt-10 flex justify-center gap-3">
-              <Link
-                to={logged ? "#store" : "/login"}
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-[--text_light_0] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200"
-                onClick={() => clickHandler()}
-              >
-                {logged ? (
-                  <>
-                    {LANGUAGE.WELCOME.HERO_BUTTON_SEE[preferences.language]}
-                    <ArrowDown className="ml-2 h-5 w-5" />
-                  </>
-                ) : (
-                  <>
-                    {LANGUAGE.WELCOME.HERO_BUTTON_START[preferences.language]}
-                    <ArrowRight className="ml-2 h-5 w-5"></ArrowRight>
-                  </>
-                )}
-              </Link>
+              <div className="relative">
+                <div
+                  className={`${
+                    logged
+                      ? "hidden"
+                      : "rounded-full w-full grow-2 h-full top-0 px-6 md:px-4 py-2 flex z-20 bg-[--button] absolute"
+                  }`}
+                ></div>
+                <Link
+                  to={logged ? "#store" : "/login"}
+                  className={`${
+                    !logged && "palpite-1"
+                  } inline-flex items-center relative px-6 py-3 border z-40 border-transparent text-base font-medium rounded-full text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200`}
+                  onClick={() => clickHandler()}
+                >
+                  {logged ? (
+                    <>
+                      {LANGUAGE.WELCOME.HERO_BUTTON_SEE[preferences.language]}
+                      <ArrowDown className="ml-2 h-5 w-5" />
+                    </>
+                  ) : (
+                    <>
+                      {LANGUAGE.WELCOME.HERO_BUTTON_START[preferences.language]}
+                      <ArrowRight className="ml-2 h-5 w-5"></ArrowRight>
+                    </>
+                  )}
+                </Link>
+              </div>
               <Link
                 to="/contact"
-                className="inline-flex items-center px-6 py-3 border border-[--border_light_300] text-base font-medium rounded-full text-[--text_light_700] bg-[--bg_light_0] hover:bg-[--bg_light_50] transition-colors duration-200"
+                className="inline-flex items-center px-6 py-3 border border-[--border_light_300] text-base font-medium rounded-full text-[--text_light_100] bg-[--bg_light_900] hover:bg-[--bg_light_700] transition-colors duration-200"
               >
                 {LANGUAGE.WELCOME.HERO_BUTTON_CONTACT[preferences.language]}
               </Link>

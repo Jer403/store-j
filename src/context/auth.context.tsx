@@ -107,7 +107,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setLoadingLog(false);
         return setLogged(false);
       }
-
       setUser({ ...res.data, preferences: res.data.preferences });
       connectUserToMessageChannel(res.data);
       setLogged(true);

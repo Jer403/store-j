@@ -4,7 +4,11 @@ interface ButtonSubmitInterface {
   loading?: boolean;
   className?: string;
   onclick?: () => void;
+  disabledText?: string;
   disabled?: boolean;
+  loginRequired?: boolean;
+  loginRequiredText?: string;
+  logged?: boolean;
   text: string;
 }
 
@@ -15,6 +19,10 @@ export function ButtonSubmitSimple({
   className,
   loading,
   disabled,
+  disabledText,
+  loginRequired,
+  loginRequiredText,
+  logged,
   text,
 }: ButtonSubmitInterface) {
   return (
@@ -27,7 +35,17 @@ export function ButtonSubmitSimple({
       disabled={disabled}
       onClick={onclick}
     >
-      {text}
+      {disabled
+        ? disabledText
+          ? disabledText
+          : text
+        : loginRequired
+        ? logged
+          ? text
+          : loginRequiredText
+          ? loginRequiredText
+          : text
+        : text}
     </button>
   );
 }

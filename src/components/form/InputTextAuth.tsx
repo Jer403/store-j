@@ -56,7 +56,7 @@ export function InputText({
         }}
         className={`${
           shake && "shake !border-[--wrong]"
-        } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_sec] border-[--border_light_500] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
+        } appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_prim] border-[--border_light_500] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
       />
       <div
         className={`absolute w-6 h-6 check group ${
@@ -74,9 +74,9 @@ export function InputText({
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <circle cx="12" cy="12" r="10"></circle>
             <path d="m9 12 2 2 4-4"></path>
@@ -89,16 +89,16 @@ export function InputText({
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <circle cx="12" cy="12" r="10"></circle>
             <path d="m15 9-6 6"></path>
             <path d="m9 9 6 6"></path>
           </svg>
         )}
-        <span className="tooltiptext group-hover:visible after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-[--shadow_light_600] text-[--text_light_0] bg-[--bg_thir] after:border-r-[--bg_thir]">
+        <span className="tooltiptext group-hover:visible after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-[--shadow_light_500] text-[--text_light_0] bg-[--bg_sec] after:border-r-[--bg_thir]">
           {valValue ? <> {val_valid}</> : <>{val_not_valid}</>}
         </span>
       </div>

@@ -267,7 +267,7 @@ export default function Login() {
                     <XCircle></XCircle>
                   )}
 
-                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm  shadow-[--shadow_light_500] text-[--text_light_0] bg-[--bg_sec] after:border-r-[--bg_light_800]">
+                  <span className="tooltiptext group-hover:visible max-w-[80vw] after:border-transparent right-[140%] lg:right-auto lg:left-[140%] shadow-sm shadow-[--shadow_light_500] text-[--text_light_0] bg-[--bg_sec] after:border-r-[--bg_light_800]">
                     {valPassword
                       ? LANGUAGE.LOGIN.PASS_VALID[preferences.language]
                       : LANGUAGE.LOGIN.PASS_NOT_VALID[preferences.language]}

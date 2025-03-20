@@ -36,15 +36,23 @@ export function UserButton({
       )}
       <Link
         to={loading ? "/" : logged ? "/dashboard" : "/login"}
+        className="relative"
         onClick={onClickEvent}
       >
+        <div
+          className={`${
+            logged
+              ? "hidden"
+              : "rounded-full w-full grow-2 h-full top-0 px-6 md:px-4 py-2 flex z-20 bg-[--button] absolute"
+          }`}
+        ></div>
         <button
           type="button"
           className={`${
             logged
-              ? "rounded-full rounded-l-none border-l border-l-[--border_light_700]"
-              : "rounded-full"
-          } px-6 md:px-4 py-2 w-auto flex z-40 flex-row items-center justify-center gap-2 border border-transparent text-sm font-medium text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]`}
+              ? "rounded-l-none border-l border-l-[--border_light_700]"
+              : "palpite-1"
+          } px-6 relative rounded-full md:px-4 py-2 w-auto flex z-40 flex-row items-center justify-center gap-2 border border-transparent text-sm font-medium text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]`}
         >
           {loading ? (
             <CircleDashed className="h-6 w-6 loader"></CircleDashed>
@@ -64,6 +72,13 @@ export function UserButton({
             </>
           )}
         </button>
+        <div
+          className={`${
+            logged
+              ? "hidden"
+              : "rounded-full w-full h-full top-0 px-6 md:px-4 py-2 flex z-20 bg-[--button] absolute"
+          }`}
+        ></div>
       </Link>
     </>
   );

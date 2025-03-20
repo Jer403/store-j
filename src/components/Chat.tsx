@@ -110,11 +110,8 @@ export function Chat() {
       dateA.getFullYear(),
       dateA.getMonth(),
       dateA.getDate(),
-      dateA.getHours() + 5,
-      dateA.getMinutes()
+      dateA.getHours() + 5
     );
-
-    console.log(formatDateTime(date));
 
     const uuid = window.crypto.randomUUID();
 

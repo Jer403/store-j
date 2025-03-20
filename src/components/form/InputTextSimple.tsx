@@ -1,6 +1,7 @@
 export function InputTextSimple({
   id,
   label,
+  placeholder,
   required,
   className,
   shake,
@@ -10,6 +11,7 @@ export function InputTextSimple({
 }: {
   id: string;
   label?: string;
+  placeholder?: string;
   className?: string;
   required?: boolean;
   shake?: boolean;
@@ -38,6 +40,7 @@ export function InputTextSimple({
         className={`${
           shake && "shake !border-[--wrong]"
         } ${className} appearance-none text-md h-12 my-1 rounded-md relative block w-full px-3 py-2 border bg-[--bg_sec] border-[--border_light_300] text-[--text_light_0] placeholder-gray-500 focus:outline-none focus:ring-[--brand_color] focus:border-[--brand_color] focus:z-10`}
+        placeholder={placeholder}
       />
     </div>
   );

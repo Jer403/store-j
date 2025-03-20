@@ -49,20 +49,25 @@ export default function Register() {
     if (valUsername == true && valEmail == true && valPassword == true) {
       setLoadingSubmit(true);
 
-      const res = (await signUp({
-        username,
-        email,
-        password,
-        remember: remeberme,
-      })) as AxiosResult;
+      try {
+        const res = (await signUp({
+          username,
+          email,
+          password,
+          remember: remeberme,
+        })) as AxiosResult;
 
-      if (res.status == 200) {
-        setSuccess(true);
-        setDataToDefault();
-      } else {
-        setRequestErrors(res.response.data);
+        if (res.status == 200) {
+          setSuccess(true);
+          setDataToDefault();
+        } else {
+          setRequestErrors(res.response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoadingSubmit(false);
       }
-      setLoadingSubmit(false);
     } else {
       if (valUsername != true) {
         setNameShake(true);
@@ -252,8 +257,8 @@ export default function Register() {
                   !valEmail ||
                   !valPassword
                     ? "cursor-not-allowed bg-[--button_not_allowed]"
-                    : "bg-[--button] hover:[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]"
-                } group relative h-12 w-full items-center flex justify-center gap-2 py-2 px-4 border border-transparent text-md font-medium rounded-md text-[--text_light_0]`}
+                    : "bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]"
+                } group relative h-12 w-full items-center flex justify-center gap-2 py-2 px-4 border border-transparent text-md font-medium rounded-md text-[--text_light_900]`}
                 onClick={(e) => {
                   submitClickHandler({ e });
                 }}
