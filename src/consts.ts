@@ -100,8 +100,8 @@ export const LANGUAGE = {
       en: "Summary",
     },
     LOADING: {
-      es: "Cargando carrito...",
-      en: "Loading cart...",
+      es: "Cargando carrito",
+      en: "Loading cart",
     },
     PRODUCT: {
       es: "Productos",

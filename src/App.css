@@ -421,6 +421,18 @@
   animation: grow 4s infinite;
 }
 
+.ping-delay-1 {
+  animation: ping 0.9s 0.3s infinite;
+}
+
+.ping-delay-2 {
+  animation: ping 0.9s 0.6s infinite;
+}
+
+.ping-delay-3 {
+  animation: ping 0.9s 0.9s infinite;
+}
+
 @keyframes loading {
   0% {
     transform: rotateZ(0deg);
@@ -447,6 +459,18 @@
   100% {
     transform: scale(125%);
     opacity: 0;
+  }
+}
+
+@keyframes ping {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateX(0px);
   }
 }
 

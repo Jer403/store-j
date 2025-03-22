@@ -97,8 +97,11 @@ export default function Cart() {
               className={`w-full min-w-80 bg-[--bg_secs] rounded-lg shadow-mds px-4 flex flex-col gap-4 items-center relative`}
             >
               {loadingCart && cart.length == 0 ? (
-                <p className="text-2xl text-[--text_light_0] flex justify-center">
+                <p className="text-2xl font-medium text-[--text_light_200] gap-1 flex items-end justify-center">
                   {LANGUAGE.CART.LOADING[preferences.language]}
+                  <span className="ping-delay-1 w-[4px] mb-[5px] rounded-full h-[4px] bg-[--bg_light_200]"></span>
+                  <span className="ping-delay-2 w-[4px] mb-[5px] rounded-full h-[4px] bg-[--bg_light_200]"></span>
+                  <span className="ping-delay-3 w-[4px] mb-[5px] rounded-full h-[4px] bg-[--bg_light_200]"></span>
                 </p>
               ) : cart.length > 0 ? (
                 cart.map((product) => {
@@ -119,7 +122,7 @@ export default function Cart() {
                     key={anyCId}
                     className="flex flex-col items-center justify-center"
                   >
-                    <p className="text-xl text-[--text_light_50]">
+                    <p className="text-2xl font-medium flex text-[--text_light_200]">
                       {LANGUAGE.CART.ANY_PRODUCT[preferences.language]}
                     </p>
                   </div>

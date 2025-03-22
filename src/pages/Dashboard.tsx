@@ -1,4 +1,4 @@
-import { LogOut, Package, Settings } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useCart } from "../hooks/useCart";
@@ -24,43 +24,36 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen-minus-64 dottedBackground">
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6">
           <div className="lg:col-span-1">
-            <div className="bg-[--bg_sec] rounded-lg shadow-md p-6">
-              <div className="flex flex-col items-center">
+            <div className="bg-[--bg_sec] flex gap-4 md:gap-0 justify-between flex-col md:flex-row items-start md:items-center rounded-lg shadow-md p-7">
+              <div className="flex flex-col items-start">
                 <h2
-                  className={`mt-4 ${
+                  className={`${
                     user
                       ? user.username.length > 10
                         ? user.username.length > 18
-                          ? "text-lg"
-                          : "text-xl"
-                        : "text-3xl"
-                      : "text-3xl"
+                          ? "text-lg md:text-xl"
+                          : "text-xl md:text-3xl"
+                        : "text-4xl"
+                      : "text-4xl"
                   } font-semibold text-[--text_light_0]`}
                 >
                   {user?.username}
                 </h2>
                 <p className="text-[--text_light_200] text-xl">{user?.email}</p>
               </div>
-              <nav className="mt-8">
-                <Link
-                  to="/dashboard"
-                  className={`flex items-center px-4 py-2 text-[--text_light_200] bg-[--bg_prim] rounded-lg`}
-                >
-                  <Package className="h-5 w-5 mr-3" />
-                  <>{LANGUAGE.DASHBOARD.MYITEMS[preferences.language]}</>
-                </Link>
+              <nav className=" flex flex-row-reverse md:flex-col w-full md:w-44 gap-3">
                 <Link
                   to="/dashboard/settings"
-                  className="flex items-center px-4 py-2 text-[--text_light_200]  hover:bg-[--bg_prim] rounded-lg mt-2"
+                  className="flex w-full justify-center border border-[--border_light_400] items-center px-4 py-2 text-[--text_light_200]  hover:bg-[--bg_prim] rounded-lg"
                 >
                   <Settings className="h-5 w-5 mr-3" />
                   <>{LANGUAGE.DASHBOARD.SETTINGS[preferences.language]}</>
                 </Link>
                 <Link
                   to="/login"
-                  className="flex items-center px-4 py-2 text-[--text_light_200] hover:bg-[--bg_prim] rounded-lg mt-2"
+                  className="flex w-full justify-center border border-[--border_light_400] items-center px-4 py-2 text-[--text_light_200] hover:bg-[--bg_prim] rounded-lg"
                   onClick={handleLogOutClick}
                 >
                   <LogOut className="h-5 w-5 mr-3" />
