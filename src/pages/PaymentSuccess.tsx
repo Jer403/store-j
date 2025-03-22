@@ -105,7 +105,7 @@ export default function About() {
                   {LANGUAGE.PAY_SUCCESS.HOME[preferences.language]}
                 </Link>
                 <Link
-                  to="/Dashboard"
+                  to="/dashboard"
                   className="w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-2xl font-medium rounded-md text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200"
                   onClick={() => window.scrollTo({ top: 0 })}
                 >
