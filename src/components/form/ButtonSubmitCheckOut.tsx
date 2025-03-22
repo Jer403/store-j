@@ -25,7 +25,7 @@ export function ButtonSubmitCheckOut({
       type={type}
       className={`w-full bg-[--button] ${
         hideInMoblie ? "hidden md:flex" : "flex md:!hidden"
-      } text-[--text_light_0] py-3 mt-3 rounded-lg hover:bg-[--button_hover]  items-center justify-center ${
+      } text-[--text_light_900] py-3 mt-3 rounded-lg hover:bg-[--button_hover]  items-center justify-center ${
         loading && "cursor-not-allowed bg-[--button_not_allowed]"
       }`}
       disabled={disabled}

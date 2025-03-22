@@ -15,6 +15,8 @@ export default function Welcome() {
       if (element) {
         window.scrollTo({ behavior: "smooth", top: element.clientHeight - 64 });
       }
+    } else {
+      window.scrollTo({ behavior: "smooth", top: 0 });
     }
   };
 
@@ -46,18 +48,18 @@ export default function Welcome() {
                   to={logged ? "#store" : "/login"}
                   className={`${
                     !logged && "palpite-1"
-                  } inline-flex items-center relative px-6 py-3 border z-40 border-transparent text-base font-medium rounded-full text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200`}
+                  } inline-flex group items-center relative px-6 py-3 border z-40 border-transparent text-base font-medium rounded-full text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200`}
                   onClick={() => clickHandler()}
                 >
                   {logged ? (
                     <>
                       {LANGUAGE.WELCOME.HERO_BUTTON_SEE[preferences.language]}
-                      <ArrowDown className="ml-2 h-5 w-5" />
+                      <ArrowDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform duration-300" />
                     </>
                   ) : (
                     <>
                       {LANGUAGE.WELCOME.HERO_BUTTON_START[preferences.language]}
-                      <ArrowRight className="ml-2 h-5 w-5"></ArrowRight>
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300"></ArrowRight>
                     </>
                   )}
                 </Link>

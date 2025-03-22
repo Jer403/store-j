@@ -31,7 +31,7 @@ export function PaymentSelectorCard({
       {formHidden ? (
         <>
           <div
-            className={`w-full h-14 bg-[--bg_light_800] border hover:cursor-pointer ${
+            className={`w-full h-14 bg-[--bg_sec] border hover:cursor-pointer ${
               payMethod == id
                 ? "border-[--brand_color]"
                 : "border-[--border_light_600] hover:border-[--border_light_500]"
@@ -40,7 +40,7 @@ export function PaymentSelectorCard({
           >
             <div className="flex items-center justify-start gap-3">
               {icon}
-              <span className="text-[--text_light_0] text-sm sm:text-md md:text-lg">
+              <span className="text-[--text_light_50] font-medium text-sm sm:text-md md:text-lg">
                 {title}
               </span>
             </div>
@@ -61,7 +61,7 @@ export function PaymentSelectorCard({
           } rounded-xl relative`}
         >
           <div
-            className={`w-full h-14 bg-[--border_light_800] border-b ${
+            className={`w-full h-14 bg-[--bg_sec] border-b ${
               payMethod == id
                 ? "border-[--brand_color]"
                 : "border-[--border_light_600] hover:border-[--brand_color]"
@@ -70,7 +70,7 @@ export function PaymentSelectorCard({
           >
             <div className="flex items-center justify-start gap-3">
               {icon}
-              <span className="text-[--text_light_0] text-sm sm:text-md md:text-lg">
+              <span className="text-[--text_light_50] font-medium text-sm sm:text-md md:text-lg">
                 {title}
               </span>
             </div>

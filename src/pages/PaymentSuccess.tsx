@@ -99,21 +99,21 @@ export default function About() {
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
                 <Link
                   to="/"
-                  className="w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-2xl font-medium rounded-md text-[--text_light_0] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200"
+                  className="w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-2xl font-medium rounded-md text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200"
                   onClick={() => window.scrollTo({ top: 0 })}
                 >
                   {LANGUAGE.PAY_SUCCESS.HOME[preferences.language]}
                 </Link>
                 <Link
                   to="/Dashboard"
-                  className="w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-2xl font-medium rounded-md text-[--text_light_0] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200"
+                  className="w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-2xl font-medium rounded-md text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] transition-colors duration-200"
                   onClick={() => window.scrollTo({ top: 0 })}
                 >
                   {LANGUAGE.PAY_SUCCESS.DASHBOARD[preferences.language]}
                 </Link>
               </div>
 
-              <div className="bg-gray-950 p-5 rounded-md">
+              <div className="bg-[--bg_prim] p-5 rounded-md">
                 <h2
                   key={orderCId}
                   className="text-xl text-[--text_light_0] font-semibold mb-4"
@@ -132,7 +132,10 @@ export default function About() {
                     {LANGUAGE.PAY_SUCCESS.PRODUCTS[preferences.language]}
                   </h3>
                 </div>
-                <div key={itemsCId} className="border-t border-b py-4 mb-3">
+                <div
+                  key={itemsCId}
+                  className="border-t border-b border-[--border_light_400] py-4 my-3"
+                >
                   {cart.map((prod) => {
                     return (
                       <>
@@ -149,7 +152,7 @@ export default function About() {
                             key={"chrp-1" + prod.id + itemsCId}
                             className="font-semibold text-[--text_light_0]"
                           >
-                            ${prod.price}
+                            ${prod[prod.license]}
                           </span>
                         </div>
                       </>

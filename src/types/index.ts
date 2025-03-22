@@ -21,8 +21,10 @@ export type PayMethods = "tpp" | "qvapay" | "asd";
 export interface CartProduct {
   id: string;
   title: string;
-  price: number;
   image: string;
+  personal: number;
+  professional: number;
+  license: "personal" | "professional";
 }
 
 export interface ChatMessage {

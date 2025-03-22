@@ -17,13 +17,18 @@ export function CartProductItem({
   handleRemoveElement: (id: string) => void;
 }) {
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log("Product from cart item: ", product[product.license]);
+  }, [product]);
+
   return (
-    <div className="w-full flex flex-row p-2 bg-[--bg_sec] border border-[--border_light_500] rounded-lg">
+    <div className="w-full flex flex-row shadow-md p-4 bg-[--bg_sec] rounded-lg">
       <div>
         <img
           src={`${IMG_API_URL}${product.image}.webp`}
           alt={product.title}
-          className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 text-[8px] aspect-square object-cover rounded-md border-2 border-gray-400 text-gray-50"
+          className="h-20 w-20 sm:h-24 sm:w-24 md:h-32 md:w-32 text-[8px] aspect-video object-cover rounded-md border-2 border-[--border_light_500] text-[--text_light_900]"
         />
       </div>
       <div className="w-full ml-4 flex flex-row justify-between">
@@ -32,14 +37,14 @@ export function CartProductItem({
         </p>
         <div className="flex flex-col-reverse justify-between items-end">
           <button
-            className="w-20 h-7 px-1 flex flex-row items-center justify-center gap-1 text-sm font-medium rounded-md text-gray-300 border border-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
+            className="w-20 h-7 px-1 flex flex-row items-center justify-center gap-1 text-sm font-medium rounded-md text-[--text_light_400] border border-[--border_light_400] hover:text-[--text_light_200] hover:border-[--border_light_200] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
             onClick={() => {
               handleRemoveElement(product.id);
               setLoadingSubmit(true);
             }}
           >
             {loadingSubmit ? (
-              <CircleDashed className="h-4 w-4 loader text-[--text_light_0]" />
+              <CircleDashed className="h-4 w-4 loader text-[--text_light_100]" />
             ) : (
               <>
                 <Trash2 className="h-4 w-4"></Trash2>
@@ -47,8 +52,8 @@ export function CartProductItem({
               </>
             )}
           </button>
-          <p className="text-lg font-medium flex items-center text-[--text_light_50]">
-            ${product.price}.00
+          <p className="text-lg font-bold flex items-center text-[--text_light_200]">
+            ${product[product.license]}.00
           </p>
         </div>
       </div>
@@ -89,13 +94,8 @@ export default function Cart() {
           >
             <div
               key={itemsCId}
-              className={`w-full min-w-80 bg-[--bg_sec] rounded-lg shadow-md p-4 ${
-                loadingCart && "pt-9"
-              } lg:p-8 flex flex-col gap-2 relative`}
+              className={`w-full min-w-80 bg-[--bg_secs] rounded-lg shadow-mds px-4 flex flex-col gap-4 items-center relative`}
             >
-              {loadingCart && (
-                <CircleDashed className="loader h-6 w-6 absolute top-0 right-0 mr-2 mt-2 text-[--text_light_0]"></CircleDashed>
-              )}
               {loadingCart && cart.length == 0 ? (
                 <p className="text-2xl text-[--text_light_0] flex justify-center">
                   {LANGUAGE.CART.LOADING[preferences.language]}
@@ -103,12 +103,14 @@ export default function Cart() {
               ) : cart.length > 0 ? (
                 cart.map((product) => {
                   return (
-                    <CartProductItem
-                      preferences={preferences}
-                      key={"cr-" + product.id + checkCId}
-                      product={product}
-                      handleRemoveElement={handleRemoveElement}
-                    ></CartProductItem>
+                    <>
+                      <CartProductItem
+                        preferences={preferences}
+                        key={"cr-" + product.id + checkCId}
+                        product={product}
+                        handleRemoveElement={handleRemoveElement}
+                      ></CartProductItem>
+                    </>
                   );
                 })
               ) : (
@@ -126,19 +128,23 @@ export default function Cart() {
             </div>
             <div
               key={checkCId}
-              className="w-full min-w-80 md:max-w-72 lg:max-w-sm bg-[--bg_sec] rounded-lg shadow-md p-4 flex flex-col gap-1 max-h-[288px] md:sticky top-10"
+              className="w-full min-w-80 md:max-w-72 lg:max-w-sm bg-[--bg_sec] rounded-lg shadow-md p-4 flex flex-col gap-1 max-h-[288px] md:sticky top-[88px]"
             >
+              {loadingCart && (
+                <CircleDashed className="loader h-6 w-6 absolute right-3 top-3 text-[--text_light_0]"></CircleDashed>
+              )}
               <p className="text-2xl font-bold text-[--text_light_0]">
                 {LANGUAGE.CART.SUMMARY[preferences.language]}
               </p>
-              <p className="text-xl mb-3 flex justify-between text-[--text_light_200]">
+              <p className="text-xl mb-2 flex justify-between text-[--text_light_200]">
                 {LANGUAGE.CART.PRODUCT[preferences.language]}{" "}
                 <span>{cart.length}</span>
               </p>
-              <p className="text-xl border-t py-2 flex justify-between items-end text-[--text_light_200]">
+              <p className="text-xl border-t border-[--border_light_400] py-2 flex justify-between items-end text-[--text_light_100]">
                 {LANGUAGE.CART.TOTAL[preferences.language]}{" "}
-                <span className="font-bold text-lg">
-                  ${cart.reduce((sum = 0, item) => sum + item.price, 0)}.00
+                <span className="font-bold">
+                  ${cart.reduce((sum = 0, item) => sum + item[item.license], 0)}
+                  .00
                 </span>
               </p>
 

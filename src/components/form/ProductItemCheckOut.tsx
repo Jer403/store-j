@@ -19,7 +19,7 @@ export function ProductItemCheckOut({
         key={"chr-1" + product.id + CId}
         className="font-semibold text-[--text_light_300]"
       >
-        ${product.price}
+        ${product[product.license]}
       </span>
     </div>
   );

@@ -101,7 +101,7 @@ export default function Checkout() {
   const itemsCId = useId();
 
   useEffect(() => {
-    const total = cart.reduce((sum = 0, item) => sum + item.price, 0);
+    const total = cart.reduce((sum = 0, item) => sum + item[item.license], 0);
     setTotal(total);
   }, [cart]);
 
@@ -126,7 +126,7 @@ export default function Checkout() {
                     </h2>
                     <div
                       key={itemsCId}
-                      className="border-t border-b border-[--border_light_600] py-4"
+                      className="border-t border-b border-[--border_light_400] py-4"
                     >
                       <div className="max-h-full px-1 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[--bg_light_700] [&::-webkit-scrollbar-thumb]:rounded-md">
                         {cart.length != 0 ? (
@@ -148,10 +148,8 @@ export default function Checkout() {
                     <div className="flex flex-col mt-4">
                       <span className="font-bold text-lg flex justify-between text-[--text_light_100]">
                         {LANGUAGE.CHECKOUT.TOTAL[preferences.language]}
-                        <span>
-                          <span className="font-bold text-xl text-[--text_light_100]">
-                            ${total}
-                          </span>
+                        <span className="font-bold text-xl text-[--text_light_100]">
+                          ${total}
                         </span>
                       </span>
                     </div>
@@ -366,7 +364,7 @@ export default function Checkout() {
             </div>
           </div>
           <div className="flex mt-4 items-center justify-center">
-            <p className="text-sm text-[--text_light_600] px-3">
+            <p className="text-sm text-[--text_light_200] px-3">
               {LANGUAGE.CHECKOUT.TERMS_AND_CONDITIONS[preferences.language]}
             </p>
           </div>
