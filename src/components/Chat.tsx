@@ -132,11 +132,12 @@ export function Chat() {
       if (!res) return;
       if (res.status == 200) {
         console.log("Mensaje recibido");
-        removeLoadingMessage({ id: uuid });
-        addErrorMessage({ id: uuid });
       }
     } catch (error) {
       console.log(error);
+      addErrorMessage({ id: uuid });
+    } finally {
+      removeLoadingMessage({ id: uuid });
     }
   };
 
