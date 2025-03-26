@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useId, useState } from "react";
 import { useCart } from "../hooks/useCart";
 import { COUNTRIES, LANGUAGE } from "../consts";
@@ -11,17 +10,12 @@ import { ProductItemCheckOut } from "../components/form/ProductItemCheckOut";
 import { TropipayLogo } from "../components/Elements/TropipayLogo";
 import { VisaLogo } from "../components/Elements/VisaLogo";
 import { MasterCardLogo } from "../components/Elements/MasterCardLogo";
-import { QvaPayLogo } from "../components/Elements/QvaPayLogo";
-import { BitcoinLogo } from "../components/Elements/BitcoinLogo";
-import { EthereumLogo } from "../components/Elements/EthereumLogo";
-import { LitecoinLogo } from "../components/Elements/LitecoinLogo";
 import { PaymentSelectorCard } from "../components/PaymentSelectorCard";
 import { PayMethods } from "../types";
-import { paymentLinkRequest as qvapayPaymentLinkRequest } from "../Api/qvapay";
 import { paymentLinkRequest as tppPaymentLinkRequest } from "../Api/tpp";
 
 export default function Checkout() {
-  const { state: cart, loadingCart } = useCart();
+  const { state: cart, loadCart, loadingCart } = useCart();
   const [payMethod, setPayMethod] = useState<PayMethods | null>("tpp");
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [requestErrors, setRequestErrors] = useState<string[]>([]);
@@ -37,6 +31,10 @@ export default function Checkout() {
   const [callingCode, setCallingCode] = useState("34");
   const [city, setCity] = useState("Barcelona");
   const [postalCode, setPostalCode] = useState("78622");
+
+  useEffect(() => {
+    loadCart();
+  }, []);
 
   const handleTppSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,32 +56,6 @@ export default function Checkout() {
         if (res.data.error) throw new Error(res.data.error[0]);
         if (res.status == 200) {
           location.href = res.data.paymentlink;
-          return;
-        }
-      } catch (error) {
-        setRequestErrors(["Something went wrong"]);
-        console.log(error);
-      } finally {
-        setLoadingSubmit(false);
-      }
-    }
-  };
-
-  const handleQvaPaySubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("starting to submit qvapay");
-    if (!loadingSubmit) {
-      console.log("All is fine");
-      setLoadingSubmit(true);
-      try {
-        const res = await qvapayPaymentLinkRequest();
-        if (!res) throw new Error("Error while creating payment");
-        if (res.data.error) throw new Error(res.data.error[0]);
-        if (res.status == 200) {
-          console.log(res.data.paymentlink);
-          setTimeout(() => {
-            location.href = res.data.paymentlink;
-          }, 10000);
           return;
         }
       } catch (error) {
@@ -307,29 +279,6 @@ export default function Checkout() {
                     handleSubmit={handleTppSubmit}
                   />
 
-                  {/* <PaymentSelectorCard
-                    id="qvapay"
-                    title="Pay with QvaPay"
-                    payMethod={payMethod}
-                    setPayMethod={setPayMethod}
-                    icon={<QvaPayLogo className="h-9 w-9" />}
-                    formHidden
-                    childrenIcon={
-                      <>
-                        <BitcoinLogo className="h-5 md:h-7 -mr-3 z-50" />
-                        <EthereumLogo className="h-5 md:h-7 -mr-3 z-40" />
-                        <LitecoinLogo className="h-5 md:h-7 -mr-3 z-30" />
-                        <div className="h-5 md:h-7 w-7 md:w-10 rounded-full bg-[--bg_light_900] flex items-center justify-center gap-1">
-                          <div className="h-1 w-[4px] rounded-full bg-[--bg_light_800]"></div>
-                          <div className="h-1 w-[4px] rounded-full bg-[--bg_light_800]"></div>
-                          <div className="h-1 w-[4px] rounded-full bg-[--bg_light_800]"></div>
-                        </div>
-                      </>
-                    }
-                    gap={"2px"}
-                    formChildren={<></>}
-                    handleSubmit={handleQvaPaySubmit}
-                  /> */}
                   {requestErrors.length > 0 && (
                     <div className="flex md:!hidden flex-col items-start justify-center mt-2">
                       {requestErrors.map((er) => {
@@ -373,15 +322,3 @@ export default function Checkout() {
     </div>
   );
 }
-
-// client: {
-//   name: "John",
-//   lastName: "McClane",
-//   address: "Ave. Guadí 232, Barcelona, Barcelona",
-//   phone: "+34645553333",
-//   email: "client@email.com",
-//   countryId: 1,
-//   termsAndConditions: "true",
-//   "city": "Barcelona",
-//   "postCode": "78622"
-// },

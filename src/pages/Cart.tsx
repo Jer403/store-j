@@ -62,17 +62,13 @@ export function CartProductItem({
 }
 
 export default function Cart() {
-  const { state: cart, loadCart, removeFromCart, loadingCart } = useCart();
+  const { state: cart, removeFromCart, loadingCart } = useCart();
   const { preferences } = usePreferences();
   const itemsCId = useId();
   const titleCId = useId();
   const checkCId = useId();
   const cartCId = useId();
   const anyCId = useId();
-
-  useEffect(() => {
-    loadCart();
-  }, []);
 
   const handleRemoveElement = (id: string) => {
     removeFromCart(id);
