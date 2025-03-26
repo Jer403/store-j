@@ -14,7 +14,7 @@ export default function PurchasedProducts() {
           {LANGUAGE.DASHBOARD.PURCHASED[preferences.language]}
         </h2>
         {purchased.length == 0 ? (
-          <p className="text-xl flex mb-6 text-[--text_light_200] justify-center">
+          <p className="text-xl flex mb-3 text-[--text_light_200] justify-center">
             {LANGUAGE.DASHBOARD.ANYITEMS[preferences.language]}
           </p>
         ) : (
