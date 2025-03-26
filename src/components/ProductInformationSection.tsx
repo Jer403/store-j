@@ -8,11 +8,18 @@ import { useComment } from "../hooks/useComment";
 import { formatDateTime } from "../utils";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { CircleDashed, Clock, X } from "lucide-react";
 
 export function ProductInformationSection({ product }: { product: Product }) {
   const [section, setSection] = useState<Sections>("info");
   const [message, setMessage] = useState("");
-  const { comments, createComment } = useComment();
+  const {
+    comments,
+    createComment,
+    commentsLoading,
+    commentsError,
+    loadingComments,
+  } = useComment();
   const { user, logged } = useAuth();
   const navigate = useNavigate();
 
@@ -36,20 +43,23 @@ export function ProductInformationSection({ product }: { product: Product }) {
       userId: user.id,
       userName: user.username,
       productId: product.id,
-      message: message,
+      comment: message,
       created_at: `${formatDateTime(date)}`,
     });
 
     setMessage("");
   };
 
-  const commentsAmount = comments.filter(
-    (el) => el.productId == product.id
-  ).length;
+  const commentsAmount = comments
+    ? comments.filter((el) => el.productId == product.id).length
+    : 0;
 
   return (
     <div className="infos">
-      <div className="w-full rounded-xl h-16 flex p-2 gap-2 bg-gray-90">
+      <div
+        className="w-full rounded-xl h-16 flex p-2 gap-2 bg-gray-90"
+        key={"Sections"}
+      >
         <SectionButton
           id="info"
           text="Information"
@@ -65,6 +75,7 @@ export function ProductInformationSection({ product }: { product: Product }) {
       </div>
 
       <div
+        key={"Description"}
         className={`${
           section == "info" ? "flex" : "hidden"
         } max-w-none flex-col p-4 mb-8`}
@@ -78,6 +89,7 @@ export function ProductInformationSection({ product }: { product: Product }) {
       </div>
 
       <div
+        key={"Comments"}
         className={`${
           section == "comments" ? "flex" : "hidden"
         } flex-col gap-4 w-full h-fit p-4 rounded-xl`}
@@ -115,27 +127,58 @@ export function ProductInformationSection({ product }: { product: Product }) {
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          {comments.length != 0 ? (
-            comments
-              .filter((el) => el.productId == product.id)
-              .map((c) => {
-                return (
-                  <CommentMessage
-                    username={c.userName}
-                    message={c.message}
-                    date={c.created_at}
-                  ></CommentMessage>
-                );
-              })
-          ) : (
-            <div>
-              <p className="w-full text-center text-xl font-medium mt-2 text-[--text_light_100]">
-                This product has no comments yet
-              </p>
-              <p className="w-full text-center text-xl font-medium text-[--text_light_100]">
-                Be the first one !
+          {loadingComments ? (
+            <div className="flex items-center justify-center gap-2">
+              <CircleDashed className="w-6 h-6 loader text-[--text_light_50]"></CircleDashed>
+              <p className="text-center text-xl font-medium text-[--text_light_100]">
+                Loading comments...
               </p>
             </div>
+          ) : (
+            <>
+              {commentsError.length != 0 &&
+                commentsError.map((c) => (
+                  <CommentMessage
+                    username={c.userName}
+                    message={c.comment}
+                    date={c.created_at}
+                    icon={<X className="h-5 w-5 text-[--text_light_200]"></X>}
+                  ></CommentMessage>
+                ))}
+              {commentsLoading.length != 0 &&
+                commentsLoading.map((c) => (
+                  <CommentMessage
+                    username={c.userName}
+                    message={c.comment}
+                    date={c.created_at}
+                    icon={
+                      <Clock className="h-5 w-5 text-[--text_light_200]"></Clock>
+                    }
+                  ></CommentMessage>
+                ))}
+              {comments.length != 0 ? (
+                comments
+                  .filter((el) => el.productId == product.id)
+                  .map((c) => {
+                    return (
+                      <CommentMessage
+                        username={c.userName}
+                        message={c.comment}
+                        date={c.created_at}
+                      ></CommentMessage>
+                    );
+                  })
+              ) : (
+                <div>
+                  <p className="w-full text-center text-xl font-medium mt-2 text-[--text_light_100]">
+                    This product has no comments yet
+                  </p>
+                  <p className="w-full text-center text-xl font-medium text-[--text_light_100]">
+                    Be the first one !
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

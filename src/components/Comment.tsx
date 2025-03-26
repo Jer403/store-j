@@ -1,11 +1,15 @@
+import { ReactNode } from "react";
+
 export function Comment({
   username,
   date,
   message,
+  icon,
 }: {
   username: string;
   date: string;
   message: string;
+  icon?: ReactNode;
 }) {
   const dat = new Date(date);
   const sinceDate = "asd";
@@ -15,7 +19,10 @@ export function Comment({
         <span className="text-[--text_light_0] text-xl font-medium">
           {username}
         </span>
-        <span className="text-[--text_light_400] text-sm font-medium">{`since ${sinceDate}`}</span>
+        <div className="flex gap-2">
+          <span className="text-[--text_light_400] text-sm font-medium">{`since ${sinceDate}`}</span>
+          {icon}
+        </div>
       </div>
       <p className="text-[--text_light_0] ml-2">{message}</p>
     </div>

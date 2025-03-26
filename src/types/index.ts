@@ -62,7 +62,7 @@ export interface Comment {
   userId: string;
   userName: string;
   productId: string;
-  message: string;
+  comment: string;
   created_at: string;
 }
 

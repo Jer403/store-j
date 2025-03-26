@@ -1,7 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { Comment } from "../types";
-import { getMessagesRequest } from "../Api/chat";
-import { createCommentRequest } from "../Api/comment";
+import { createCommentRequest, getCommentsRequest } from "../Api/comment";
 
 interface CommentContextType {
   comments: Comment[];
@@ -9,8 +8,8 @@ interface CommentContextType {
   addComment: (comment: Comment) => void;
   clearComments: () => void;
   createComment: (comment: Comment) => void;
-  commentsLoading: { id: string }[];
-  commentsError: { id: string }[];
+  commentsLoading: Comment[];
+  commentsError: Comment[];
 }
 
 interface CommentProviderProps {
@@ -27,21 +26,21 @@ export const CommentContext = createContext<CommentContextType>({
   commentsError: [],
 });
 
-export function ChatProvider({ children }: CommentProviderProps) {
+export function CommentProvider({ children }: CommentProviderProps) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [loadingComments, setLoadingComments] = useState(true);
-  const [commentsLoading, setCommentsLoading] = useState<{ id: string }[]>([]);
-  const [commentsError, setCommentsError] = useState<{ id: string }[]>([]);
+  const [commentsLoading, setCommentsLoading] = useState<Comment[]>([]);
+  const [commentsError, setCommentsError] = useState<Comment[]>([]);
 
   const addComment = useCallback((comment: Comment) => {
-    setComments((prevComm) => [...prevComm, comment]);
+    setComments((prevComm) => [comment, ...prevComm]);
   }, []);
 
   const createComment = async (comment: Comment) => {
     try {
-      addCommentToLoading(comment.id);
+      addCommentToLoading(comment);
       const res = await createCommentRequest({
-        message: comment.message,
+        message: comment.comment,
         productId: comment.productId,
       });
       console.log("Response from create comment: ", res);
@@ -49,7 +48,7 @@ export function ChatProvider({ children }: CommentProviderProps) {
       if (res.status == 200) {
         addComment(res.data as Comment);
       } else {
-        addCommentToError(comment.id);
+        addCommentToError(comment);
       }
       removeCommentToLoading(comment.id);
     } catch (error) {
@@ -62,22 +61,22 @@ export function ChatProvider({ children }: CommentProviderProps) {
     return [];
   };
 
-  const addCommentToLoading = (id: string) => {
-    setCommentsLoading((prev) => [...prev, { id }]);
+  const addCommentToLoading = (comment: Comment) => {
+    setCommentsLoading((prev) => [...prev, comment]);
   };
 
   const removeCommentToLoading = (id: string) => {
     setCommentsLoading((prev) => prev.filter((el) => el.id != id));
   };
 
-  const addCommentToError = (id: string) => {
-    setCommentsError((prev) => [...prev, { id }]);
+  const addCommentToError = (comment: Comment) => {
+    setCommentsError((prev) => [...prev, comment]);
   };
 
   const loadComments = async () => {
     setLoadingComments(true);
     try {
-      const res = await getMessagesRequest();
+      const res = await getCommentsRequest();
       console.log("Response from comment: ", res);
       if (!res) throw new Error("Comment request failed");
       if (res.status == 200) {
