@@ -78,7 +78,7 @@ export function Store() {
 
   return (
     <main
-      className="min-h-screen bg-[--bg_prim] py-12 relative"
+      className="min-h-screen dottedBackground py-12 relative"
       id="store"
       role="main"
     >
