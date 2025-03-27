@@ -54,6 +54,15 @@ export function ProductInformationSection({ product }: { product: Product }) {
     ? comments.filter((el) => el.productId == product.id).length
     : 0;
 
+  const commentFiltered = comments.filter((el) => el.productId == product.id);
+
+  const commentsLoadingFiltered = commentsLoading.filter(
+    (el) => el.productId == product.id
+  );
+  const commentsErrorFiltered = commentsError.filter(
+    (el) => el.productId == product.id
+  );
+
   return (
     <div className="infos">
       <div
@@ -136,8 +145,8 @@ export function ProductInformationSection({ product }: { product: Product }) {
             </div>
           ) : (
             <>
-              {commentsError.length != 0 &&
-                commentsError.map((c) => (
+              {commentsErrorFiltered.length != 0 &&
+                commentsErrorFiltered.map((c) => (
                   <CommentMessage
                     username={c.userName}
                     message={c.comment}
@@ -145,8 +154,8 @@ export function ProductInformationSection({ product }: { product: Product }) {
                     icon={<X className="h-5 w-5 text-[--text_light_200]"></X>}
                   ></CommentMessage>
                 ))}
-              {commentsLoading.length != 0 &&
-                commentsLoading.map((c) => (
+              {commentsLoadingFiltered.length != 0 &&
+                commentsLoadingFiltered.map((c) => (
                   <CommentMessage
                     username={c.userName}
                     message={c.comment}
@@ -156,18 +165,16 @@ export function ProductInformationSection({ product }: { product: Product }) {
                     }
                   ></CommentMessage>
                 ))}
-              {comments.length != 0 ? (
-                comments
-                  .filter((el) => el.productId == product.id)
-                  .map((c) => {
-                    return (
-                      <CommentMessage
-                        username={c.userName}
-                        message={c.comment}
-                        date={c.created_at}
-                      ></CommentMessage>
-                    );
-                  })
+              {commentFiltered.length != 0 ? (
+                commentFiltered.map((c) => {
+                  return (
+                    <CommentMessage
+                      username={c.userName}
+                      message={c.comment}
+                      date={c.created_at}
+                    ></CommentMessage>
+                  );
+                })
               ) : (
                 <div>
                   <p className="w-full text-center text-xl font-medium mt-2 text-[--text_light_100]">

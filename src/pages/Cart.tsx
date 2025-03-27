@@ -53,7 +53,7 @@ export function CartProductItem({
             )}
           </button>
           <p className="text-lg font-bold flex items-center text-[--text_light_200]">
-            ${product[product.license]}.00
+            ${product[product.license]}
           </p>
         </div>
       </div>
@@ -143,7 +143,6 @@ export default function Cart() {
                 {LANGUAGE.CART.TOTAL[preferences.language]}{" "}
                 <span className="font-bold">
                   ${cart.reduce((sum = 0, item) => sum + item[item.license], 0)}
-                  .00
                 </span>
               </p>
 

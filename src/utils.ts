@@ -61,7 +61,6 @@ export function formatSinceDate(date: Date): string {
 
 export function formatDateString(str: string, lang: "es" | "en") {
   const date = new Date(str);
-  console.log(str);
   if (lang == "es") {
     return `${date.getDate()} de ${
       monthsEs[date.getMonth() - 1]
