@@ -13,6 +13,10 @@ import { useAuth } from "../hooks/useAuth";
 import { usePreferences } from "../hooks/usePreferences";
 import { formatDateString } from "../utils";
 
+function ProductAction() {
+  return <></>;
+}
+
 export function ProductLicenseSelector({ product }: { product: Product }) {
   const { state: cart, purchased, addToCart } = useCart();
   const [isInCart, setIsInCart] = useState<boolean>(false);

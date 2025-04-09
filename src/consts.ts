@@ -9,7 +9,7 @@ export const API_URL = "https://modelfantasy.up.railway.app/app";
 
 export const IMG_API_URL = "https://modelfantasy.up.railway.app/imgs/";
 
-export const BRANDNAME = "DigitalMarket";
+export const BRANDNAME = "Javier David";
 
 export const monthsEn = [
   "January",
