@@ -41,7 +41,7 @@ export default function Checkout() {
   // Load cart data on component mount
   useEffect(() => {
     loadCart();
-  }, [loadCart]);
+  }, []);
 
   // Calculate total whenever cart changes
   useEffect(() => {
