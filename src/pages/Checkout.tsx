@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "../hooks/useCart";
 import { COUNTRIES, LANGUAGE } from "../consts";
 import { usePreferences } from "../hooks/usePreferences";
@@ -20,96 +20,118 @@ export default function Checkout() {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [requestErrors, setRequestErrors] = useState<string[]>([]);
   const { preferences } = usePreferences();
+  const [total, setTotal] = useState(0);
 
-  const [name, setName] = useState("Jose");
-  const [lastName, setLastName] = useState("Jhonson");
-  const [address, setAddress] = useState(
-    "Ave. Guadí 232, Barcelona, Barcelona"
-  );
-  const [country, setCountry] = useState(1);
-  const [phoneNumber, setPhoneNumber] = useState("645553333");
-  const [callingCode, setCallingCode] = useState("34");
-  const [city, setCity] = useState("Barcelona");
-  const [postalCode, setPostalCode] = useState("78622");
+  const [formData, setFormData] = useState({
+    name: "Jose",
+    lastName: "Jhonson",
+    address: "Ave. Guadí 232, Barcelona, Barcelona",
+    country: 1,
+    phoneNumber: "645553333",
+    callingCode: "34",
+    city: "Barcelona",
+    postalCode: "78622",
+  });
 
+  // Update form field handler
+  const updateFormField = (field: string, value: string | number) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Load cart data on component mount
   useEffect(() => {
     loadCart();
-  }, []);
+  }, [loadCart]);
 
+  // Calculate total whenever cart changes
+  useEffect(() => {
+    const calculatedTotal = cart.reduce(
+      (sum, item) => sum + item[item.license],
+      0
+    );
+    setTotal(calculatedTotal);
+  }, [cart]);
+
+  // Form submission handler
   const handleTppSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("starting to submit tropipay");
-    if (!loadingSubmit) {
-      console.log("All is fine");
-      setLoadingSubmit(true);
-      try {
-        const res = await tppPaymentLinkRequest({
-          name,
-          lastName,
-          phoneNumber: `+${callingCode}${phoneNumber}`,
-          address,
-          city,
-          country,
-          postalCode,
-        });
-        if (!res) throw new Error("Error while creating payment");
-        if (res.data.error) throw new Error(res.data.error[0]);
-        if (res.status == 200) {
-          location.href = res.data.paymentlink;
-          return;
-        }
-      } catch (error) {
-        setRequestErrors(["Something went wrong"]);
-        console.log(error);
-      } finally {
-        setLoadingSubmit(false);
+
+    if (loadingSubmit) return;
+    setLoadingSubmit(true);
+    setRequestErrors([]);
+
+    try {
+      const {
+        name,
+        lastName,
+        phoneNumber,
+        callingCode,
+        address,
+        city,
+        country,
+        postalCode,
+      } = formData;
+
+      const res = await tppPaymentLinkRequest({
+        name,
+        lastName,
+        phoneNumber: `+${callingCode}${phoneNumber}`,
+        address,
+        city,
+        country,
+        postalCode,
+      });
+
+      if (!res) throw new Error("Error while creating payment");
+      if (res.data.error) throw new Error(res.data.error[0]);
+
+      if (res.status === 200) {
+        window.location.href = res.data.paymentlink;
+        return;
       }
+    } catch (error) {
+      console.error("Payment submission error:", error);
+      setRequestErrors([
+        "Something went wrong with your payment. Please try again.",
+      ]);
+    } finally {
+      setLoadingSubmit(false);
     }
   };
 
-  const [total, setTotal] = useState(0);
-
-  const orderCId = useId();
-  const itemsCId = useId();
-
-  useEffect(() => {
-    const total = cart.reduce((sum = 0, item) => sum + item[item.license], 0);
-    setTotal(total);
-  }, [cart]);
+  const isFormDisabled = loadingCart || loadingSubmit || cart.length === 0;
+  const isSubmitDisabled = isFormDisabled || payMethod === null;
 
   return (
-    <div className="min-h-screen-minus-64 dottedBackground py-12">
+    <main className="min-h-screen-minus-64 dottedBackground py-12">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="max-w-full mx-auto mb-10 ">
+        <section className="max-w-full mx-auto mb-10">
           <div className="bg-[--bg_sec] md:dark:bg-transparent md:bg-transparent rounded-lg">
-            <div className=" flex flex-col md:flex-row-reverse md:justify-center md:gap-3 shadow-md md:shadow-none p-6 md:p-0">
-              <div className="w-full flex flex-col md:flex-row-reverse md:justify-center md:gap-3 ">
-                <div className="md:bg-[--bg_sec]  md:p-6 md:rounded-lg md:shadow-md w-full md:max-w-80 lg:max-w-[360px] flex flex-col max-h-full h-fit mb-6 md:!mb-0">
+            <div className="flex flex-col md:flex-row-reverse md:justify-center md:gap-3 shadow-md md:shadow-none p-6 md:p-0">
+              <div className="w-full flex flex-col md:flex-row-reverse md:justify-center md:gap-3">
+                {/* Order Summary Section */}
+                <aside className="md:bg-[--bg_sec] md:p-6 md:rounded-lg md:shadow-md w-full md:max-w-80 lg:max-w-[360px] flex flex-col max-h-full h-fit mb-6 md:!mb-0">
                   <h1 className="text-2xl font-bold text-[--text_light_0] mb-8">
                     {LANGUAGE.CHECKOUT.TITLE[preferences.language]}
                   </h1>
 
                   <div>
-                    <h2
-                      key={orderCId}
-                      className="text-xl font-bold text-[--text_light_100] mb-4"
-                    >
+                    <h2 className="text-xl font-bold text-[--text_light_100] mb-4">
                       {LANGUAGE.CHECKOUT.SUMMARY[preferences.language]}
                     </h2>
-                    <div
-                      key={itemsCId}
-                      className="border-t border-b border-[--border_light_400] py-4"
-                    >
+                    <div className="border-t border-b border-[--border_light_400] py-4">
                       <div className="max-h-full px-1 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[--bg_light_700] [&::-webkit-scrollbar-thumb]:rounded-md">
-                        {cart.length != 0 ? (
-                          <>
-                            {cart.map((prod) => (
-                              <ProductItemCheckOut
-                                product={prod}
-                                CId={itemsCId}
-                              />
+                        {cart.length > 0 ? (
+                          <ul aria-label="Cart items">
+                            {cart.map((prod, index) => (
+                              <li key={`product-${index}`}>
+                                <ProductItemCheckOut
+                                  product={prod}
+                                  CId={`item-${index}`}
+                                />
+                              </li>
                             ))}
-                          </>
+                          </ul>
                         ) : (
                           <p className="text-xl text-[--text_light_100]">
                             {LANGUAGE.CHECKOUT.ANY[preferences.language]}
@@ -118,59 +140,67 @@ export default function Checkout() {
                       </div>
                     </div>
                     <div className="flex flex-col mt-4">
-                      <span className="font-bold text-lg flex justify-between text-[--text_light_100]">
-                        {LANGUAGE.CHECKOUT.TOTAL[preferences.language]}
-                        <span className="font-bold text-xl text-[--text_light_100]">
-                          ${total}
+                      <div className="font-bold text-lg flex justify-between text-[--text_light_100]">
+                        <span>
+                          {LANGUAGE.CHECKOUT.TOTAL[preferences.language]}
                         </span>
-                      </span>
+                        <span className="font-bold text-xl text-[--text_light_100]">
+                          ${total.toFixed(2)}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
+                  {/* Desktop error messages */}
                   {requestErrors.length > 0 && (
-                    <div className="hidden md:flex flex-col items-start justify-center mt-2">
-                      {requestErrors.map((er) => {
-                        return (
-                          <span className="text-xl text-red-500">{er}</span>
-                        );
-                      })}
+                    <div
+                      className="hidden md:flex flex-col items-start justify-center mt-2"
+                      role="alert"
+                      aria-live="assertive"
+                    >
+                      {requestErrors.map((error, index) => (
+                        <span
+                          key={`desktop-error-${index}`}
+                          className="text-xl text-red-500"
+                        >
+                          {error}
+                        </span>
+                      ))}
                     </div>
                   )}
+
                   <ButtonSubmitCheckOut
                     hideInMoblie
                     type="submit"
-                    form={payMethod != null ? payMethod : undefined}
+                    form={payMethod ?? undefined}
                     loadingSubmit={loadingSubmit}
-                    loading={
-                      loadingCart ||
-                      loadingSubmit ||
-                      cart.length == 0 ||
-                      payMethod == null
-                    }
-                    disabled={
-                      loadingCart ||
-                      loadingSubmit ||
-                      cart.length == 0 ||
-                      payMethod == null
-                    }
+                    loading={isSubmitDisabled}
+                    disabled={isSubmitDisabled}
                     text={LANGUAGE.CHECKOUT.PAY[preferences.language]}
                   />
-                </div>
-                <div className="md:bg-[--bg_sec] md:p-6 md:rounded-lg md:shadow-md w-full max-w-2xl flex flex-col gap-3 ">
-                  <span className="text-[--text_light_0] text-xl font-bold">
+                </aside>
+
+                {/* Payment Form Section */}
+                <section className="md:bg-[--bg_sec] md:p-6 md:rounded-lg md:shadow-md w-full max-w-2xl flex flex-col gap-3">
+                  <h2 className="text-[--text_light_0] text-xl font-bold">
                     {LANGUAGE.CHECKOUT.PAYMENT_METHODS[preferences.language]}
-                  </span>
+                  </h2>
 
                   <PaymentSelectorCard
                     id="tpp"
                     title="Pay With Tropipay"
                     payMethod={payMethod}
                     setPayMethod={setPayMethod}
-                    icon={<TropipayLogo className="h-9 w-9"></TropipayLogo>}
+                    icon={
+                      <TropipayLogo className="h-9 w-9" aria-hidden="true" />
+                    }
                     childrenIcon={
                       <>
-                        <VisaLogo className="h-9 w-9"></VisaLogo>
-                        <MasterCardLogo className="h-9 w-9"></MasterCardLogo>
+                        <VisaLogo className="h-9 w-9" aria-hidden="true" />
+                        <MasterCardLogo
+                          className="h-9 w-9"
+                          aria-hidden="true"
+                        />
                       </>
                     }
                     gap={"10px"}
@@ -188,9 +218,9 @@ export default function Checkout() {
                           name="name"
                           required
                           type="text"
-                          value={name}
-                          setValue={setName}
-                          disabled={loadingSubmit || cart.length == 0}
+                          value={formData.name}
+                          setValue={(value) => updateFormField("name", value)}
+                          disabled={isFormDisabled}
                         />
                         <InputTextCheckOut
                           label={
@@ -198,21 +228,27 @@ export default function Checkout() {
                           }
                           id="lastname"
                           name="lastname"
-                          required={true}
+                          required
                           type="text"
-                          value={lastName}
-                          setValue={setLastName}
-                          disabled={loadingSubmit || cart.length == 0}
+                          value={formData.lastName}
+                          setValue={(value) =>
+                            updateFormField("lastName", value)
+                          }
+                          disabled={isFormDisabled}
                         />
                         <InputSelectPhone
                           label={LANGUAGE.CHECKOUT.PHONE[preferences.language]}
                           id="phone"
                           name="phone"
                           required
-                          value={phoneNumber}
-                          setValue={setPhoneNumber}
-                          setCallingCode={setCallingCode}
-                          disabled={loadingSubmit || cart.length == 0}
+                          value={formData.phoneNumber}
+                          setValue={(value) =>
+                            updateFormField("phoneNumber", value)
+                          }
+                          setCallingCode={(value) =>
+                            updateFormField("callingCode", value)
+                          }
+                          disabled={isFormDisabled}
                           countries={
                             COUNTRIES as {
                               id: number;
@@ -229,9 +265,11 @@ export default function Checkout() {
                           name="address"
                           required
                           type="text"
-                          value={address}
-                          setValue={setAddress}
-                          disabled={loadingSubmit || cart.length == 0}
+                          value={formData.address}
+                          setValue={(value) =>
+                            updateFormField("address", value)
+                          }
+                          disabled={isFormDisabled}
                         />
                         <InputCountry
                           label={
@@ -240,14 +278,13 @@ export default function Checkout() {
                           id="country"
                           name="country"
                           required
-                          value={country}
-                          setValue={setCountry}
-                          disabled={loadingSubmit || cart.length == 0}
+                          value={formData.country}
+                          setValue={(value) =>
+                            updateFormField("country", value)
+                          }
+                          disabled={isFormDisabled}
                           countries={
-                            COUNTRIES as {
-                              id: number;
-                              name: string;
-                            }[]
+                            COUNTRIES as { id: number; name: string }[]
                           }
                         />
                         <div className="grid grid-cols-2 gap-4">
@@ -257,9 +294,9 @@ export default function Checkout() {
                             name="city"
                             required
                             type="text"
-                            value={city}
-                            setValue={setCity}
-                            disabled={loadingSubmit || cart.length == 0}
+                            value={formData.city}
+                            setValue={(value) => updateFormField("city", value)}
+                            disabled={isFormDisabled}
                           />
                           <InputTextCheckOut
                             label={
@@ -268,10 +305,14 @@ export default function Checkout() {
                             id="postalCode"
                             name="postalCode"
                             required
-                            type="number"
-                            value={postalCode}
-                            setValue={setPostalCode}
-                            disabled={loadingSubmit || cart.length == 0}
+                            type="text"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            value={formData.postalCode}
+                            setValue={(value) =>
+                              updateFormField("postalCode", value)
+                            }
+                            disabled={isFormDisabled}
                           />
                         </div>
                       </>
@@ -279,46 +320,44 @@ export default function Checkout() {
                     handleSubmit={handleTppSubmit}
                   />
 
+                  {/* Mobile error messages */}
                   {requestErrors.length > 0 && (
-                    <div className="flex md:!hidden flex-col items-start justify-center mt-2">
-                      {requestErrors.map((er) => {
-                        return (
-                          <span className="text-xl text-red-500">{er}</span>
-                        );
-                      })}
+                    <div
+                      className="flex md:!hidden flex-col items-start justify-center mt-2"
+                      role="alert"
+                      aria-live="assertive"
+                    >
+                      {requestErrors.map((error, index) => (
+                        <span
+                          key={`mobile-error-${index}`}
+                          className="text-xl text-red-500"
+                        >
+                          {error}
+                        </span>
+                      ))}
                     </div>
                   )}
 
                   <ButtonSubmitCheckOut
                     hideInMoblie={false}
                     type="submit"
-                    form={payMethod != null ? payMethod : undefined}
+                    form={payMethod ?? undefined}
                     loadingSubmit={loadingSubmit}
-                    loading={
-                      loadingCart ||
-                      loadingSubmit ||
-                      cart.length == 0 ||
-                      payMethod == null
-                    }
-                    disabled={
-                      loadingCart ||
-                      loadingSubmit ||
-                      cart.length == 0 ||
-                      payMethod == null
-                    }
+                    loading={isSubmitDisabled}
+                    disabled={isSubmitDisabled}
                     text={LANGUAGE.CHECKOUT.PAY[preferences.language]}
                   />
-                </div>
+                </section>
               </div>
             </div>
           </div>
-          <div className="flex mt-4 items-center justify-center">
+          <footer className="flex mt-4 items-center justify-center">
             <p className="text-sm text-[--text_light_200] px-3">
               {LANGUAGE.CHECKOUT.TERMS_AND_CONDITIONS[preferences.language]}
             </p>
-          </div>
-        </div>
+          </footer>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }

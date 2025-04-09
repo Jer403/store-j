@@ -9,8 +9,8 @@ interface InputPasswordRepeatInterface {
   name2: string;
   password1: string;
   password2: string;
-  setPassword1: React.Dispatch<React.SetStateAction<string>>;
-  setPassword2: React.Dispatch<React.SetStateAction<string>>;
+  setPassword1: (val: string) => void;
+  setPassword2: (val: string) => void;
   valPassword: boolean | null;
   validatePassword: (val1: string, val2: string) => void;
   shake: boolean;
@@ -205,6 +205,7 @@ export function InputPasswordRepeat({
           <button
             className="flex justify-center items-center"
             onMouseEnter={() => setEyeVisible(true)}
+            onMouseLeave={() => setEyeVisible(false)}
             onClick={(e) => {
               e.preventDefault();
               setPasswordVisible(!passwordVisible);

@@ -22,9 +22,9 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen-minus-64 dottedBackground">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 gap-6">
+    <main className="min-h-screen-minus-64 dottedBackground">
+      <article className="max-w-7xl mx-auto px-4 py-8">
+        <section className="grid grid-cols-1 gap-6">
           <div className="lg:col-span-1">
             <div className="bg-[--bg_sec] flex gap-4 md:gap-0 justify-between flex-col md:flex-row items-start md:items-center rounded-lg shadow-md p-7">
               <div className="flex flex-col items-start">
@@ -63,8 +63,8 @@ export default function Dashboard() {
             </div>
           </div>
           <PurchasedProducts />
-        </div>
-      </div>
-    </div>
+        </section>
+      </article>
+    </main>
   );
 }

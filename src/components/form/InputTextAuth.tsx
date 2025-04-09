@@ -6,7 +6,7 @@ interface InputInterface {
   autoComplete?: string;
   required: boolean;
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  setValue: (val: string) => void;
   valValue: boolean | null;
   validateValue: (val: string) => void;
   shake: boolean;

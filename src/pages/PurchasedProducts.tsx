@@ -8,8 +8,8 @@ export default function PurchasedProducts() {
   const { preferences } = usePreferences();
 
   return (
-    <div className="lg:col-span-1">
-      <div className="bg-[--bg_sec] rounded-lg shadow-md p-6">
+    <article className="lg:col-span-1">
+      <section className="bg-[--bg_sec] rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold mb-6 text-[--text_light_0]">
           {LANGUAGE.DASHBOARD.PURCHASED[preferences.language]}
         </h2>
@@ -28,7 +28,7 @@ export default function PurchasedProducts() {
             ))}
           </div>
         )}
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }

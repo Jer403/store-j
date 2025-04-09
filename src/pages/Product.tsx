@@ -22,10 +22,10 @@ export default function Product() {
   }, [location.pathname, products]);
 
   return (
-    <div className={`relative w-full flex justify-center items-center`}>
-      <div className="bg-[--bg_prim] h-full w-full max-w-[1600px]">
+    <main className={`relative w-full flex justify-center items-center`}>
+      <article className="bg-[--bg_prim] h-full w-full max-w-[1600px]">
         {product ? (
-          <div className="p-8 flex w-full gap-2">
+          <section className="p-8 flex w-full gap-2">
             <div className="w-full grid grid-dis gap-6 grid-cols-1 lg:grid-cols-[1fr,var(--aside_width)]">
               <ProductGallery product={product}></ProductGallery>
 
@@ -37,9 +37,9 @@ export default function Product() {
                 product={product}
               ></ProductLicenseSelector>
             </div>
-          </div>
+          </section>
         ) : (
-          <div className="w-full flex items-center justify-center">
+          <section className="w-full flex items-center justify-center">
             <div className="flex flex-col border-4 border-[--brand_color_400] mt-32 w-full md:w-fit p-12 md:p-20 lg:p-28 gap-2 md:gap-9 items-center rounded-full bg-[--bg_sec] justify-center">
               <div className="flex">
                 <AlertCircle className="w-20 md:w-24 lg:w-32 h-20 md:h-24 lg:h-32 text-[--brand_color]"></AlertCircle>
@@ -48,10 +48,10 @@ export default function Product() {
                 Sorry. This product doesn't exist
               </p>
             </div>
-          </div>
+          </section>
         )}
-      </div>
-    </div>
+      </article>
+    </main>
   );
 }
 

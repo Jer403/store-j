@@ -6,7 +6,18 @@ interface InputInterface {
   disabled: boolean;
   required: boolean;
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  inputMode?:
+    | "search"
+    | "email"
+    | "tel"
+    | "text"
+    | "url"
+    | "none"
+    | "numeric"
+    | "decimal"
+    | undefined;
+  pattern?: string;
+  setValue: (values: string) => void;
 }
 
 export function InputTextCheckOut({
@@ -16,6 +27,8 @@ export function InputTextCheckOut({
   type,
   required,
   disabled,
+  inputMode,
+  pattern,
   value,
   setValue,
 }: InputInterface) {
@@ -34,6 +47,8 @@ export function InputTextCheckOut({
         value={value}
         required={required}
         disabled={disabled}
+        inputMode={inputMode}
+        pattern={pattern}
         onChange={(e) => {
           setValue(e.target.value);
         }}

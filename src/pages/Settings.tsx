@@ -21,31 +21,30 @@ type SettingsProps =
 
 export default function Settings() {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
-  const [requestErrors, setRequestErrors] = useState<[]>([]);
+  const [errors, setErrors] = useState<[]>([]);
   const [saved, setSaved] = useState(false);
-  const errorIdKey = useId();
+  const errorIdPrefix = useId();
   const { setUserPreferences } = useAuth();
   const { preferences, setPreferences } = usePreferences();
   const navigate = useNavigate();
 
-  const submitClickHandler = async ({ e }: SubmitClickProps) => {
+  const handleSubmit = async ({ e }: SubmitClickProps) => {
     e.preventDefault();
     if (loadingSubmit) return;
     setLoadingSubmit(true);
     setSaved(false);
     try {
-      const res = await preferencesRequest(preferences);
-      if (!res) return;
-      if (res.status == 200) {
-        setLoadingSubmit(false);
+      const response = await preferencesRequest(preferences);
+      if (!response) return;
+      if (response.status == 200) {
         setSaved(true);
-        return;
+      } else {
+        setErrors(response.data.error || ["Unknown error occurred"]);
       }
-      setRequestErrors(res.data.error);
-      setLoadingSubmit(false);
-      setSaved(false);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingSubmit(false);
     }
   };
 
@@ -58,9 +57,9 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-screen-minus-64 dottedBackground py-12">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="max-w-3xl mx-auto">
+    <main className="min-h-screen-minus-64 dottedBackground py-12">
+      <article className="max-w-7xl mx-auto px-4">
+        <section className="max-w-3xl mx-auto">
           <h1 className="text-3xl font-bold text-center text-[--text_light_0] mb-8">
             {LANGUAGE.SETTINGS.TITLE[preferences.language]}
           </h1>
@@ -74,6 +73,7 @@ export default function Settings() {
               }
             >
               <div className="grid grid-cols-1 gap-6">
+                {/* Language Selection */}
                 <div>
                   <label className="block text-sm font-medium text-[--text_light_200] mb-1">
                     {LANGUAGE.SETTINGS.LANGUAGE[preferences.language]}
@@ -92,6 +92,8 @@ export default function Settings() {
                     <option value="es">Español</option>
                   </select>
                 </div>
+
+                {/* Currency Selection */}
                 <div>
                   <label className="block text-sm font-medium text-[--text_light_200] mb-1">
                     {LANGUAGE.SETTINGS.CURRENCY[preferences.language]}
@@ -111,6 +113,7 @@ export default function Settings() {
                   </select>
                 </div>
 
+                {/* Notifications Toggle */}
                 <div className="space-y-4">
                   <Toggle
                     label="Email Notifications"
@@ -127,22 +130,25 @@ export default function Settings() {
               </div>
             </SettingsSection>
           </div>
-          <div
-            className="flex items-center justify-between"
-            style={{ display: requestErrors.length == 0 ? "none" : "block" }}
-          >
-            <div className="flex items-center">
-              {requestErrors.map((item) => (
-                <p
-                  key={errorIdKey}
-                  className="block text-sm"
-                  style={{ color: "var(--wrong)" }}
-                >
-                  {item}
-                </p>
-              ))}
+
+          {/* Error Messages */}
+          {errors.length > 0 && (
+            <div className="mt-4">
+              <div className="flex flex-col gap-1">
+                {errors.map((error, index) => (
+                  <p
+                    key={`${errorIdPrefix}-${index}`}
+                    className="text-sm"
+                    style={{ color: "var(--wrong)" }}
+                  >
+                    {error}
+                  </p>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Action Buttons */}
           <div className="mt-8 flex justify-end gap-3">
             <button
               type="button"
@@ -157,8 +163,9 @@ export default function Settings() {
               type="button"
               className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-[--text_light_900] bg-[--button] hover:bg-[--button_hover] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--brand_color]"
               onClick={(e) => {
-                submitClickHandler({ e });
+                handleSubmit({ e });
               }}
+              disabled={loadingSubmit}
             >
               {loadingSubmit ? (
                 <CircleDashed className="loader w-4 h-4" />
@@ -172,8 +179,8 @@ export default function Settings() {
               )}
             </button>
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+      </article>
+    </main>
   );
 }

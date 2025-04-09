@@ -6,7 +6,7 @@ interface InputInterface {
   required: boolean;
   value: number;
   loadingSubmit?: boolean;
-  setValue: React.Dispatch<React.SetStateAction<number>>;
+  setValue: (values: number) => void;
   countries: { id: number; name: string }[];
 }
 

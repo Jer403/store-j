@@ -5,8 +5,8 @@ interface InputInterface {
   disabled: boolean;
   required: boolean;
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  setCallingCode: React.Dispatch<React.SetStateAction<string>>;
+  setValue: (values: string) => void;
+  setCallingCode: (values: string) => void;
   countries: { id: number; slug: string; callingCode: number }[];
 }
 
