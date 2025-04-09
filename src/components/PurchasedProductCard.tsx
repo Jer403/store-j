@@ -12,6 +12,9 @@ export function PurchasedProductCard({
   preferences,
 }: ProductCardProps) {
   const date = new Date(product.purchased_at);
+  const handleDownload = () => {
+    window.location.href = "https://modelstore.pages.dev/app/download";
+  };
   return (
     <div className="border border-[--border_light_400] rounded-lg p-4">
       <img
@@ -26,7 +29,10 @@ export function PurchasedProductCard({
       <p className="text-sm mt-1  text-[--text_light_0]">{`${
         LANGUAGE.DASHBOARD.PURCHASED_AT[preferences.language]
       } ${createDateTextFromLanguage(preferences.language, date)}`}</p>
-      <button className="mt-4 w-full bg-[--button] text-[--text_light_900] py-2 rounded-lg hover:bg-[--button_hover]">
+      <button
+        className="mt-4 w-full bg-[--button] text-[--text_light_900] py-2 rounded-lg hover:bg-[--button_hover]"
+        onClick={handleDownload}
+      >
         {LANGUAGE.DASHBOARD.DOWNLOAD[preferences.language]}
       </button>
     </div>
