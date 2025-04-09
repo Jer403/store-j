@@ -13,7 +13,7 @@ export function PurchasedProductCard({
 }: ProductCardProps) {
   const date = new Date(product.purchased_at);
   const handleDownload = () => {
-    window.location.href = "https://modelstore.pages.dev/app/download";
+    window.location.href = "https://modelfantasy.up.railway.app/app/download";
   };
   return (
     <div className="border border-[--border_light_400] rounded-lg p-4">
