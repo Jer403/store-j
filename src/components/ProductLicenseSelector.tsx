@@ -12,10 +12,7 @@ import { LANGUAGE } from "../consts";
 import { useAuth } from "../hooks/useAuth";
 import { usePreferences } from "../hooks/usePreferences";
 import { formatDateString } from "../utils";
-
-function ProductAction() {
-  return <></>;
-}
+import { LicenseSelector } from "./LicenseSelector";
 
 export function ProductLicenseSelector({ product }: { product: Product }) {
   const { state: cart, purchased, addToCart } = useCart();
@@ -58,6 +55,7 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
     id: string,
     isInCart: boolean,
     isInPurchased: boolean,
+    license: License,
     setLoadingSubmit: (b: boolean) => void
   ) => {
     if (!logged) {
@@ -79,6 +77,10 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
     setLoadingSubmit(true);
   };
 
+  const cartLicenseSelected = isInCart
+    ? cart.find((el) => el.id == product.id)?.license
+    : null;
+
   return (
     <aside
       className={`bg-[--bg_sec] rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:340px] xl:[--aside_width:402px] 2xl:[--aside_width:464px] flex lg:sticky lg:top-[88px] flex-col aside`}
@@ -88,7 +90,7 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
           {product.title}
         </h2>
 
-        <div className="relative w-full flex flex-col rounded-xl h-32 border border-[--brand_color]">
+        <div className="relative w-full hidden flex-col rounded-xl h-32 border border-[--brand_color]">
           <div className="w-full flex">
             <button
               className={`w-full h-12 ${
@@ -119,15 +121,100 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
           </div>
         </div>
 
+        {/* <div
+          className={`relative w-full flex flex-col p-4 rounded-xl h-32 border border-[--brand_color] ${
+            cartLicenseSelected && cartLicenseSelected == "personal" && ""
+          }`}
+        >
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-medium">Personal</h2>
+            <p>12.00$</p>
+          </div>
+          <div className="flex gap-2">
+            <p>License: </p>
+            <span>Standard</span>
+            <CircleQuestion></CircleQuestion>
+          </div>
+          <AddButton
+            isInCart={isInCart}
+            handleAction={() =>
+              handleProductAction(
+                product.id,
+                isInCart,
+                isInPurchased,
+                "personal",
+                setLoadingSubmit
+              )
+            }
+          />
+        </div>
+
+
+        <div className="relative w-full flex flex-col p-4 rounded-xl h-32 border border-[--brand_color]">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-medium">Professional</h2>
+            <p>24.00$</p>
+          </div>
+          <div className="flex gap-2">
+            <p>License: </p>
+            <span>Standard</span>
+            <CircleQuestion></CircleQuestion>
+          </div>
+          <AddButton
+            isInCart={isInCart}
+            handleAction={() =>
+              handleProductAction(
+                product.id,
+                isInCart,
+                isInPurchased,
+                "professional",
+                setLoadingSubmit
+              )
+            }
+          />
+        </div> */}
+        <LicenseSelector
+          handleAction={() =>
+            handleProductAction(
+              product.id,
+              isInCart,
+              isInPurchased,
+              "personal",
+              setLoadingSubmit
+            )
+          }
+          cartLicenseSelected={cartLicenseSelected}
+          isInCart={isInCart}
+          isInPurchased={isInPurchased}
+          license="personal"
+          product={product}
+        />
+        <LicenseSelector
+          handleAction={() =>
+            handleProductAction(
+              product.id,
+              isInCart,
+              isInPurchased,
+              "professional",
+              setLoadingSubmit
+            )
+          }
+          cartLicenseSelected={cartLicenseSelected}
+          isInCart={isInCart}
+          isInPurchased={isInPurchased}
+          license="professional"
+          product={product}
+        />
+
         <button
-          className={`flex items-center w-full justify-center gap-2 px-6 py-3 ${
+          className={`items-center w-full justify-center gap-2 px-6 py-3 ${
             license == null
-              ? "bg-[--button_not_allowed] cursor-not-allowed"
+              ? "bg-[--button_not_allowed] cursor-not-allowed flex"
               : isInPurchased
-              ? "bg-green-500 hover:bg-green-500"
+              ? "bg-green-500 hover:bg-green-500 flex"
               : isInCart
-              ? "bg-blue-500 hover:bg-blue-500"
-              : "bg-[--button] hover:bg-[--button_hover]"
+              ? "bg-blue-500 hover:bg-blue-500 flex"
+              : "bg-[--button] hover:bg-[--button_hover] hidden"
           } text-[--text_light_900] rounded-xl  transition-colors`}
           disabled={license == null}
           onClick={() =>
@@ -135,6 +222,7 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
               product.id,
               isInCart,
               isInPurchased,
+              license,
               setLoadingSubmit
             )
           }
@@ -154,10 +242,7 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
               {LANGUAGE.PRODUCT_BUTTON.GO_TO_CART[preferences.language]}
             </>
           ) : (
-            <>
-              <ShoppingCart className="h-5 w-5" />
-              {LANGUAGE.PRODUCT_BUTTON.ADD[preferences.language]}
-            </>
+            <></>
           )}
         </button>
       </div>
