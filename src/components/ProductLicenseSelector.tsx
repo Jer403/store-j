@@ -186,6 +186,7 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
           cartLicenseSelected={cartLicenseSelected}
           isInCart={isInCart}
           isInPurchased={isInPurchased}
+          loadingSubmit={loadingSubmit}
           license="personal"
           product={product}
         />
@@ -202,6 +203,7 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
           cartLicenseSelected={cartLicenseSelected}
           isInCart={isInCart}
           isInPurchased={isInPurchased}
+          loadingSubmit={loadingSubmit}
           license="professional"
           product={product}
         />
@@ -214,7 +216,7 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
               ? "bg-green-500 hover:bg-green-500 flex"
               : isInCart
               ? "bg-blue-500 hover:bg-blue-500 flex"
-              : "bg-[--button] hover:bg-[--button_hover] hidden"
+              : "hidden"
           } text-[--text_light_900] rounded-xl  transition-colors`}
           disabled={license == null}
           onClick={() =>
