@@ -47,9 +47,8 @@ export function LicenseSelector({
       className={`relative w-full flex-col p-4 rounded-xl h-fit border border-[--brand_color] ${
         isInPurchased
           ? "hidden"
-          : cartLicenseSelected && cartLicenseSelected == license
-          ? "flex shadow-md"
-          : "hidden"
+          : cartLicenseSelected &&
+            (cartLicenseSelected == license ? "flex shadow-md" : "hidden")
       }`}
     >
       <div className="flex justify-between items-center">
