@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CartProduct, Preferences } from "../types";
 import { IMG_API_URL, LANGUAGE } from "../consts";
 import { CircleDashed, Trash2 } from "lucide-react";
@@ -13,10 +13,6 @@ export function CartProductItem({
   handleRemoveElement: (id: string) => void;
 }) {
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log("Product from cart item: ", product[product.license]);
-  }, [product]);
 
   return (
     <div className="w-full flex flex-row shadow-md p-4 bg-[--bg_sec] rounded-lg">

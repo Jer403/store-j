@@ -9,30 +9,50 @@ import { useCart } from "../hooks/useCart";
 function AddButton({
   isInCart,
   loadingSubmit,
-  handleAction,
+  handleAdd,
+  handleNow,
 }: {
   isInCart: boolean;
   loadingSubmit: boolean;
-  handleAction: () => void;
+  handleAdd: () => void;
+  handleNow: () => void;
 }) {
   const { preferences } = usePreferences();
   return (
-    <button
-      className={`bg-[--button] hover:bg-[--button_hover] mt-2 items-center w-full justify-center gap-2 px-6 py-3 ${
-        isInCart ? "hidden" : "flex"
-      } text-[--text_light_900] rounded-xl  transition-colors`}
-      onClick={handleAction}
-      disabled={loadingSubmit}
-    >
-      {loadingSubmit ? (
-        <CircleDashed className="h6- w-6 loader"></CircleDashed>
-      ) : (
-        <>
-          <ShoppingCart className="h-5 w-5" />
-          {LANGUAGE.PRODUCT_BUTTON.ADD[preferences.language]}
-        </>
-      )}
-    </button>
+    <div className="flex w-full flex-col 2xl:flex-row gap-2 mt-2">
+      <button
+        className={`bg-[--button] hover:bg-[--button_hover] items-center w-full justify-center gap-2 px-6 py-3 ${
+          isInCart ? "hidden" : "flex"
+        } text-[--text_light_900] rounded-xl  transition-colors`}
+        onClick={handleAdd}
+        disabled={loadingSubmit}
+      >
+        {loadingSubmit ? (
+          <CircleDashed className="h6- w-6 loader"></CircleDashed>
+        ) : (
+          <>
+            <ShoppingCart className="h-5 w-5" />
+            {LANGUAGE.PRODUCT_BUTTON.ADD[preferences.language]}
+          </>
+        )}
+      </button>
+      <button
+        className={`bg-blue-500 hover:bg-blue-600 items-center w-full justify-center gap-2 px-6 py-3 ${
+          isInCart ? "hidden" : "flex"
+        } text-[--text_light_900] rounded-xl  transition-colors`}
+        onClick={handleNow}
+        disabled={loadingSubmit}
+      >
+        {loadingSubmit ? (
+          <CircleDashed className="h6- w-6 loader"></CircleDashed>
+        ) : (
+          <>
+            <ShoppingCart className="h-5 w-5" />
+            {LANGUAGE.PRODUCT_BUTTON.NOW[preferences.language]}
+          </>
+        )}
+      </button>
+    </div>
   );
 }
 
@@ -43,7 +63,8 @@ interface Props {
   product: Product;
   license: License;
   cartLicenseSelected: string | undefined | null;
-  handleAction: () => void;
+  handleAdd: () => void;
+  handleNow: () => void;
 }
 
 export function LicenseSelector({
@@ -53,7 +74,8 @@ export function LicenseSelector({
   product,
   license,
   cartLicenseSelected,
-  handleAction,
+  handleAdd,
+  handleNow,
 }: Props) {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const { preferences } = usePreferences();
@@ -111,11 +133,14 @@ export function LicenseSelector({
           <span>.zip / 2.4MB</span>
         </p>
       </div>
-      <AddButton
-        loadingSubmit={loadingSubmit}
-        isInCart={isInCart}
-        handleAction={() => handleAction()}
-      />
+      <div className="flex">
+        <AddButton
+          loadingSubmit={loadingSubmit}
+          isInCart={isInCart}
+          handleAdd={() => handleAdd()}
+          handleNow={() => handleNow()}
+        />
+      </div>
     </div>
   );
 }

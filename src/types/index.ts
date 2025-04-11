@@ -68,6 +68,7 @@ export interface Comment {
 
 export type Sections = "info" | "comments";
 
+export const LicenseMap = ["personal", "professional"];
 export type License = "personal" | "professional";
 
 export interface Preferences {

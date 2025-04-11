@@ -51,7 +51,7 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
     }
   }, [isInCart, loadingSubmit]);
 
-  const handleProductAction = (
+  const handleProductAdd = (
     id: string,
     isInCart: boolean,
     isInPurchased: boolean,
@@ -75,6 +75,10 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
     if (!license) return;
     addToCart(id, license);
     setLoadingSubmit(true);
+  };
+
+  const handleProductNow = (license: License) => {
+    navigate(`/checkout?i=${product.id}&l=${license}`);
   };
 
   const cartLicenseSelected = isInCart
@@ -174,8 +178,8 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
           />
         </div> */}
         <LicenseSelector
-          handleAction={() =>
-            handleProductAction(
+          handleAdd={() =>
+            handleProductAdd(
               product.id,
               isInCart,
               isInPurchased,
@@ -183,6 +187,9 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
               setLoadingSubmit
             )
           }
+          handleNow={() => {
+            handleProductNow("personal");
+          }}
           cartLicenseSelected={cartLicenseSelected}
           isInCart={isInCart}
           isInPurchased={isInPurchased}
@@ -191,8 +198,8 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
           product={product}
         />
         <LicenseSelector
-          handleAction={() =>
-            handleProductAction(
+          handleAdd={() =>
+            handleProductAdd(
               product.id,
               isInCart,
               isInPurchased,
@@ -200,6 +207,9 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
               setLoadingSubmit
             )
           }
+          handleNow={() => {
+            handleProductNow("professional");
+          }}
           cartLicenseSelected={cartLicenseSelected}
           isInCart={isInCart}
           isInPurchased={isInPurchased}
@@ -219,15 +229,18 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
               : "hidden"
           } text-[--text_light_900] rounded-xl  transition-colors`}
           disabled={license == null}
-          onClick={() =>
-            handleProductAction(
-              product.id,
-              isInCart,
-              isInPurchased,
-              license,
-              setLoadingSubmit
-            )
-          }
+          onClick={() => {
+            if (isInPurchased) {
+              navigate("/dashboard");
+              window.scrollTo({ top: 0 });
+              return;
+            }
+            if (isInCart) {
+              navigate("/cart");
+              window.scrollTo({ top: 0 });
+              return;
+            }
+          }}
         >
           {isInPurchased ? (
             <>

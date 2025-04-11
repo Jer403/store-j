@@ -11,16 +11,23 @@ import { TropipayLogo } from "../components/Elements/TropipayLogo";
 import { VisaLogo } from "../components/Elements/VisaLogo";
 import { MasterCardLogo } from "../components/Elements/MasterCardLogo";
 import { PaymentSelectorCard } from "../components/PaymentSelectorCard";
-import { PayMethods } from "../types";
+import { License, PayMethods, Product } from "../types";
 import { paymentLinkRequest as tppPaymentLinkRequest } from "../Api/tpp";
+import { quickPaymentLinkRequest as tppQuickPaymentLinkRequest } from "../Api/tpp";
+import { useNavigate } from "react-router-dom";
+import { getUrlParam } from "../utils";
+import { useProduct } from "../hooks/useProduct";
 
 export default function Checkout() {
-  const { state: cart, loadCart, loadingCart } = useCart();
+  const { state: cart, loadCart, loadingCart, purchased } = useCart();
   const [payMethod, setPayMethod] = useState<PayMethods | null>("tpp");
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [requestErrors, setRequestErrors] = useState<string[]>([]);
+  const [urlLicense, setUrlLicense] = useState<License | null>(null);
+  const [urlProduct, setUrlProduct] = useState<Product | null>(null);
   const { preferences } = usePreferences();
-  const [total, setTotal] = useState(0);
+  const { products } = useProduct();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "Jose",
@@ -43,14 +50,36 @@ export default function Checkout() {
     loadCart();
   }, []);
 
-  // Calculate total whenever cart changes
   useEffect(() => {
-    const calculatedTotal = cart.reduce(
-      (sum, item) => sum + item[item.license],
-      0
-    );
-    setTotal(calculatedTotal);
-  }, [cart]);
+    const pid = getUrlParam("i");
+    const pl = getUrlParam("l");
+    if (pid) {
+      const prod = products?.find((el) => el.id == pid);
+      if (prod) {
+        const inCart = cart.find((el) => el.id == prod.id);
+        const inPurchased = purchased.find((el) => el.id == prod.id);
+        if (inCart) {
+          navigate(`/cart`);
+          return;
+        }
+        if (inPurchased) {
+          navigate(`/dashboard`);
+          return;
+        }
+
+        if (pl == "personal" || pl == "professional") {
+          setUrlProduct(prod);
+          setUrlLicense(pl);
+          return;
+        } else {
+          navigate(`/product/${prod.id}`);
+          return;
+        }
+      }
+      setUrlProduct(null);
+    }
+    navigate("/");
+  }, [navigate, products]);
 
   // Form submission handler
   const handleTppSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -72,7 +101,7 @@ export default function Checkout() {
         postalCode,
       } = formData;
 
-      const res = await tppPaymentLinkRequest({
+      const data = {
         name,
         lastName,
         phoneNumber: `+${callingCode}${phoneNumber}`,
@@ -80,7 +109,23 @@ export default function Checkout() {
         city,
         country,
         postalCode,
-      });
+      };
+
+      let res = await tppPaymentLinkRequest(data);
+
+      if (urlProduct) {
+        if (urlLicense == "personal" || urlLicense == "professional") {
+          res = await tppQuickPaymentLinkRequest({
+            ...data,
+            productId: urlProduct.id,
+            license: urlLicense,
+          });
+        } else {
+          throw new Error("License not valid or selected");
+        }
+      } else {
+        res = await tppPaymentLinkRequest(data);
+      }
 
       if (!res) throw new Error("Error while creating payment");
       if (res.data.error) throw new Error(res.data.error[0]);
@@ -97,6 +142,37 @@ export default function Checkout() {
     } finally {
       setLoadingSubmit(false);
     }
+  };
+
+  const renderItems = () => {
+    if (urlProduct) {
+      return (
+        <li key={`product-${21}`}>
+          <ProductItemCheckOut
+            product={{
+              ...urlProduct,
+              license: urlLicense ? urlLicense : "personal",
+            }}
+            CId={`item-${21}`}
+          />
+        </li>
+      );
+    }
+    return cart.map((prod, index) => (
+      <li key={`product-${index}`}>
+        <ProductItemCheckOut product={prod} CId={`item-${index}`} />
+      </li>
+    ));
+  };
+
+  const renderTotal = () => {
+    if (urlProduct) {
+      if (urlLicense == "personal" || urlLicense == "professional") {
+        return urlProduct[urlLicense];
+      }
+      return 0;
+    }
+    return cart.reduce((sum, item) => sum + item[item.license], 0);
   };
 
   const isFormDisabled = loadingCart || loadingSubmit || cart.length === 0;
@@ -122,16 +198,7 @@ export default function Checkout() {
                     <div className="border-t border-b border-[--border_light_400] py-4">
                       <div className="max-h-full px-1 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[--bg_light_700] [&::-webkit-scrollbar-thumb]:rounded-md">
                         {cart.length > 0 ? (
-                          <ul aria-label="Cart items">
-                            {cart.map((prod, index) => (
-                              <li key={`product-${index}`}>
-                                <ProductItemCheckOut
-                                  product={prod}
-                                  CId={`item-${index}`}
-                                />
-                              </li>
-                            ))}
-                          </ul>
+                          <ul aria-label="Cart items">{renderItems()}</ul>
                         ) : (
                           <p className="text-xl text-[--text_light_100]">
                             {LANGUAGE.CHECKOUT.ANY[preferences.language]}
@@ -145,7 +212,7 @@ export default function Checkout() {
                           {LANGUAGE.CHECKOUT.TOTAL[preferences.language]}
                         </span>
                         <span className="font-bold text-xl text-[--text_light_100]">
-                          ${total.toFixed(2)}
+                          ${renderTotal().toFixed(2)}
                         </span>
                       </div>
                     </div>

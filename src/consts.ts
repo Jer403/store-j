@@ -305,6 +305,10 @@ export const LANGUAGE = {
       es: "Agregar al carrito",
       en: "Add to Cart",
     },
+    NOW: {
+      es: "Comprar ahora",
+      en: "Buy now",
+    },
     LOGIN: {
       es: "Iniciar sesión",
       en: "Login to buy",
