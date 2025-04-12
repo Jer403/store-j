@@ -169,7 +169,7 @@ export function Chat() {
     <div
       className={`${
         logged ? "fixed" : "hidden"
-      } bottom-0 right-0 mr-4 mb-[5rem] w-[90%] sm:w-auto z-50`}
+      } bottom-0 right-0 mr-4 mb-[5.6rem] w-[90%] sm:w-auto z-50`}
     >
       <div
         className={`${
@@ -318,7 +318,7 @@ export function Chat() {
           </div>
         </div>
         <div
-          className={`absolute border-2 -bottom-[4rem] right-0 border-transparent bg-[--button] w-16 h-16 rounded-full flex justify-center items-center transition-transform`}
+          className={`absolute border-2 -bottom-[4.6rem] right-0 border-transparent bg-[--button] w-16 h-16 rounded-full flex justify-center items-center transition-transform`}
           onClick={() => {
             setIsChatOpen(!isChatOpen);
             setNotSeenMessagesToSeen();

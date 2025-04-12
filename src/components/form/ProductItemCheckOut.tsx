@@ -1,10 +1,15 @@
-import { CartProduct } from "../../types";
+import { LANGUAGE } from "../../consts";
+import { CartProduct, Preferences } from "../../types";
 
 export function ProductItemCheckOut({
   product,
+  rate,
+  preferences,
   CId,
 }: {
   product: CartProduct;
+  rate: number;
+  preferences: Preferences;
   CId: string;
 }) {
   return (
@@ -19,7 +24,11 @@ export function ProductItemCheckOut({
         key={"chr-1" + product.id + CId}
         className="font-semibold text-[--text_light_300]"
       >
-        ${product[product.license]}
+        {LANGUAGE.CURRENCIES[preferences.currency]}
+        {(preferences.currency == "USD"
+          ? product[product.license] / rate
+          : product[product.license]
+        ).toFixed(2)}
       </span>
     </div>
   );

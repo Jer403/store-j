@@ -6,13 +6,24 @@ import { CircleDashed, Trash2 } from "lucide-react";
 export function CartProductItem({
   product,
   preferences,
+  rate,
   handleRemoveElement,
 }: {
   product: CartProduct;
   preferences: Preferences;
+  rate: number;
   handleRemoveElement: (id: string) => void;
 }) {
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
+
+  const calculatePrice = () => {
+    return `${
+      LANGUAGE.CURRENCIES[preferences.currency]
+    }${(preferences.currency == "USD"
+      ? product[product.license] / rate
+      : product[product.license]
+    ).toFixed(2)}`;
+  };
 
   return (
     <div className="w-full flex flex-row shadow-md p-4 bg-[--bg_sec] rounded-lg">
@@ -45,7 +56,7 @@ export function CartProductItem({
             )}
           </button>
           <p className="text-lg font-bold flex items-center text-[--text_light_200]">
-            ${product[product.license]}
+            {calculatePrice()}
           </p>
         </div>
       </div>

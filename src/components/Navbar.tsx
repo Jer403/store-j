@@ -61,7 +61,7 @@ export function Navbar() {
             <div className="hidden md:flex items-center relative space-x-7">
               <Link
                 to="/"
-                className="text-[--text_light_0] font-medium hover:text-[--brand_color]"
+                className="text-[--text_light_0] text-md font-medium hover:text-[--brand_color]"
                 onClick={() => {
                   setLineLeftProperties(POSITIONS.Home);
                   setMobileLinksShown(false);
@@ -73,7 +73,7 @@ export function Navbar() {
               </Link>
               <Link
                 to="/contact"
-                className="text-[--text_light_0] font-medium hover:text-[--brand_color]"
+                className="text-[--text_light_0] text-md font-medium hover:text-[--brand_color]"
                 onClick={() => {
                   setLineLeftProperties(POSITIONS.Contact);
                   setMobileLinksShown(false);

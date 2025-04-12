@@ -89,7 +89,7 @@ function useCartReducer() {
       const res = await getRateRequest();
       if (!res) throw new Error("Rate request failed");
       if (res.status === 200) {
-        setRate(res.data);
+        setRate(res.data.rate);
       } else {
         console.error("Error loading rate");
       }

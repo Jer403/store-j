@@ -8,7 +8,7 @@ import { usePreferences } from "../hooks/usePreferences";
 import { CartProductItem } from "../components/CartProductItem";
 
 export default function Cart() {
-  const { state: cart, removeFromCart, loadingCart } = useCart();
+  const { state: cart, removeFromCart, loadingCart, rate } = useCart();
   const { preferences } = usePreferences();
   const itemsCId = useId();
   const titleCId = useId();
@@ -53,6 +53,7 @@ export default function Cart() {
                         preferences={preferences}
                         key={"cr-" + product.id + checkCId}
                         product={product}
+                        rate={rate}
                         handleRemoveElement={handleRemoveElement}
                       ></CartProductItem>
                     </>
@@ -88,7 +89,17 @@ export default function Cart() {
               <p className="text-xl border-t border-[--border_light_400] py-2 flex justify-between items-end text-[--text_light_100]">
                 {LANGUAGE.CART.TOTAL[preferences.language]}{" "}
                 <span className="font-bold">
-                  ${cart.reduce((sum = 0, item) => sum + item[item.license], 0)}
+                  {LANGUAGE.CURRENCIES[preferences.currency]}
+                  {cart
+                    .reduce(
+                      (sum = 0, item) =>
+                        sum +
+                        (preferences.currency == "USD"
+                          ? item[item.license] / rate
+                          : item[item.license]),
+                      0
+                    )
+                    .toFixed(2)}
                 </span>
               </p>
 

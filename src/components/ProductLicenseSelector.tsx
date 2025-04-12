@@ -223,9 +223,9 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
             license == null
               ? "bg-[--button_not_allowed] cursor-not-allowed flex"
               : isInPurchased
-              ? "bg-[--button_purchased] hover:bg-green-500 flex"
+              ? "bg-[--button_purchased] hover:bg-[--button_purchased_hover] flex"
               : isInCart
-              ? "bg-[--button_cart] hover:bg-blue-500 flex"
+              ? "bg-[--button_cart] hover:bg-[--button_cart_hover] flex"
               : "hidden"
           } text-[--text_light_900] rounded-xl  transition-colors`}
           disabled={license == null}

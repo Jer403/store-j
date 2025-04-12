@@ -19,7 +19,7 @@ import { getUrlParam } from "../utils";
 import { useProduct } from "../hooks/useProduct";
 
 export default function Checkout() {
-  const { state: cart, loadCart, loadingCart, purchased } = useCart();
+  const { state: cart, loadCart, loadingCart, purchased, rate } = useCart();
   const [payMethod, setPayMethod] = useState<PayMethods | null>("tpp");
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [requestErrors, setRequestErrors] = useState<string[]>([]);
@@ -154,6 +154,8 @@ export default function Checkout() {
                 ...urlProduct,
                 license: urlLicense ? urlLicense : "personal",
               }}
+              preferences={preferences}
+              rate={rate}
               CId={`item-${21}`}
             />
           </li>
@@ -164,7 +166,12 @@ export default function Checkout() {
       <ul aria-label="Cart items">
         {cart.map((prod, index) => (
           <li key={`product-${index}`} className="list-none">
-            <ProductItemCheckOut product={prod} CId={`item-${index}`} />
+            <ProductItemCheckOut
+              product={prod}
+              preferences={preferences}
+              rate={rate}
+              CId={`item-${index}`}
+            />
           </li>
         ))}
       </ul>
@@ -178,11 +185,20 @@ export default function Checkout() {
   const renderTotal = () => {
     if (urlProduct) {
       if (urlLicense == "personal" || urlLicense == "professional") {
-        return urlProduct[urlLicense];
+        return preferences.currency == "USD"
+          ? urlProduct[urlLicense] / rate
+          : urlProduct[urlLicense];
       }
       return 0;
     }
-    return cart.reduce((sum, item) => sum + item[item.license], 0);
+    return cart.reduce(
+      (sum, item) =>
+        sum +
+        (preferences.currency == "USD"
+          ? item[item.license] / rate
+          : item[item.license]),
+      0
+    );
   };
 
   const isFormDisabled = urlProduct

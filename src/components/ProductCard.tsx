@@ -36,11 +36,10 @@ export function ProductCard({
             <span className="font-semibold text-lg">From</span>{" "}
             <span className="font-semibold text-lg">
               {LANGUAGE.CURRENCIES[preferences.currency]}
-              {preferences.currency == "USD"
-                ? rate == 1
-                  ? product.personal
-                  : Math.floor((product.personal / rate) * 100) / 100
-                : product.personal}
+              {(preferences.currency == "USD"
+                ? product.personal / rate
+                : product.personal
+              ).toFixed(2)}
             </span>
           </div>
         </div>

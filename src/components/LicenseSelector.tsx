@@ -37,7 +37,7 @@ function AddButton({
         )}
       </button>
       <button
-        className={`bg-blue-500 hover:bg-blue-600 items-center w-full justify-center gap-2 px-6 py-3 ${
+        className={`bg-[--button_cart] hover:bg-[--button_cart_hover] items-center w-full justify-center gap-2 px-6 py-3 ${
           isInCart ? "hidden" : "flex"
         } text-[--text_light_900] rounded-xl  transition-colors`}
         onClick={handleNow}
@@ -98,11 +98,12 @@ export function LicenseSelector({
         </h2>
         <p className="text-[--text_light_50] font-bold text-xl">
           {LANGUAGE.CURRENCIES[preferences.currency]}
-          {preferences.currency == "USD"
+          {(preferences.currency == "USD"
             ? rate == 1
               ? product[license]
-              : Math.floor((product.personal / rate) * 100) / 100
-            : product[license]}
+              : product[license] / rate
+            : product[license]
+          ).toFixed(2)}
         </p>
       </div>
       <div className="flex gap-2 mt-1 items-center">
