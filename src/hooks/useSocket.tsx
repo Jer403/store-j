@@ -2,8 +2,8 @@ import { io } from "socket.io-client";
 import { useChat } from "./useChat";
 import { useCallback, useEffect } from "react";
 
-const socket = io("https://3dcute.up.railway.app", {
-  transports: ["websocket"], // ⚡ Fuerza WebSockets
+const socket = io("https://modelfantasy.up.railway.app", {
+  transports: ["websocket"],
   auth: {},
 });
 
