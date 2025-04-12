@@ -18,7 +18,8 @@ export function useSocket() {
     const handleNewMessage = (message: string) => {
       const parsedMessage = JSON.parse(message);
       addMessageToChat(parsedMessage);
-      new Audio("../../message_sound.mp3").play();
+      const sound = new Audio("/message_alert.wav");
+      sound.play();
     };
 
     socket.off("newMessage");
