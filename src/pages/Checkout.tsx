@@ -183,7 +183,8 @@ export default function Checkout() {
     return cart.reduce((sum, item) => sum + item[item.license], 0);
   };
 
-  const isFormDisabled = loadingCart || loadingSubmit || cart.length === 0;
+  const isFormDisabled =
+    loadingCart || loadingSubmit || (urlProduct ? cart.length === 0 : false);
   const isSubmitDisabled = isFormDisabled || payMethod === null;
 
   return (
