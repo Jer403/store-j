@@ -14,6 +14,8 @@ export interface Product {
   image: string;
   gallery?: string[];
   created_at: string;
+  driveId: string;
+  weight: number;
 }
 
 export type PayMethods = "tpp" | "qvapay" | "asd";

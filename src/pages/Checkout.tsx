@@ -78,8 +78,8 @@ export default function Checkout() {
       }
       setUrlProduct(null);
     }
-    navigate("/");
-  }, [navigate, products]);
+    setUrlProduct(null);
+  }, [cart, navigate, products, purchased]);
 
   // Form submission handler
   const handleTppSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -158,11 +158,19 @@ export default function Checkout() {
         </li>
       );
     }
-    return cart.map((prod, index) => (
-      <li key={`product-${index}`}>
-        <ProductItemCheckOut product={prod} CId={`item-${index}`} />
-      </li>
-    ));
+    return cart.length > 0 ? (
+      <ul aria-label="Cart items">
+        {cart.map((prod, index) => (
+          <li key={`product-${index}`}>
+            <ProductItemCheckOut product={prod} CId={`item-${index}`} />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p className="text-xl text-[--text_light_100]">
+        {LANGUAGE.CHECKOUT.ANY[preferences.language]}
+      </p>
+    );
   };
 
   const renderTotal = () => {
@@ -197,13 +205,7 @@ export default function Checkout() {
                     </h2>
                     <div className="border-t border-b border-[--border_light_400] py-4">
                       <div className="max-h-full px-1 overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[--bg_light_700] [&::-webkit-scrollbar-thumb]:rounded-md">
-                        {cart.length > 0 ? (
-                          <ul aria-label="Cart items">{renderItems()}</ul>
-                        ) : (
-                          <p className="text-xl text-[--text_light_100]">
-                            {LANGUAGE.CHECKOUT.ANY[preferences.language]}
-                          </p>
-                        )}
+                        {renderItems()}
                       </div>
                     </div>
                     <div className="flex flex-col mt-4">
