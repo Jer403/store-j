@@ -147,15 +147,17 @@ export default function Checkout() {
   const renderItems = () => {
     if (urlProduct) {
       return (
-        <li key={`product-${21}`}>
-          <ProductItemCheckOut
-            product={{
-              ...urlProduct,
-              license: urlLicense ? urlLicense : "personal",
-            }}
-            CId={`item-${21}`}
-          />
-        </li>
+        <ul aria-label="Cart items">
+          <li key={`product-${21}`} className="list-none">
+            <ProductItemCheckOut
+              product={{
+                ...urlProduct,
+                license: urlLicense ? urlLicense : "personal",
+              }}
+              CId={`item-${21}`}
+            />
+          </li>
+        </ul>
       );
     }
     return cart.length > 0 ? (
