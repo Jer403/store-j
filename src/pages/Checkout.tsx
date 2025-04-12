@@ -161,7 +161,7 @@ export default function Checkout() {
     return cart.length > 0 ? (
       <ul aria-label="Cart items">
         {cart.map((prod, index) => (
-          <li key={`product-${index}`}>
+          <li key={`product-${index}`} className="list-none">
             <ProductItemCheckOut product={prod} CId={`item-${index}`} />
           </li>
         ))}
