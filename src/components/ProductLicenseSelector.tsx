@@ -87,7 +87,7 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
 
   return (
     <aside
-      className={`bg-[--bg_sec] rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:340px] xl:[--aside_width:402px] 2xl:[--aside_width:464px] flex lg:sticky lg:top-[88px] flex-col aside`}
+      className={`bg-[--bg_sec] rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:21.25rem] xl:[--aside_width:25.12rem] 2xl:[--aside_width:29rem] flex lg:sticky lg:top-[5.5rem] flex-col aside`}
     >
       <div className="flex p-9 py-7 gap-3 flex-col items-start justify-between border-b border-[--bg_prim]">
         <h2 className="text-3xl font-bold text-[--text_light_50] mb-2">

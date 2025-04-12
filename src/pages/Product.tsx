@@ -23,7 +23,7 @@ export default function Product() {
 
   return (
     <main className={`relative w-full flex justify-center items-center`}>
-      <article className="bg-[--bg_prim] h-full w-full max-w-[1600px]">
+      <article className="bg-[--bg_prim] h-full w-full max-w-[100rem]">
         {product ? (
           <section className="p-8 flex w-full gap-2">
             <div className="w-full grid grid-dis gap-6 grid-cols-1 lg:grid-cols-[1fr,var(--aside_width)]">

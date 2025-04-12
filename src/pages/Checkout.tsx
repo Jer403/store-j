@@ -147,7 +147,7 @@ export default function Checkout() {
   const renderItems = () => {
     if (urlProduct) {
       return (
-        <ul aria-label="Cart items">
+        <ul aria-label="Items">
           <li key={`product-${21}`} className="list-none">
             <ProductItemCheckOut
               product={{
@@ -186,7 +186,7 @@ export default function Checkout() {
   };
 
   const isFormDisabled =
-    loadingCart || loadingSubmit || (urlProduct ? cart.length === 0 : false);
+    loadingCart || loadingSubmit || (!urlProduct && cart.length === 0);
   const isSubmitDisabled = isFormDisabled || payMethod === null;
 
   return (
