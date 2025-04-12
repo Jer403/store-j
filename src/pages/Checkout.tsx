@@ -198,7 +198,7 @@ export default function Checkout() {
             <div className="flex flex-col md:flex-row-reverse md:justify-center md:gap-3 shadow-md md:shadow-none p-6 md:p-0">
               <div className="w-full flex flex-col md:flex-row-reverse md:justify-center md:gap-3">
                 {/* Order Summary Section */}
-                <aside className="md:bg-[--bg_sec] md:p-6 md:rounded-lg md:shadow-md w-full md:max-w-80 lg:max-w-[360px] flex flex-col max-h-full h-fit mb-6 md:!mb-0">
+                <aside className="md:bg-[--bg_sec] md:p-6 md:rounded-lg md:shadow-md w-full md:max-w-80 lg:max-w-[22.5rem] flex flex-col max-h-full h-fit mb-6 md:!mb-0">
                   <h1 className="text-2xl font-bold text-[--text_light_0] mb-8">
                     {LANGUAGE.CHECKOUT.TITLE[preferences.language]}
                   </h1>
@@ -276,7 +276,7 @@ export default function Checkout() {
                         />
                       </>
                     }
-                    gap={"10px"}
+                    gap={"0.62rem"}
                     formHidden={false}
                     formLabelTitle={
                       LANGUAGE.CHECKOUT.PAYMENT_INFORMATION[

@@ -56,8 +56,8 @@ export function PaymentSelectorCard({
         <div
           className={`overflow-hidden border transition-[max-height] duration-500 ${
             payMethod == id
-              ? "border-[--brand_color] pt-14 max-h-[745px]"
-              : "border-[--border_light_600] hover:border-[--border_light_500] pt-[55px] max-h-0 cursor-pointer"
+              ? "border-[--brand_color] pt-14 max-h-[46.56rem]"
+              : "border-[--border_light_600] hover:border-[--border_light_500] pt-[3.43rem] max-h-0 cursor-pointer"
           } rounded-xl relative`}
         >
           <div

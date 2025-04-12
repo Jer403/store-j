@@ -22,7 +22,7 @@ export default function Cart() {
 
   return (
     <div className="min-h-screen-minus-64 dottedBackground py-12">
-      <div className="max-w-[1396px] mx-auto px-4">
+      <div className="max-w-[87.25rem] mx-auto px-4">
         <div className="w-full">
           <h1
             key={titleCId}
@@ -73,7 +73,7 @@ export default function Cart() {
             </div>
             <div
               key={checkCId}
-              className="w-full min-w-80 md:max-w-72 lg:max-w-sm bg-[--bg_sec] rounded-lg shadow-md p-4 flex flex-col gap-1 max-h-[288px] md:sticky top-[88px]"
+              className="w-full min-w-80 md:max-w-72 lg:max-w-sm bg-[--bg_sec] rounded-lg shadow-md p-4 flex flex-col gap-1 max-h-[18rem] md:sticky top-[5.5rem]"
             >
               {loadingCart && (
                 <CircleDashed className="loader h-6 w-6 absolute right-3 top-3 text-[--text_light_0]"></CircleDashed>

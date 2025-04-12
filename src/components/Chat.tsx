@@ -169,17 +169,17 @@ export function Chat() {
     <div
       className={`${
         logged ? "fixed" : "hidden"
-      } bottom-0 right-0 mr-4 mb-[80px] w-[90%] sm:w-auto z-50`}
+      } bottom-0 right-0 mr-4 mb-[5rem] w-[90%] sm:w-auto z-50`}
     >
       <div
         className={`${
           isChatOpen && ""
-        } flex items-end flex-col w-full sm:w-[424px] gap-2 rounded-lg`}
+        } flex items-end flex-col w-full sm:w-[26.5rem] gap-2 rounded-lg`}
       >
         <div
           className={`${
             isChatOpen ? "flex border border-[--border_light_500]" : "hidden"
-          } flex-col bg-[--bg_light_900] rounded-lg overflow-hidden w-full h-[600px] max-h-[600px] shadow-m shadow-[--shadow_light_600]`}
+          } flex-col bg-[--bg_light_900] rounded-lg overflow-hidden w-full h-[37.5rem] max-h-[37.5rem] shadow-m shadow-[--shadow_light_600]`}
         >
           <div
             className={`flex w-full border-b border-[--border_light_600] rounded-t-md h-12 items-center justify-center gap-3 p-2`}
@@ -318,7 +318,7 @@ export function Chat() {
           </div>
         </div>
         <div
-          className={`absolute border-2 -bottom-[64px] right-0 border-transparent bg-[--button] w-16 h-16 rounded-full flex justify-center items-center transition-transform`}
+          className={`absolute border-2 -bottom-[4rem] right-0 border-transparent bg-[--button] w-16 h-16 rounded-full flex justify-center items-center transition-transform`}
           onClick={() => {
             setIsChatOpen(!isChatOpen);
             setNotSeenMessagesToSeen();
