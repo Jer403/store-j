@@ -34,6 +34,7 @@ export function useSocket() {
     socket.connect();
 
     socket.emit("connectChat");
+    console.log("Chat connected");
   }, []);
 
   return { connectUserToMessageChannel };
