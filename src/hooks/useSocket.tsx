@@ -17,8 +17,8 @@ export function useSocket() {
   useEffect(() => {
     const handleNewMessage = (message: string) => {
       const parsedMessage = JSON.parse(message);
-      console.log("New massage: ", message);
       addMessageToChat(parsedMessage);
+      new Audio("../../message_sound.mp3").play();
     };
 
     socket.off("newMessage");
