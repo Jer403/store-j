@@ -21,6 +21,7 @@ const Contact = lazy(() => import("../pages/Contact.tsx"));
 const Cart = lazy(() => import("../pages/Cart.tsx"));
 const ProtectedRoute = lazy(() => import("../routes/ProtectedRoute.tsx"));
 const Product = lazy(() => import("../pages/Product.tsx"));
+const Redirect = lazy(() => import("../pages/Redirect.tsx"));
 
 export function AppRouter() {
   const { handleLoad } = useHandleLoad();
@@ -70,6 +71,14 @@ export function AppRouter() {
               element={
                 <LoadingWrapper onMount={handleLoad}>
                   <Product />
+                </LoadingWrapper>
+              }
+            />
+            <Route
+              path="/app/auth/google/callback"
+              element={
+                <LoadingWrapper onMount={handleLoad}>
+                  <Redirect />
                 </LoadingWrapper>
               }
             />
