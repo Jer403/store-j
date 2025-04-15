@@ -1,6 +1,7 @@
 import type { Preferences, PurchasedProduct } from "../types";
 import { IMG_API_URL, LANGUAGE } from "../consts";
 import { createDateTextFromLanguage } from "../utils";
+import { download } from "../Api/download";
 
 interface ProductCardProps {
   product: PurchasedProduct;
@@ -13,7 +14,11 @@ export function PurchasedProductCard({
 }: ProductCardProps) {
   const date = new Date(product.purchased_at);
   const handleDownload = () => {
-    window.location.href = "https://modelfantasy.up.railway.app/app/download";
+    try {
+      const res = download(product.id);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="border border-[--border_light_400] rounded-lg p-4">
