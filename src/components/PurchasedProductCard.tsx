@@ -17,7 +17,13 @@ export function PurchasedProductCard({
     try {
       const res = await download(product.id);
       if (res?.status == 200) {
-        console.log("Descarga completada");
+        const blob = new Blob([res.data], { type: "application/zip" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = res.headers.fileName;
+        a.click();
+        window.URL.revokeObjectURL(url);
       }
     } catch (err) {
       console.log(err);
