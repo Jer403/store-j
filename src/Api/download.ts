@@ -6,7 +6,11 @@ export const download = async (id: string) => {
       responseType: "blob",
       onDownloadProgress: (progressEvent) => {
         const loaded = progressEvent.loaded;
-        console.log(loaded);
+        const total = progressEvent.total
+          ? progressEvent.total
+          : progressEvent.loaded;
+        const percentCompleted = Math.round((loaded * 100) / total);
+        console.log(percentCompleted);
       },
     });
   } catch (error) {
