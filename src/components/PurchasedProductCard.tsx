@@ -13,9 +13,12 @@ export function PurchasedProductCard({
   preferences,
 }: ProductCardProps) {
   const date = new Date(product.purchased_at);
-  const handleDownload = () => {
+  const handleDownload = async () => {
     try {
-      const res = download(product.id);
+      const res = await download(product.id);
+      if (res?.status == 200) {
+        console.log("Descarga completada");
+      }
     } catch (err) {
       console.log(err);
     }
