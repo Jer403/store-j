@@ -1,9 +1,4 @@
-import {
-  CircleDashed,
-  Download,
-  LucideCircleDollarSign,
-  ShoppingCart,
-} from "lucide-react";
+import { CircleDashed, Download, ShoppingCart } from "lucide-react";
 import { License, Product } from "../types";
 import { useCart } from "../hooks/useCart";
 import { useCallback, useEffect, useState } from "react";
@@ -85,98 +80,19 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
     ? cart.find((el) => el.id == product.id)?.license
     : null;
 
+  const weight = `${
+    product.weight > 1000 ? `${product.weight / 1000}GB` : `${product.weight}MB`
+  }`;
+
   return (
     <aside
-      className={`bg-[--bg_sec] rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:21.25rem] xl:[--aside_width:25.12rem] 2xl:[--aside_width:29rem] flex lg:sticky lg:top-[5.5rem] flex-col aside`}
+      className={`bg-[--bg_sec] rounded-xl h-fit w-[--aside_width] [--aside_width:100%] lg:[--aside_width:21.25rem] xl:[--aside_width:25.12rem] 2xl:[--aside_width:30rem] flex lg:sticky lg:top-[5.5rem] flex-col aside`}
     >
       <div className="flex p-9 py-7 gap-3 flex-col items-start justify-between border-b border-[--bg_prim]">
         <h2 className="text-3xl font-bold text-[--text_light_50] mb-2">
           {product.title}
         </h2>
 
-        <div className="relative w-full hidden flex-col rounded-xl h-32 border border-[--brand_color]">
-          <div className="w-full flex">
-            <button
-              className={`w-full h-12 ${
-                license == "personal" ? "border-b-[3px]" : "border-b"
-              }  border-[--brand_color] text-[--brand_color] text-lg font-medium rounded-tl-xl`}
-              onClick={() => {
-                setLicense("personal");
-              }}
-            >
-              Personal
-            </button>
-            <button
-              className={`w-full h-12 ${
-                license == "professional" ? "border-b-[3px]" : "border-b"
-              }  border-l border-[--brand_color] text-[--brand_color] text-lg font-medium rounded-tr-xl`}
-              onClick={() => {
-                setLicense("professional");
-              }}
-            >
-              Professional
-            </button>
-          </div>
-          <div className={`${license == "personal" ? "flex" : "hidden"}`}>
-            <p>Personal</p>
-          </div>
-          <div className={`${license == "professional" ? "flex" : "hidden"}`}>
-            <p>Professional</p>
-          </div>
-        </div>
-
-        {/* <div
-          className={`relative w-full flex flex-col p-4 rounded-xl h-32 border border-[--brand_color] ${
-            cartLicenseSelected && cartLicenseSelected == "personal" && ""
-          }`}
-        >
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-medium">Personal</h2>
-            <p>12.00$</p>
-          </div>
-          <div className="flex gap-2">
-            <p>License: </p>
-            <span>Standard</span>
-            <CircleQuestion></CircleQuestion>
-          </div>
-          <AddButton
-            isInCart={isInCart}
-            handleAction={() =>
-              handleProductAction(
-                product.id,
-                isInCart,
-                isInPurchased,
-                "personal",
-                setLoadingSubmit
-              )
-            }
-          />
-        </div>
-
-
-        <div className="relative w-full flex flex-col p-4 rounded-xl h-32 border border-[--brand_color]">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-medium">Professional</h2>
-            <p>24.00$</p>
-          </div>
-          <div className="flex gap-2">
-            <p>License: </p>
-            <span>Standard</span>
-            <CircleQuestion></CircleQuestion>
-          </div>
-          <AddButton
-            isInCart={isInCart}
-            handleAction={() =>
-              handleProductAction(
-                product.id,
-                isInCart,
-                isInPurchased,
-                "professional",
-                setLoadingSubmit
-              )
-            }
-          />
-        </div> */}
         <LicenseSelector
           handleAdd={() =>
             handleProductAdd(
@@ -264,19 +180,23 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
 
       <div className="p-9 pt-7">
         <h2 className="text-2xl font-bold text-[--text_light_100] mb-3">
-          Details
+          {LANGUAGE.PRODUCT.DETAILS[preferences.language]}
         </h2>
         <div className="flex flex-col gap-1">
           <div className="text-[--text_light_0] text-lg flex justify-between items-center">
-            <span>Published date</span>
+            <span>{LANGUAGE.PRODUCT.PUBLISHED_AT[preferences.language]}</span>
             <span>
               {formatDateString(product.created_at, preferences.language)}
             </span>
           </div>
           <div className="text-[--text_light_0] text-lg flex justify-between items-center">
-            <span>Included formats</span>
-            <div className="rounded-lg py-1">
-              <LucideCircleDollarSign className="h-6 w-6"></LucideCircleDollarSign>
+            <span>{LANGUAGE.PRODUCT.WEIGHT[preferences.language]}</span>
+            <div className="rounded-lg py-1 ">{weight}</div>
+          </div>
+          <div className="text-[--text_light_0] text-lg flex justify-between items-center">
+            <span>{LANGUAGE.PRODUCT.FORMATS[preferences.language]}</span>
+            <div className="rounded-lg py-1 bg-[--bg_prim] shadow-md px-3">
+              .zip
             </div>
           </div>
         </div>

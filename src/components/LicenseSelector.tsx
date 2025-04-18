@@ -80,6 +80,9 @@ export function LicenseSelector({
   const [detailsOpen, setDetailsOpen] = useState(false);
   const { preferences } = usePreferences();
   const { rate } = useCart();
+  const weight = `${
+    product.weight > 1000 ? `${product.weight / 1000}GB` : `${product.weight}MB`
+  }`;
   return (
     <div
       className={`relative w-full flex-col p-4 rounded-xl h-fit bg-[--brand_color_900] border border-[--brand_color] ${
@@ -94,7 +97,9 @@ export function LicenseSelector({
     >
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-medium text-[--text_light_50]">
-          {license == "personal" ? "Standard License" : "Commercial License"}
+          {license == "personal"
+            ? LANGUAGE.PRODUCT.PERSONAL[preferences.language]
+            : LANGUAGE.PRODUCT.PROFESSIONAL[preferences.language]}
         </h2>
         <p className="text-[--text_light_50] font-bold text-xl">
           {LANGUAGE.CURRENCIES[preferences.currency]}
@@ -107,8 +112,9 @@ export function LicenseSelector({
         </p>
       </div>
       <div className="flex gap-2 mt-1 items-center">
-        <p className="font-medium text-[--text_light_100]">License: </p>
-        <span className="font-bold text-[--text_light_100]">Standard</span>
+        <p className="font-medium text-[--text_light_100]">
+          {LANGUAGE.PRODUCT.LICENSE[preferences.language]}
+        </p>
         <CircleQuestion className="h-5 w-5"></CircleQuestion>
       </div>
       <div>
@@ -118,7 +124,7 @@ export function LicenseSelector({
             setDetailsOpen(!detailsOpen);
           }}
         >
-          Files{" "}
+          {LANGUAGE.PRODUCT.FILES[preferences.language]}{" "}
           <ChevronDown
             className={`h-5 w-5 ${
               detailsOpen ? "rotate-180" : "rotate-0"
@@ -130,8 +136,8 @@ export function LicenseSelector({
             detailsOpen ? "max-h-8" : "max-h-0"
           } transition-[max-height] pl-2 flex w-full font-bold text-[--text_light_100] justify-between duration-500 overflow-hidden`}
         >
-          <span>modeltest</span>
-          <span>.zip / 2.4MB</span>
+          <span>{product.title}</span>
+          <span>.zip / {weight}</span>
         </p>
       </div>
       <div className="flex">

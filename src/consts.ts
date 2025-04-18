@@ -153,6 +153,22 @@ export const LANGUAGE = {
       es: "Comprado el",
       en: "Purchased at",
     },
+    SPEED: {
+      es: "Velocidad",
+      en: "Speed",
+    },
+    ESTTIME: {
+      es: "Tiempo estimado",
+      en: "Estim. Time",
+    },
+    WRONG: {
+      es: "Algo salio mal con la descarga. ",
+      en: "Something went wrong with the download. ",
+    },
+    TRY: {
+      es: "Intentalo de nuevo ",
+      en: "Try again ",
+    },
   },
   STORE: {
     TITLE: {
@@ -196,6 +212,14 @@ export const LANGUAGE = {
     CURRENCY: {
       es: "Moneda (Esta opción es sólo para fines comparativos, los pagos son en EUR)",
       en: "Currency (This option is for comparing purposes only, payments are in EUR)",
+    },
+    EMAIL: {
+      es: "Notificaciones por email",
+      en: "Email Notifications",
+    },
+    EMAIL_DESCRIPTION: {
+      es: "Recibe actualizaciones importantes a travéz de email",
+      en: "Receive important updates via email",
     },
     APPEARENCE_TITLE: {
       es: "Apariencia",
@@ -302,12 +326,16 @@ export const LANGUAGE = {
       en: "Go to Cart",
     },
     ADD: {
-      es: "Agregar al carrito",
+      es: "Añadir al carro",
       en: "Add to Cart",
     },
     NOW: {
       es: "Comprar ahora",
       en: "Buy now",
+    },
+    FROM: {
+      es: "Desde",
+      en: "From",
     },
     LOGIN: {
       es: "Iniciar sesión",
@@ -472,6 +500,84 @@ export const LANGUAGE = {
       en: "Passwords don't match",
     },
   },
+  PRODUCT: {
+    INFORMATION: {
+      es: "Información",
+      en: "Information",
+    },
+    DESCRIPTION: {
+      es: "Descripción",
+      en: "Description",
+    },
+    COMMENTS: {
+      es: "Comentarios",
+      en: "Comments",
+    },
+    ADD_COMMENT: {
+      es: "Agregar un comentario",
+      en: "Add a Comment",
+    },
+    WRITE_COMMENT: {
+      es: "Escribe tu comentario aqui...",
+      en: "Write your comment here...",
+    },
+    COMMENT: {
+      es: "Comentar",
+      en: "Comment",
+    },
+    LOADING_COMMENTS: {
+      es: "Cargando comentarios...",
+      en: "Loading comments...",
+    },
+    NO_COMMENTS: {
+      es: "Este producto no tiene comentarios todavia",
+      en: "This product has no comments yet",
+    },
+    BE_FIRST: {
+      es: "Sé el primero!",
+      en: "Be the first one!",
+    },
+    SINCE: {
+      es: "Desde hace",
+      en: "Since",
+    },
+    LICENSE: {
+      es: "Licencia",
+      en: "License",
+    },
+    PERSONAL: {
+      es: "Licencia Estandar",
+      en: "Standard License",
+    },
+    PROFESSIONAL: {
+      es: "Licencia Comercial",
+      en: "Commercial License",
+    },
+    FILES: {
+      es: "Archivos",
+      en: "Files",
+    },
+    DETAILS: {
+      es: "Detalles",
+      en: "Details",
+    },
+    PUBLISHED_AT: {
+      es: "Fecha de publicación",
+      en: "Publish date",
+    },
+    WEIGHT: {
+      es: "Peso",
+      en: "Weight",
+    },
+    FORMATS: {
+      es: "Formatos incluidos",
+      en: "Included formats",
+    },
+    LOADING_PRODUCTS: {
+      es: "Cargando productos",
+      en: "Loading Products",
+    },
+  },
   PAY_SUCCESS: {
     TITLE: {
       es: "Pago Exitoso",
@@ -578,6 +684,36 @@ export const LANGUAGE = {
     DATE: {
       es: "Fecha del pago",
       en: "Payment Date",
+    },
+  },
+  TIME: {
+    SECOND: {
+      es: "sec",
+      en: "sec",
+    },
+    MINUTE: {
+      es: "min",
+      en: "min",
+    },
+    HOUR: {
+      es: "hora",
+      en: "hour",
+    },
+    DAY: {
+      es: "día",
+      en: "day",
+    },
+    WEEK: {
+      es: "semana",
+      en: "week",
+    },
+    MONTH: {
+      es: "mese",
+      en: "month",
+    },
+    YEAR: {
+      es: "año",
+      en: "year",
     },
   },
 };

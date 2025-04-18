@@ -17,7 +17,7 @@ export function DropDownTab({
     <div
       className={`w-full flex ${
         currentQuestion == id ? "gap-2 " : "gap-0"
-      } flex-col p-3 border cursor-pointer border-[--border_light_300] rounded-lg`}
+      } flex-col p-3 border cursor-pointer shadow-md border-[--border_light_300] rounded-lg`}
       onClick={() =>
         currentQuestion == id ? setCurrentQuestion("") : setCurrentQuestion(id)
       }
@@ -32,8 +32,8 @@ export function DropDownTab({
       </div>
       <div
         className={`${
-          currentQuestion == id ? "h-fit " : "h-0 "
-        } transition-[height] duration-1000 overflow-hidden`}
+          currentQuestion == id ? "max-h-80 " : "max-h-0 "
+        } transition-[max-height] duration-1000 overflow-hidden`}
       >
         <p>{answer}</p>
       </div>

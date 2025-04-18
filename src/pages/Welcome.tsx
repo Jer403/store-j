@@ -5,18 +5,15 @@ import { useAuth } from "../hooks/useAuth";
 import { usePreferences } from "../hooks/usePreferences";
 import { Store } from "./Store";
 
-const SCROLL_OFFSET = 64;
-
 export default function Welcome() {
   const { logged } = useAuth();
   const { preferences } = usePreferences();
 
   const handleScroll = () => {
     if (logged) {
-      const storeElement = document.querySelector("#store");
-      if (storeElement) {
-        const scrollPosition = storeElement.clientHeight - SCROLL_OFFSET;
-        scrollToPosition(scrollPosition);
+      const welcomeElement = document.querySelector("#welcome");
+      if (welcomeElement) {
+        scrollToPosition(welcomeElement.clientHeight);
       }
     } else {
       scrollToPosition(0);
@@ -32,7 +29,10 @@ export default function Welcome() {
 
   return (
     <main>
-      <section className="bg-gradient-to-br h-[calc(100vh-64px)] flex items-center justify-center from-amber-100 via-[--bg_prim] to-orange-100">
+      <section
+        id="welcome"
+        className="bg-gradient-to-br h-[40rem] flex items-center justify-center from-amber-100 via-[--bg_prim] to-orange-100"
+      >
         <div className="max-w-7xl flex items-center justify-center mx-auto px-4 sm:px-6 lg:px-8">
           <article className="text-center">
             {/* Hero Header */}

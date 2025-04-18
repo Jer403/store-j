@@ -1,5 +1,5 @@
-import { monthsEn, monthsEs } from "./consts";
-import { Language } from "./types";
+import { LANGUAGE, monthsEn, monthsEs } from "./consts";
+import { Language, Preferences } from "./types";
 
 export function replaceString(
   text: string | null,
@@ -41,6 +41,41 @@ export function removeDoubles<T>(arrays: Array<T>) {
   return finalArr;
 }
 
+export function formatDiffToSince(
+  diff: number,
+  preferences: Preferences
+): string {
+  const s = diff > 1 ? "s" : "";
+  if (diff < 60)
+    return `${diff.toFixed(0)} ${
+      LANGUAGE.TIME.SECOND[preferences.language]
+    }${s}`;
+  if (diff < 3600)
+    return `${(diff / 60).toFixed(0)} ${
+      LANGUAGE.TIME.MINUTE[preferences.language]
+    }${s}`;
+  if (diff < 86400)
+    return `${(diff / 3600).toFixed(0)} ${
+      LANGUAGE.TIME.HOUR[preferences.language]
+    }${s}`;
+  if (diff < 604800)
+    return `${(diff / 86400).toFixed(0)} ${
+      LANGUAGE.TIME.DAY[preferences.language]
+    }${s}`;
+  if (diff < 18144000)
+    return `${(diff / 604800).toFixed(0)} ${
+      LANGUAGE.TIME.WEEK[preferences.language]
+    }${s}`;
+  if (diff < 217728000)
+    return `${(diff / 18144000).toFixed(0)} ${
+      LANGUAGE.TIME.MONTH[preferences.language]
+    }${s}`;
+
+  return `${(diff / 217728000).toFixed(0)} ${
+    LANGUAGE.TIME.YEAR[preferences.language]
+  }${s}`;
+}
+
 export function formatDateTime(date: Date): string {
   const pad = (num: number) => String(num).padStart(2, "0");
 
@@ -52,11 +87,6 @@ export function formatDateTime(date: Date): string {
   const seconds = pad(date.getSeconds());
 
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-}
-
-export function formatSinceDate(date: Date): string {
-  const actual = new Date();
-  const substracted = actual.getTime() - date.getTime();
 }
 
 export function formatDateString(str: string, lang: "es" | "en") {

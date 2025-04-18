@@ -16,5 +16,6 @@ export const download = async (
     });
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };

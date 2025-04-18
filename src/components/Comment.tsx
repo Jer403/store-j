@@ -1,4 +1,7 @@
 import { ReactNode } from "react";
+import { usePreferences } from "../hooks/usePreferences";
+import { LANGUAGE } from "../consts";
+import { formatDiffToSince } from "../utils";
 
 export function Comment({
   username,
@@ -11,8 +14,9 @@ export function Comment({
   message: string;
   icon?: ReactNode;
 }) {
-  const dat = new Date(date);
-  const sinceDate = "asd";
+  const diff = (new Date().getTime() - new Date(date).getTime()) / 1000;
+  const { preferences } = usePreferences();
+  const sinceDate = formatDiffToSince(diff, preferences);
   return (
     <div className="flex flex-col p-4 pt-3 bg-[--bg_sec] shadow-md shadow-[--brand_color_800] rounded-3xl">
       <div className="flex items-center justify-between">
@@ -20,7 +24,9 @@ export function Comment({
           {username}
         </span>
         <div className="flex gap-2">
-          <span className="text-[--text_light_400] text-sm font-medium">{`since ${sinceDate}`}</span>
+          <span className="text-[--text_light_400] text-sm font-medium">{`${
+            LANGUAGE.PRODUCT.SINCE[preferences.language]
+          } ${sinceDate} ${preferences.language == "en" ? "ago" : ""}`}</span>
           {icon}
         </div>
       </div>

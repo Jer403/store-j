@@ -116,8 +116,10 @@ export default function Settings() {
                 {/* Notifications Toggle */}
                 <div className="space-y-4">
                   <Toggle
-                    label="Email Notifications"
-                    description="Receive important updates via email"
+                    label={LANGUAGE.SETTINGS.EMAIL[preferences.language]}
+                    description={
+                      LANGUAGE.SETTINGS.EMAIL_DESCRIPTION[preferences.language]
+                    }
                     checked={preferences.notifications}
                     onChange={() =>
                       handleSettingChange({

@@ -33,7 +33,9 @@ export function ProductCard({
         </div>
         <div className="flex items-center justify-between">
           <div className="font-semibold text-[--brand_color] flex justify-start items-end gap-1">
-            <span className="font-semibold text-lg">From</span>{" "}
+            <span className="font-semibold text-lg">
+              {LANGUAGE.PRODUCT_BUTTON.FROM[preferences.language]}
+            </span>{" "}
             <span className="font-semibold text-lg">
               {LANGUAGE.CURRENCIES[preferences.currency]}
               {(preferences.currency == "USD"

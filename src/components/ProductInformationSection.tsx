@@ -9,10 +9,13 @@ import { formatDateTime } from "../utils";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { CircleDashed, Clock, X } from "lucide-react";
+import { usePreferences } from "../hooks/usePreferences";
+import { LANGUAGE } from "../consts";
 
 export function ProductInformationSection({ product }: { product: Product }) {
   const [section, setSection] = useState<Sections>("info");
   const [message, setMessage] = useState("");
+  const { preferences } = usePreferences();
   const {
     comments,
     createComment,
@@ -71,13 +74,15 @@ export function ProductInformationSection({ product }: { product: Product }) {
       >
         <SectionButton
           id="info"
-          text="Information"
+          text={LANGUAGE.PRODUCT.INFORMATION[preferences.language]}
           section={section}
           setSection={setSection}
         ></SectionButton>
         <SectionButton
           id="comments"
-          text={`Comments (${commentsAmount})`}
+          text={`${
+            LANGUAGE.PRODUCT.COMMENTS[preferences.language]
+          } (${commentsAmount})`}
           section={section}
           setSection={setSection}
         ></SectionButton>
@@ -90,7 +95,7 @@ export function ProductInformationSection({ product }: { product: Product }) {
         } max-w-none flex-col p-4 mb-8`}
       >
         <h3 className="text-2xl font-bold text-[--text_light_100] mb-2">
-          Description
+          {LANGUAGE.PRODUCT.DESCRIPTION[preferences.language]}
         </h3>
         <p className="[--text_light_0]space-pre-line text-lg font-medium text-[--text_light_200]">
           {product.description}
@@ -111,7 +116,7 @@ export function ProductInformationSection({ product }: { product: Product }) {
         <div>
           <div className="flex flex-col">
             <label className="text-md text-[--text_light_100]">
-              Add a Comment
+              {LANGUAGE.PRODUCT.ADD_COMMENT[preferences.language]}
             </label>
             <form
               className="flex flex-col md:flex-row items-end md:items-center justify-center gap-2"
@@ -122,10 +127,12 @@ export function ProductInformationSection({ product }: { product: Product }) {
                 id="comment"
                 value={message}
                 setValue={setMessage}
-                placeholder="Write your comment here..."
+                placeholder={
+                  LANGUAGE.PRODUCT.WRITE_COMMENT[preferences.language]
+                }
               ></InputTextSimple>
               <ButtonSubmitSimple
-                text="Comment"
+                text={LANGUAGE.PRODUCT.COMMENT[preferences.language]}
                 type="submit"
                 className="w-full md:w-64 rounded-xl"
                 loginRequired
@@ -140,7 +147,7 @@ export function ProductInformationSection({ product }: { product: Product }) {
             <div className="flex items-center justify-center gap-2">
               <CircleDashed className="w-6 h-6 loader text-[--text_light_50]"></CircleDashed>
               <p className="text-center text-xl font-medium text-[--text_light_100]">
-                Loading comments...
+                {LANGUAGE.PRODUCT.LOADING_COMMENTS[preferences.language]}
               </p>
             </div>
           ) : (
@@ -178,10 +185,10 @@ export function ProductInformationSection({ product }: { product: Product }) {
               ) : (
                 <div>
                   <p className="w-full text-center text-xl font-medium mt-2 text-[--text_light_100]">
-                    This product has no comments yet
+                    {LANGUAGE.PRODUCT.NO_COMMENTS[preferences.language]}
                   </p>
                   <p className="w-full text-center text-xl font-medium text-[--text_light_100]">
-                    Be the first one !
+                    {LANGUAGE.PRODUCT.BE_FIRST[preferences.language]}
                   </p>
                 </div>
               )}

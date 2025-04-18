@@ -1,8 +1,8 @@
 import type { Preferences, PurchasedProduct } from "../types";
-import { API_URL, IMG_API_URL, LANGUAGE } from "../consts";
+import { IMG_API_URL, LANGUAGE } from "../consts";
 import { createDateTextFromLanguage } from "../utils";
 import { useCallback, useRef, useState } from "react";
-import { Pause, Play, X } from "lucide-react";
+import { RefreshCw, X } from "lucide-react";
 import { download } from "../Api/download";
 
 interface ProductCardProps {
@@ -29,10 +29,12 @@ export function PurchasedProductCard({
   const [progressData, setProgressData] = useState(initialProgressDataState);
   const [weightData, setWeightData] = useState(initialWeightState);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const controller = useRef<AbortController | null>(null);
 
   const handleDownload = async () => {
     setIsDownloading(true);
+    setError(null);
     controller.current = new AbortController();
     try {
       const res = await download(
@@ -82,8 +84,9 @@ export function PurchasedProductCard({
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (err: any) {
-      if (err.name === "AbortError") return;
+      if (err.name === "AbortError" || err.name === "CanceledError") return;
       console.error(err);
+      setError("Something went wrong");
     } finally {
       setDataToDefault();
     }
@@ -143,10 +146,22 @@ export function PurchasedProductCard({
       <p className="text-sm mt-1  text-[--text_light_0]">{`${
         LANGUAGE.DASHBOARD.PURCHASED_AT[preferences.language]
       } ${createDateTextFromLanguage(preferences.language, date)}`}</p>
-      {isDownloading ? (
+      {error ? (
+        <button
+          className="mt-4 w-full flex flex-wrap justify-center items-center gap-2 bg-red-300 hover:bg-red-400 border border-red-500  py-2 rounded-lg"
+          disabled={isDownloading}
+          onClick={handleDownload}
+        >
+          <span>{LANGUAGE.DASHBOARD.WRONG[preferences.language]}</span>
+          <span className="flex gap-2 items-center justify-center">
+            {LANGUAGE.DASHBOARD.TRY[preferences.language]}
+            <RefreshCw className="h-5 w-5"></RefreshCw>
+          </span>
+        </button>
+      ) : isDownloading ? (
         <div className="mt-4 h-fit flex w-full rounded-lg">
           <div className="w-full h-[3.75rem] rounded-lg">
-            <div className="w-full h-10 bg-[--bg_light_400] rounded-lg">
+            <div className="w-full h-10 bg-[--bg_light_400] shadow-inner shadow-[--bg_light_300] rounded-lg">
               <div
                 className="bg-[--button_purchased] max-w-full flex items-center justify-end h-10 rounded-lg"
                 style={{ width: `${progressData.progress}%` }}
@@ -162,9 +177,12 @@ export function PurchasedProductCard({
             </div>
             <div className="w-full flex justify-between items-center px-1 h-5">
               <div className="flex items-center justify-center gap-2">
-                <p className="text-sm font-medium">Speed: {velocity()}</p>
                 <p className="text-sm font-medium">
-                  Estimated Time: {estimatedTime()}
+                  {LANGUAGE.DASHBOARD.SPEED[preferences.language]}: {velocity()}
+                </p>
+                <p className="text-sm font-medium">
+                  {LANGUAGE.DASHBOARD.ESTTIME[preferences.language]}:{" "}
+                  {estimatedTime()}
                 </p>
               </div>
               <p className="text-sm font-medium">
@@ -181,7 +199,7 @@ export function PurchasedProductCard({
         </div>
       ) : (
         <button
-          className="mt-4 w-full bg-[--button] text-[--text_light_900] py-2 rounded-lg hover:bg-[--button_hover]"
+          className="mt-4 w-full bg-[--button_purchased] text-[--text_light_900] py-2 rounded-lg hover:bg-[--button_purchased_hover]"
           disabled={isDownloading}
           onClick={handleDownload}
         >
