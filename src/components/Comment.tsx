@@ -14,7 +14,17 @@ export function Comment({
   message: string;
   icon?: ReactNode;
 }) {
-  const diff = (new Date().getTime() - new Date(date).getTime()) / 1000;
+  const initiDate = new Date(date);
+  const published = new Date(
+    initiDate.getFullYear(),
+    initiDate.getMonth(),
+    initiDate.getDate(),
+    initiDate.getHours() - initiDate.getTimezoneOffset() / 60,
+    initiDate.getMinutes() + 1,
+    initiDate.getSeconds()
+  );
+  const actual = new Date();
+  const diff = (actual.getTime() - published.getTime()) / 1000;
   const { preferences } = usePreferences();
   const sinceDate = formatDiffToSince(diff, preferences);
   return (

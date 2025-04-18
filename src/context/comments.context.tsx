@@ -46,7 +46,7 @@ export function CommentProvider({ children }: CommentProviderProps) {
       console.log("Response from create comment: ", res);
       if (!res) throw new Error("Create Comment request failed");
       if (res.status == 200) {
-        addComment(res.data as Comment);
+        addComment(comment);
       } else {
         addCommentToError(comment);
       }

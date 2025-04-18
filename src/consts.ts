@@ -530,7 +530,7 @@ export const LANGUAGE = {
       en: "Loading comments...",
     },
     NO_COMMENTS: {
-      es: "Este producto no tiene comentarios todavia",
+      es: "Este producto no tiene comentarios todavía",
       en: "This product has no comments yet",
     },
     BE_FIRST: {
@@ -538,7 +538,7 @@ export const LANGUAGE = {
       en: "Be the first one!",
     },
     SINCE: {
-      es: "Desde hace",
+      es: "Hace",
       en: "Since",
     },
     LICENSE: {
@@ -549,7 +549,15 @@ export const LANGUAGE = {
       es: "Licencia Estandar",
       en: "Standard License",
     },
+    PERSONAL_LICENSE: {
+      es: "Licencia Estandar Licencia Estandar Licencia Estandar Licencia Estandar Licencia Estandar Licencia Estandar Licencia Estandar",
+      en: "Standard License Standard License Standard License Standard License Standard License Standard License Standard License Standard License",
+    },
     PROFESSIONAL: {
+      es: "Licencia Comercial",
+      en: "Commercial License",
+    },
+    PROFESSIONAL_LICENSE: {
       es: "Licencia Comercial",
       en: "Commercial License",
     },

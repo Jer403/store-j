@@ -30,14 +30,14 @@ export default function Checkout() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: "Jose",
-    lastName: "Jhonson",
-    address: "Ave. Guadí 232, Barcelona, Barcelona",
+    name: "",
+    lastName: "",
+    address: "",
     country: 1,
-    phoneNumber: "645553333",
-    callingCode: "34",
-    city: "Barcelona",
-    postalCode: "78622",
+    phoneNumber: "",
+    callingCode: "",
+    city: "",
+    postalCode: "",
   });
 
   // Update form field handler

@@ -115,7 +115,17 @@ export function LicenseSelector({
         <p className="font-medium text-[--text_light_100]">
           {LANGUAGE.PRODUCT.LICENSE[preferences.language]}
         </p>
-        <CircleQuestion className="h-5 w-5"></CircleQuestion>
+        <div className="h-5 w-5 group relative">
+          <CircleQuestion className="h-5 w-5"></CircleQuestion>
+          <span
+            id="email-error"
+            className="tooltiptext group-hover:visible after:border-transparent max-w-72 !top-[110%] !left-[-50%] shadow-sm shadow-[--shadow_light_300] border border-[--brand_color] text-[--text_light_0] bg-[--brand_color_950] after:border-r-[--bg_light_800]"
+          >
+            {license == "personal"
+              ? LANGUAGE.PRODUCT.PERSONAL_LICENSE[preferences.language]
+              : LANGUAGE.PRODUCT.PROFESSIONAL_LICENSE[preferences.language]}
+          </span>
+        </div>
       </div>
       <div>
         <h2

@@ -14,7 +14,6 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
   const [isInCart, setIsInCart] = useState<boolean>(false);
   const [isInPurchased, setIsInPurchased] = useState<boolean>(false);
   const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
-  const [license, setLicense] = useState<License>("personal");
   const { logged } = useAuth();
   const { preferences } = usePreferences();
 
@@ -136,15 +135,12 @@ export function ProductLicenseSelector({ product }: { product: Product }) {
 
         <button
           className={`items-center w-full justify-center gap-2 px-6 py-3 ${
-            license == null
-              ? "bg-[--button_not_allowed] cursor-not-allowed flex"
-              : isInPurchased
+            isInPurchased
               ? "bg-[--button_purchased] hover:bg-[--button_purchased_hover] flex"
               : isInCart
               ? "bg-[--button_cart] hover:bg-[--button_cart_hover] flex"
               : "hidden"
           } text-[--text_light_900] rounded-xl  transition-colors`}
-          disabled={license == null}
           onClick={() => {
             if (isInPurchased) {
               navigate("/dashboard");

@@ -49,7 +49,7 @@ function ChatMessageCard({ chat }: { chat: ChatMessage }) {
               : "text-[--text_light_400]"
           } text-sm absolute right-1 bottom-1`}
         >{`${formatHours(date.getHours())}:${formatMinutes(
-          date.getMinutes()
+          date.getMinutes() + 2
         )} ${whichMeridian(date.getHours())}`}</p>
       )}
       {loadingMessage.find((el) => el.id == chat.id) && (
@@ -110,7 +110,9 @@ export function Chat() {
       dateA.getFullYear(),
       dateA.getMonth(),
       dateA.getDate(),
-      dateA.getHours() + 5
+      dateA.getHours() + dateA.getTimezoneOffset() / 60,
+      dateA.getMinutes() - 2,
+      dateA.getSeconds()
     );
 
     const uuid = window.crypto.randomUUID();

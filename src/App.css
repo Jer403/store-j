@@ -14,10 +14,14 @@
   --brand_color_400: #af9561;
   --brand_color_800: #dfc591;
   --brand_color_900: #f1dcb5;
+  --brand_color_950: #fae7c3;
 
   --button: #645331;
   --button_hover: #504122;
   --button_not_allowed: #3f3218;
+
+  --bg_protected_loading: #f7eed7a4;
+  --bg_protected_loading_mover: #e7d095b9;
 
   --button_purchased: #83374e;
   --button_purchased_hover: #692c3e;
@@ -439,6 +443,33 @@
 
 .ping-delay-3 {
   animation: ping 0.9s 0.9s infinite;
+}
+
+.bg-loader {
+  position: relative;
+  overflow: hidden !important;
+}
+
+.bg-loader::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--bg_protected_loading_mover),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: bg-loading 3s infinite;
+}
+
+@keyframes bg-loading {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes loading {

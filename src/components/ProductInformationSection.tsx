@@ -36,7 +36,9 @@ export function ProductInformationSection({ product }: { product: Product }) {
       dateA.getFullYear(),
       dateA.getMonth(),
       dateA.getDate(),
-      dateA.getHours() + 5
+      dateA.getHours() + dateA.getTimezoneOffset() / 60,
+      dateA.getMinutes() - 1,
+      dateA.getSeconds()
     );
 
     const uuid = window.crypto.randomUUID();
